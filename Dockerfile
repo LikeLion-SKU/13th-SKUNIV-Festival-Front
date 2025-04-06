@@ -1,7 +1,6 @@
-FROM node:20-alpine
-
-COPY package.json ./
-
-COPY ./disk ./
+# builder
+FROM node:20 AS builder
+COPY . .
+RUN npm ci && npm run build
 
 ENTRYPOINT [ "npm","run","start" ]
