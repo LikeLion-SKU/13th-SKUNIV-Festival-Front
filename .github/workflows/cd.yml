@@ -25,6 +25,9 @@ jobs:
           npm ci
           npm run build
 
+      - name: Show dist folder
+        run: ls -al ./dist
+
       - name: Docker image upload to docker hub
         run: |
           docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_TOKEN }}
