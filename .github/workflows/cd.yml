@@ -18,7 +18,7 @@ jobs:
       - name: Docker image upload to docker hub
         run: |
           docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_TOKEN }}
-          docker build --platform linux/arm64 -t ${{ secrets.DOCKER_IMAGE_NAME }} .
+          docker build -t ${{ secrets.DOCKER_IMAGE_NAME }} .
           docker push ${{ secrets.DOCKER_IMAGE_NAME }}
 
     
