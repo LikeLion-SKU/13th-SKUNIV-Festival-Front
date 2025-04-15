@@ -7,10 +7,6 @@ html {
   font-family: Pretendard, sans-serif;
 }
 
-body {
-  min-height: 100vh;
-}
-
 *,
 *::before,
 *::after {
@@ -31,6 +27,9 @@ body {
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+  max-width: 390px; /* TODO 반응형 */
+  margin: 0 auto;
 }
 
 img,
