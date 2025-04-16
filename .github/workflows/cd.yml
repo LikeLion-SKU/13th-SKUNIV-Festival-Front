@@ -28,7 +28,7 @@ jobs:
   deploy-prod:
     if: github.ref == 'refs/heads/main' && (github.event.pull_request.merged == true || github.event_name == 'push')
     needs: build
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
 
     steps:
       - name: 프로덕션 배포 (green)
@@ -47,7 +47,7 @@ jobs:
   deploy-develop:
     if: github.ref == 'refs/heads/develop' && (github.event.pull_request.merged == true || github.event_name == 'push')
     needs: build
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
 
     steps:
       - name: 디벨롭 배포 (blue + nginx)
