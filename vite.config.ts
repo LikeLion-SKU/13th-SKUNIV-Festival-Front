@@ -10,9 +10,9 @@ export default defineConfig({
     tsconfigPaths(),
     svgr(),
     VitePWA({
-      registerType: "autoUpdate",
-      injectRegister: "auto",
-      includeAssets: ["favicon.ico"],
+      registerType: "autoUpdate", // 업데이트 자동 적용
+      injectRegister: "auto", // 서비스워커 자동 등록
+      includeAssets: ["favicon.ico"], // 기타 정적 자산
       manifest: {
         name: "sku",
         short_name: "sku",
@@ -34,8 +34,12 @@ export default defineConfig({
           },
         ],
       },
+      workbox: {
+        navigateFallback: "/index.html", // SPA fallback
+        navigateFallbackDenylist: [/^\/api/], // API는 제외
+      },
       devOptions: {
-        enabled: true,
+        enabled: true, // 개발 중에도 SW 작동
       },
     }),
   ],
