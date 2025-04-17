@@ -1,6 +1,6 @@
 import { useState } from "react";
 import styled from "styled-components";
-import ArtistCard from "./ArtistCard";
+import ArtistCard from "./TimeTableCard";
 import artistImg from "@image/artist_sample.png";
 
 export const TimeTableWrapper = styled.div`
@@ -15,7 +15,7 @@ export const DateWrapper = styled.div`
   flex-direction: row;
   justify-content: center;
   gap: 8px;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 `;
 
 export const DateBtn = styled.button<{ selected: boolean }>`
@@ -92,11 +92,11 @@ export default function TimeTable() {
     <TimeTableWrapper>
       <DateWrapper>
         <DateBtn selected={selectedDay === "day2"} onClick={() => setSelectedDay("day2")}>
-          <p className="en">Day 2</p>
+          <p className="en">DAY 2</p>
           <p className="ko">5월 8일 (목)</p>
         </DateBtn>
         <DateBtn selected={selectedDay === "day3"} onClick={() => setSelectedDay("day3")}>
-          <p className="en">Day 3</p>
+          <p className="en">DAY 3</p>
           <p className="ko">5월 9일 (금)</p>
         </DateBtn>
       </DateWrapper>

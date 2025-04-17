@@ -6,6 +6,7 @@ import starYellow from "@icon/star_yellow.svg";
 
 export const SectionWrapper = styled.div`
   display: flex;
+  max-width: 390px;
   flex-direction: column;
   align-items: center;
 `;
@@ -41,10 +42,10 @@ interface SectionProps {
 
 export default function Section({ title, content }: SectionProps) {
   const ref = useRef(null);
-  const isInView = useInView(ref, { amount: 0.3 });
+  const isInView = useInView(ref, { amount: 0.8 });
 
   return (
-    <SectionWrapper>
+    <SectionWrapper ref={ref}>
       <StarIcon isVisible={isInView} />
       <SectionTitle>{title}</SectionTitle>
       <SectionContent>{content}</SectionContent>

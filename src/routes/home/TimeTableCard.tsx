@@ -55,7 +55,7 @@ interface SectionProps {
   image: string;
 }
 
-export default function ArtistCard({ time, description, name, image }: SectionProps) {
+export default function TimeTableCard({ time, description, name, image }: SectionProps) {
   return (
     <ArtistWrapper>
       <AboutWrapper>
