@@ -6,6 +6,7 @@ import "./shared/styles/app.css";
 import Home from "./routes/home";
 import RootLayout from "./shared/layouts/root-layout";
 import About from "./routes/about";
+import LostArticle from "./routes/lostArticle";
 
 const router = createBrowserRouter([
   {
@@ -14,6 +15,7 @@ const router = createBrowserRouter([
     children: [
       { index: true, Component: Home },
       { path: "about", Component: About },
+      { path: "lost", Component: LostArticle },
     ],
   },
 ]);
