@@ -6,17 +6,14 @@ import starYellow from "@icon/star_yellow.svg";
 
 export const SectionWrapper = styled.div`
   display: flex;
-  max-width: 390px;
   flex-direction: column;
   align-items: center;
 `;
 
-export const StarIcon = styled(motion.div)<{ isVisible: boolean }>`
+export const StarIcon = styled(motion.img)`
   width: 26px;
   height: 26px;
-  background-image: url(${(props) => (props.isVisible ? starYellow : starWhite)});
-  background-size: cover;
-  transition: background-image 0.4s ease;
+  transition: all 0.4s ease;
 `;
 
 export const SectionTitle = styled.p`
@@ -42,11 +39,11 @@ interface SectionProps {
 
 export default function Section({ title, content }: SectionProps) {
   const ref = useRef(null);
-  const isInView = useInView(ref, { amount: 0.8 });
-
+  const isInView = useInView(ref, { amount: 0.9 });
+  console.log(starWhite);
   return (
     <SectionWrapper ref={ref}>
-      <StarIcon isVisible={isInView} />
+      <StarIcon src={isInView ? starYellow : starWhite} alt="star" />
       <SectionTitle>{title}</SectionTitle>
       <SectionContent>{content}</SectionContent>
     </SectionWrapper>
