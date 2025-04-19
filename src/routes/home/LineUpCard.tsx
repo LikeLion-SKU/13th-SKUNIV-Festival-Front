@@ -10,9 +10,12 @@ interface LineUpCardProps {
 }
 
 const Card = styled.div<{ image: string; $isCenter: boolean }>`
+  scroll-snap-align: center;
+  flex: 0 0 auto;
+
   width: 227px;
   height: 283px;
-  margin: 0 -70px;
+  margin: 0 -80px;
   padding: 16px;
   background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.12) 35.1%, #000 100%),
     url(${(props) => props.image});
