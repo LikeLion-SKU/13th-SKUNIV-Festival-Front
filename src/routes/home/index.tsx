@@ -3,6 +3,7 @@ import Section from "./Section";
 import TimeTable from "./TimeTable";
 import mainImg from "@icon/main_title.svg";
 import LineUp from "./LineUp";
+import Booth from "./Booth";
 
 const HomeWrapper = styled.div`
   height: 100%;
@@ -37,7 +38,7 @@ export default function Home() {
       <Section title="축제 소개" content="이번 축제는 어쩌구 저쩌구 어쩌구 저쩌구" />
       <Section title="공연 시간표" content={<TimeTable />} />
       <Section title="라인업" content={<LineUp />} />
-      <Section title="부스 보러가기" content="부스 보러가기 컴포넌트" />
+      <Section title="부스 보러가기" content={<Booth />} />
       <Section title="about" content="?" />
     </HomeWrapper>
   );

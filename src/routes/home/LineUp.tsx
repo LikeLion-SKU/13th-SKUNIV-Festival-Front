@@ -8,7 +8,7 @@ import artistImg from "@image/artist_sample.png";
 export const LineupWrapper = styled.div`
   position: relative;
   width: 390px;
-  height: 300px;
+  height: 283px;
   overflow: hidden;
   margin: 0 auto;
 `;

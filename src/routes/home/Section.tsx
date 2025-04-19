@@ -21,7 +21,7 @@ export const SectionTitle = styled.p`
   font-weight: 800;
   color: white;
   margin-top: 8px;
-  margin-bottom: 30px;
+  margin-bottom: 28px;
 `;
 export const SectionContent = styled.div`
   display: flex;
