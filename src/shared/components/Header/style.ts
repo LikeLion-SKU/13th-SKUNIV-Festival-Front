@@ -1,8 +1,9 @@
 import styled from "@emotion/styled";
 
-export const Container = styled.nav`
+export const Header = styled.header`
+  top: 0;
+  position: sticky;
   padding: 20px;
-  padding-top: 8px;
   display: flex;
   align-items: center;
   border-bottom: 1px solid #d7d7d7;
