@@ -9,7 +9,7 @@ const Header = () => {
   const { title, showBack, showHome } = useHeaderStore();
 
   return (
-    <S.Container>
+    <S.Header>
       {showBack && (
         <Link to="..">
           <Back />
@@ -21,7 +21,7 @@ const Header = () => {
           <Home />
         </Link>
       )}
-    </S.Container>
+    </S.Header>
   );
 };
 
