@@ -1,4 +1,4 @@
-import * as S from "./Header.style";
+import * as S from "./style";
 
 import Back from "../../assets/icon/Back.svg?react";
 import Home from "../../assets/icon/Home.svg?react";
