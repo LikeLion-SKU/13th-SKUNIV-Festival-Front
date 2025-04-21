@@ -1,1 +1,0 @@
-import{w as t}from"./with-props-D3AO8slx.js";import{l as o,O as r}from"./chunk-KNED5TY2-BWNdqSdz.js";const u=t(function(){return o.jsxs("div",{children:["root layout",o.jsx(r,{})]})});export{u as default};

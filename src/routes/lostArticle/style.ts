@@ -15,16 +15,16 @@ export const Pagination = styled.div`
   display: flex;
   justify-content: center;
   gap: 8px;
-  margin: 20px 0;
+  margin: 20px;
 
   button {
     display: flex;
     justify-content: center;
     align-items: center;
     background: white;
-    border: 1px solid #ddd;
     border-radius: 4px;
     padding: 4px 8px;
+    border: none;
     width: 29px;
     height: 29px;
     color: #7d7d7d;
@@ -34,7 +34,7 @@ export const Pagination = styled.div`
     line-height: normal;
 
     &.active {
-      background: #007bff;
+      background: #4aa4ff;
       color: white;
       font-size: 13px;
       font-style: normal;
@@ -42,5 +42,13 @@ export const Pagination = styled.div`
       line-height: normal;
       border: none;
     }
+  }
+  button.arrow-left {
+    margin-right: 12px;
+    border: 1px solid #e3e3e3;
+  }
+  button.arrow-right {
+    margin-left: 12px;
+    border: 1px solid #e3e3e3;
   }
 `;

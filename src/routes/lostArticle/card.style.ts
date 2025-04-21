@@ -1,27 +1,52 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const CardWrapper = styled.div`
   background: linear-gradient(to bottom, #666, #333);
-  border-radius: 12px;
-  color: white;
-  padding: 20px;
-  height: 140px;
+  border-radius: 10px;
+  padding: 10px;
+  height: 170px;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
+  justify-content: space-between;
+  position: relative;
 `;
 
 export const Location = styled.div`
-  font-size: 12px;
-  opacity: 0.8;
+  color: #b3b3b3;
+  font-size: 8px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+`;
+
+export const SubText = styled.p`
+  color: #b3b3b3;
+  font-size: 8px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 `;
 
 export const DateText = styled.p`
-  font-size: 13px;
-  margin: 4px 0;
+  color: #fff;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: -0.3px;
 `;
 
 export const Title = styled.h3`
-  font-size: 15px;
-  font-weight: bold;
+  color: #fff;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: -0.5px;
+`;
+
+export const CheckIcon = styled.div`
+  position: absolute;
+  top: 12px;
+  right: 12px;
 `;
