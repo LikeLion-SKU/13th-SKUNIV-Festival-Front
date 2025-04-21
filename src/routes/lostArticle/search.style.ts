@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 export const SearchBox = styled.div`
-  padding: 20px 20px 0px 20px;
 `;
 
 export const InputWrapper = styled.div`

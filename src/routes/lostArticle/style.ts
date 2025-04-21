@@ -1,14 +1,12 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  padding: 16px 0;
 `;
 
 export const CardList = styled.div`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 12px;
-  padding: 0 20px;
 `;
 
 export const Pagination = styled.div`

@@ -11,9 +11,12 @@ import LostArticle from "./routes/lostArticle";
 const router = createBrowserRouter([
   {
     path: "/",
+    index: true,
+    Component: Home,
+  },
+  {
     Component: RootLayout,
     children: [
-      { index: true, Component: Home },
       { path: "about", Component: About },
       { path: "lost", Component: LostArticle },
     ],

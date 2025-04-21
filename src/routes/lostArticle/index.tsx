@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import Header from './header';
 import Search from './search';
 import Filter from './filter';
 import Card from './card';
@@ -21,7 +20,6 @@ const LostArticlePage = () => {
 
   return (
     <Container>
-      <Header />
       <Search />
       <Filter />
       <CardList>
