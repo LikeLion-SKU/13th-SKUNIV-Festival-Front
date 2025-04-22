@@ -87,3 +87,7 @@ export const ModalSubtitle = styled.p`
   line-height: 21px;
   letter-spacing: -0.25px;
 `;
+
+export const PickUpIcon = styled.div`
+  margin-top: -3px;
+`;

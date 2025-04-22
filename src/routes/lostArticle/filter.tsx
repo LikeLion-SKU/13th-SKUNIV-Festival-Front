@@ -2,6 +2,7 @@ import { useState } from "react";
 import { AddButton, SaveText, FilterContainer, SubText, FilterWrapper } from "./filter.style";
 import AdminModal from "./adminModal";
 import { useAdminStore } from "../../stores/useAdminStore";
+import { useNavigate } from "react-router-dom";
 
 const Filter = () => {
   const [clickCount, setClickCount] = useState(0);
@@ -10,6 +11,12 @@ const Filter = () => {
 
   const isAdmin = useAdminStore((state) => state.isLoggedIn);
   const login = useAdminStore((state) => state.login);
+
+  const navigate = useNavigate();
+
+  const handleClickRegister = () => {
+    navigate("/edit");
+  };
 
   const handleClickSubText = () => {
     const nextCount = clickCount + 1;
@@ -35,7 +42,7 @@ const Filter = () => {
       {isAdmin ? (
         <>
           <AddButton>
-            <button>등록</button>
+            <button onClick={handleClickRegister}>등록</button>
           </AddButton>
           <SaveText>저장하고 나가기</SaveText>
         </>

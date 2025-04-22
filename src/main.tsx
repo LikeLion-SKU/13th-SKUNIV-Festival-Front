@@ -7,6 +7,7 @@ import Home from "./routes/home";
 import RootLayout from "./shared/layouts/root-layout";
 import About from "./routes/about";
 import LostArticle from "./routes/lostArticle";
+import Edit from "./routes/edit";
 
 const router = createBrowserRouter([
   {
@@ -19,6 +20,7 @@ const router = createBrowserRouter([
     children: [
       { path: "about", Component: About },
       { path: "lost", Component: LostArticle },
+      { path: "edit", Component: Edit },
     ],
   },
 ]);

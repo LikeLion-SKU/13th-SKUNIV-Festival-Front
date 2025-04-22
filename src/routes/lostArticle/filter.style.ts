@@ -61,4 +61,5 @@ export const SaveText = styled.p`
   text-decoration-thickness: auto;
   text-underline-offset: auto;
   text-underline-position: from-font;
+  cursor:pointer;
 `;
