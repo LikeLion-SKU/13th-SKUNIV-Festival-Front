@@ -29,7 +29,7 @@ export const SectionContent = styled.div`
   color: white;
   font-size: 12px;
   font-weight: 600;
-  margin-bottom: 100px;
+  margin-bottom: 120px;
 `;
 
 interface SectionProps {

@@ -37,7 +37,7 @@ const Card = styled.div<{ image: string; $isCenter: boolean }>`
 
 const TextBox = styled.div`
   & > .date {
-    color: #ff9bad;
+    color: #ff6783;
   }
 `;
 
@@ -59,7 +59,7 @@ const Button = styled.button`
   height: 20px;
   border-radius: 5px;
   padding: 2px 0px;
-  background-color: #ff9bad;
+  background-color: #ff6783;
   color: white;
   font-size: 8px;
   font-weight: 700;
@@ -89,7 +89,7 @@ export default function LineUpCard({
         <ArtistText16 className="date">{date}</ArtistText16>
         <VerticalDiv>
           <ArtistText16>{name}</ArtistText16>
-          <Button>상세 보기</Button>
+          <Button>상세 보기 &nbsp;&gt;</Button>
         </VerticalDiv>
         <VerticalDiv>
           <ArtistText10>{description}</ArtistText10>
