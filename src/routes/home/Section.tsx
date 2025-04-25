@@ -4,6 +4,23 @@ import { useRef } from "react";
 import starWhite from "@icon/star_white.svg";
 import starYellow from "@icon/star_yellow.svg";
 
+interface SectionProps {
+  title: string;
+  content: React.ReactNode;
+}
+
+export default function Section({ title, content }: SectionProps) {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { amount: 0.9 });
+  return (
+    <SectionWrapper ref={ref}>
+      <StarIcon src={isInView ? starYellow : starWhite} alt="star" />
+      <SectionTitle>{title}</SectionTitle>
+      <SectionContent>{content}</SectionContent>
+    </SectionWrapper>
+  );
+}
+
 export const SectionWrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -31,20 +48,3 @@ export const SectionContent = styled.div`
   font-weight: 600;
   margin-bottom: 120px;
 `;
-
-interface SectionProps {
-  title: string;
-  content: React.ReactNode;
-}
-
-export default function Section({ title, content }: SectionProps) {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { amount: 0.9 });
-  return (
-    <SectionWrapper ref={ref}>
-      <StarIcon src={isInView ? starYellow : starWhite} alt="star" />
-      <SectionTitle>{title}</SectionTitle>
-      <SectionContent>{content}</SectionContent>
-    </SectionWrapper>
-  );
-}

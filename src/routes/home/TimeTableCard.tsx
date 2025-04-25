@@ -1,5 +1,26 @@
 import styled from "styled-components";
 
+interface CardProps {
+  time: string;
+  description: string;
+  name: string;
+  image: string;
+  onClick?: () => void;
+}
+
+export default function TimeTableCard({ time, description, name, image, onClick }: CardProps) {
+  return (
+    <ArtistWrapper onClick={onClick}>
+      <AboutWrapper>
+        <ArtistTime>{time}</ArtistTime>
+        <ArtistDescription>{description}</ArtistDescription>
+        <ArtistName>{name}</ArtistName>
+      </AboutWrapper>
+      <ArtistImage image={image} />
+    </ArtistWrapper>
+  );
+}
+
 export const ArtistWrapper = styled.div`
   display: flex;
   flex-direction: row;
@@ -47,23 +68,3 @@ export const ArtistImage = styled.div<{ image: string }>`
   background-position: center;
   background-repeat: no-repeat;
 `;
-
-interface SectionProps {
-  time: string;
-  description: string;
-  name: string;
-  image: string;
-}
-
-export default function TimeTableCard({ time, description, name, image }: SectionProps) {
-  return (
-    <ArtistWrapper>
-      <AboutWrapper>
-        <ArtistTime>{time}</ArtistTime>
-        <ArtistDescription>{description}</ArtistDescription>
-        <ArtistName>{name}</ArtistName>
-      </AboutWrapper>
-      <ArtistImage image={image} />
-    </ArtistWrapper>
-  );
-}

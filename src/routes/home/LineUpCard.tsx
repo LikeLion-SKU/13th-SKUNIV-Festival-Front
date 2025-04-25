@@ -1,12 +1,30 @@
 import styled from "styled-components";
 
-interface LineUpCardProps {
+interface CardProps {
   image: string;
   date: string;
   name: string;
   time: string;
   description: string;
   isCenter: boolean;
+}
+
+export default function LineUpCard({ image, date, name, time, description, isCenter }: CardProps) {
+  return (
+    <Card image={image} $isCenter={isCenter}>
+      <TextBox>
+        <ArtistText16 className="date">{date}</ArtistText16>
+        <VerticalDiv>
+          <ArtistText16>{name}</ArtistText16>
+          <Button>상세 보기 &nbsp;&gt;</Button>
+        </VerticalDiv>
+        <VerticalDiv>
+          <ArtistText10>{description}</ArtistText10>
+          <ArtistText10>{time}</ArtistText10>
+        </VerticalDiv>
+      </TextBox>
+    </Card>
+  );
 }
 
 const Card = styled.div<{ image: string; $isCenter: boolean }>`
@@ -74,28 +92,3 @@ const VerticalDiv = styled.div`
   justify-content: space-between;
   margin-top: 2px;
 `;
-
-export default function LineUpCard({
-  image,
-  date,
-  name,
-  time,
-  description,
-  isCenter,
-}: LineUpCardProps) {
-  return (
-    <Card image={image} $isCenter={isCenter}>
-      <TextBox>
-        <ArtistText16 className="date">{date}</ArtistText16>
-        <VerticalDiv>
-          <ArtistText16>{name}</ArtistText16>
-          <Button>상세 보기 &nbsp;&gt;</Button>
-        </VerticalDiv>
-        <VerticalDiv>
-          <ArtistText10>{description}</ArtistText10>
-          <ArtistText10>{time}</ArtistText10>
-        </VerticalDiv>
-      </TextBox>
-    </Card>
-  );
-}

@@ -1,52 +1,43 @@
 import { useState } from "react";
 import styled from "styled-components";
 import TimeTableCard from "./TimeTableCard";
-import artistImg from "@image/artist_sample.png";
+import TimeTableModal from "./TimeTableModal";
+import artistList, { Artist } from "./ArtistList";
 
-const artistList = [
-  {
-    date: "DAY 2",
-    time: "18:00~18:30",
-    description: "경영학과 밴드",
-    name: "워워커스",
-    image: artistImg,
-  },
-  {
-    date: "DAY 2",
-    time: "18:30~19:00",
-    description: "나씨밴 오라오라",
-    name: "나상현씨 밴드",
-    image: artistImg,
-  },
-  {
-    date: "DAY 2",
-    time: "19:00~19:30",
-    description: "모카님 ㅠㅜ",
-    name: "아일릿",
-    image: artistImg,
-  },
-  {
-    date: "DAY 3",
-    time: "17:00~18:00",
-    description: "힙합 공연 동아리",
-    name: "SDR",
-    image: artistImg,
-  },
-  {
-    date: "DAY 3",
-    time: "18:00~18:30",
-    description: "경영학과 밴드",
-    name: "뭐뭐뭐뭐",
-    image: artistImg,
-  },
-  {
-    date: "DAY 3",
-    time: "18:30~19:00",
-    description: "경영학과 밴드",
-    name: "유다빈 밴드",
-    image: artistImg,
-  },
-];
+export default function TimeTable() {
+  const [selectedDay, setSelectedDay] = useState<"DAY 2" | "DAY 3">("DAY 2");
+  const [selectedArtist, setSelectedArtist] = useState<null | Artist>(null);
+  const filteredList = artistList.filter((artist) => artist.date === selectedDay);
+
+  return (
+    <TimeTableWrapper>
+      <NavWrapper>
+        <NavBtn selected={selectedDay === "DAY 2"} onClick={() => setSelectedDay("DAY 2")}>
+          <p className="en">DAY 2</p>
+          <p className="ko">5월 8일 (목)</p>
+        </NavBtn>
+        <NavBtn selected={selectedDay === "DAY 3"} onClick={() => setSelectedDay("DAY 3")}>
+          <p className="en">DAY 3</p>
+          <p className="ko">5월 9일 (금)</p>
+        </NavBtn>
+      </NavWrapper>
+
+      {filteredList.map((artist, index) => (
+        <TimeTableCard
+          key={index}
+          time={artist.time}
+          description={artist.description}
+          name={artist.name}
+          image={artist.image}
+          onClick={() => setSelectedArtist(artist)}
+        />
+      ))}
+      {selectedArtist && (
+        <TimeTableModal artist={selectedArtist} onClose={() => setSelectedArtist(null)} />
+      )}
+    </TimeTableWrapper>
+  );
+}
 
 export const TimeTableWrapper = styled.div`
   display: flex;
@@ -86,34 +77,3 @@ export const NavBtn = styled.button<{ selected: boolean }>`
     font-size: 10px;
   }
 `;
-
-export default function TimeTable() {
-  const [selectedDay, setSelectedDay] = useState<"DAY 2" | "DAY 3">("DAY 2");
-
-  const filteredList = artistList.filter((artist) => artist.date === selectedDay);
-
-  return (
-    <TimeTableWrapper>
-      <NavWrapper>
-        <NavBtn selected={selectedDay === "DAY 2"} onClick={() => setSelectedDay("DAY 2")}>
-          <p className="en">DAY 2</p>
-          <p className="ko">5월 8일 (목)</p>
-        </NavBtn>
-        <NavBtn selected={selectedDay === "DAY 3"} onClick={() => setSelectedDay("DAY 3")}>
-          <p className="en">DAY 3</p>
-          <p className="ko">5월 9일 (금)</p>
-        </NavBtn>
-      </NavWrapper>
-
-      {filteredList.map((artist, index) => (
-        <TimeTableCard
-          key={index}
-          time={artist.time}
-          description={artist.description}
-          name={artist.name}
-          image={artist.image}
-        />
-      ))}
-    </TimeTableWrapper>
-  );
-}

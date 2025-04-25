@@ -1,5 +1,22 @@
 import styled from "styled-components";
 
+interface CardProps {
+  location: string;
+  department: string;
+  image: string;
+}
+
+export default function BoothCard({ image, location, department }: CardProps) {
+  return (
+    <Card image={image}>
+      <TextBox>
+        <p className="location">{location}</p>
+        <p className="department">{department}</p>
+      </TextBox>
+    </Card>
+  );
+}
+
 const Card = styled.div<{ image: string }>`
   width: 170px;
   height: 170px;
@@ -33,20 +50,3 @@ const TextBox = styled.div`
     letter-spacing: -0.5px;
   }
 `;
-
-interface BoothProps {
-  location: string;
-  department: string;
-  image: string;
-}
-
-export default function BoothCard({ image, location, department }: BoothProps) {
-  return (
-    <Card image={image}>
-      <TextBox>
-        <p className="location">{location}</p>
-        <p className="department">{department}</p>
-      </TextBox>
-    </Card>
-  );
-}
