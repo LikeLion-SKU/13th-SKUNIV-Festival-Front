@@ -1,6 +1,3 @@
-# This workflow will run tests using node and then publish a package to GitHub Packages when a release is created
-# For more information see: https://docs.github.com/en/actions/publishing-packages/publishing-nodejs-packages
-
 name: Node.js Package
 
 on:
@@ -9,39 +6,60 @@ on:
       - main
       - develop
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
 
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20' # or your preferred version
+
+      - name: Cache node modules
+        uses: actions/cache@v4
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: ${{ runner.os }}-node-
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run tests
+        run: npm test
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
-      - name: Cache Docker layers
-        uses: actions/cache@v2
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
         with:
-          path: /tmp/.buildx-cache
-          key: ${{ runner.os }}-buildx-${{ github.sha }}
-          restore-keys: |
-            ${{ runner.os }}-buildx-
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_TOKEN }}
 
-      - name: Docker image upload to docker hub
-        run: |
-          docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_TOKEN }}
-          docker buildx build --platform linux/amd64,linux/arm64 -t ${{ secrets.DOCKER_IMAGE_NAME }}\
-            --push --cache-from=type=registry,ref=${{ secrets.DOCKER_IMAGE_NAME }}\
-            --cache-to=type=local,source=/tmp/.buildx-cache,dest=/tmp/.buildx-cache .
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          push: true
+          tags: ${{ secrets.DOCKER_IMAGE_NAME }}
+          platforms: linux/amd64,linux/arm64
 
-  
-  # main branch
   deploy-prod:
-    if: github.ref == 'refs/heads/main' && (github.event.pull_request.merged == true || github.event_name == 'push')
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
     needs: build
     runs-on: ubuntu-latest
-
     steps:
-      - name: 프로덕션 배포 (green)
+      - name: Production Deploy (green)
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.SSH_HOST_GREEN }}
@@ -53,14 +71,12 @@ jobs:
             docker compose up -d --no-deps react
             docker image prune -a -f
 
-  # develop branch
   deploy-develop:
-    if: github.ref == 'refs/heads/develop' && (github.event.pull_request.merged == true || github.event_name == 'push')
+    if: github.ref == 'refs/heads/develop' && github.event_name == 'push'
     needs: build
     runs-on: ubuntu-latest
-
     steps:
-      - name: 디벨롭 배포 (blue + nginx)
+      - name: Develop Deploy (blue + nginx)
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.SSH_HOST_BLUE }}
