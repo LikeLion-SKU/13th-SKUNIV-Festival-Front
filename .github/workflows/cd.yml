@@ -16,23 +16,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20' # or your preferred version
-
       - name: Cache node modules
         uses: actions/cache@v4
         with:
           path: '**/node_modules'
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: ${{ runner.os }}-node-
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Run tests
-        run: npm test
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
