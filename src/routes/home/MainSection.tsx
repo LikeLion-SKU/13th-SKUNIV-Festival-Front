@@ -164,7 +164,6 @@ const LangButton = styled.div`
   color: #111;
   font-size: 16px;
   font-weight: 600;
-  font-weight: bold;
   display: flex;
   flex-direction: row;
   align-items: center;

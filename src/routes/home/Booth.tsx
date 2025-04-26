@@ -95,19 +95,19 @@ export default function Booth() {
   );
 }
 
-export const Wrapper = styled.div`
+const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
 `;
 
-export const BoothWrapper = styled.div`
+const BoothWrapper = styled.div`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-gap: 12px;
 `;
 
-export const NavWrapper = styled.div`
+const NavWrapper = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -115,7 +115,7 @@ export const NavWrapper = styled.div`
   margin-bottom: 16px;
 `;
 
-export const NavBtn = styled.button<{ selected: boolean }>`
+const NavBtn = styled.button<{ selected: boolean }>`
   display: flex;
   flex-direction: column;
   justify-content: center;

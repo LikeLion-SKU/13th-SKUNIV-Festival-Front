@@ -42,6 +42,7 @@ const TextBox = styled.div`
     font-weight: 400;
     letter-spacing: -0.3px;
   }
+
   & > .department {
     color: #fff;
     font-size: 20px;
