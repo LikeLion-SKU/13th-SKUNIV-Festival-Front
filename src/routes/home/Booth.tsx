@@ -25,7 +25,7 @@ const boothList = [
     image: boothImg,
   },
   {
-    department: "뀨뀨학과",
+    department: "저쩌구학과",
     location: "청운관 중앙",
     image: boothImg,
   },
