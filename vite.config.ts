@@ -2,8 +2,17 @@ import { defineConfig } from "vite";
 import tsconfigPaths from "vite-tsconfig-paths";
 import svgr from "vite-plugin-svgr";
 import { VitePWA } from "vite-plugin-pwa";
+import path from "path";
 
 export default defineConfig({
+  resolve: {
+    alias: {
+      "@icon": path.resolve(__dirname, "src/shared/assets/icon"),
+      "@font": path.resolve(__dirname, "src/shared/assets/font"),
+      "@image": path.resolve(__dirname, "src/shared/assets/image"),
+      "@": path.resolve(__dirname, "src/routes"),
+    },
+  },
   plugins: [
     tsconfigPaths(),
     svgr(),

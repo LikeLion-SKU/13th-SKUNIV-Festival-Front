@@ -1,6 +1,17 @@
 @font-face {
   font-family: "Pretendard";
-  src: local("PretendardVariable"), url("../assets/font/PretendardVariable.woff2");
+  src: local("PretendardVariable"), url("../assets/font/PretendardVariable.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "HSSanTokki20-Regular";
+  src: local("HSSanTokki20-Regular"),
+    url("../assets/font/HSSanTokki20-Regular.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Syncopate-Bold";
+  src: local("Syncopate-Bold"), url("../assets/font/Syncopate-Bold.woff2") format("woff2");
 }
 
 html {
