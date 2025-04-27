@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from "@emotion/styled";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import starWhite from "@icon/star_white.svg";

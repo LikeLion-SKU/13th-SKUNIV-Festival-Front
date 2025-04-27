@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from "@emotion/styled";
 import logo from "@icon/likelion_logo.svg";
 
 export default function About() {
