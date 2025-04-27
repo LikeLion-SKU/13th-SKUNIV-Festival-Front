@@ -17,4 +17,6 @@ export const Title = styled.h1`
   font-weight: 500;
   line-height: normal;
   letter-spacing: -0.5px;
+  cursor: default;
+  user-select: none;
 `;

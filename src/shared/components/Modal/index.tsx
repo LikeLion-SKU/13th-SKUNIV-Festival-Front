@@ -1,18 +1,16 @@
 import { ReactNode } from "react";
 import { createPortal } from "react-dom";
 import { Actions, Backdrop, Wrapper } from "./style";
-import useReservationStore from "../../stores/useReservationStore";
 import Action, { ActionProps } from "./Action";
 
 interface ModalProps {
   children: ReactNode;
   actions?: ActionProps["actionData"][];
+  onClose: () => void;
   padding?: string;
 }
 
-const Modal = ({ children, actions, padding }: ModalProps) => {
-  const { onClose } = useReservationStore();
-
+const Modal = ({ children, actions, onClose, padding }: ModalProps) => {
   return createPortal(
     <Backdrop onClick={onClose}>
       <Wrapper onClick={(e) => e.stopPropagation()} padding={padding}>

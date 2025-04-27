@@ -50,6 +50,7 @@ export default function BoothDetail() {
     title: "컴퓨터공학과",
     showBack: true,
     showHome: true,
+    canAccessAdmin: true,
   });
 
   return (

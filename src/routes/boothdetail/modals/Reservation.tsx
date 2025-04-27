@@ -55,6 +55,7 @@ const Reservation = () => {
             action: () => onSubmit(),
           },
         ]}
+        onClose={onClose}
       >
         <Layout>
           <Title>디자인학부 부스 예약</Title>
@@ -102,6 +103,7 @@ const Reservation = () => {
               action: () => setShowNowAgreed(false),
             },
           ]}
+          onClose={onClose}
           padding="0px 30px 30px 30px"
         >
           <AgreeLayout>
