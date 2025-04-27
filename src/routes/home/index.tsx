@@ -25,8 +25,8 @@ export default function Home() {
           <Section title="공연 시간표" content={<TimeTable />} />
           <Section title="라인업" content={<LineUp />} />
           <Section title="부스 보러가기" content={<Booth />} />
-          <Section title="about" content={<About />} />
           <Section title="대피로 & AED 위치" content={<Emergency />} />
+          <Section title="about" content={<About />} />
         </>
       )}
     </HomeWrapper>

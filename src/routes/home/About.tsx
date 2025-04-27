@@ -30,6 +30,7 @@ const AboutWrapper = styled.div`
   justify-content: center;
   align-items: center;
   max-width: 318px;
+  margin-bottom: 200px;
 
   & > .dot {
     font-size: 20px;
