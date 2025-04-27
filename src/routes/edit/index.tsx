@@ -6,7 +6,7 @@ import DateSelector from "./dateSelector";
 import LocationInput from "./locationInput";
 import SubmitButton from "./submitButton";
 import { Container } from "./style";
-import { postLostItem, putLostItem, getLostItem } from "./editAPI"; // putLostItem 추가
+import { postLostItem, putLostItem, getLostItem } from "./editAPI";
 
 const EditPage = () => {
   const [name, setName] = useState("");

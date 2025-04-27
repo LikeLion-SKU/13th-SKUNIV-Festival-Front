@@ -8,7 +8,7 @@ import { FiCheck } from "react-icons/fi";
 
 const SuccessModal = ({ onClose }: { onClose: () => void }) => {
   const handleCloseAndRefresh = () => {
-    onClose();  // 모달을 닫는 함수 호출
+    onClose();
     window.location.reload();
   };
 
