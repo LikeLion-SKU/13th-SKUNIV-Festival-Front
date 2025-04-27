@@ -7,6 +7,7 @@ export const CardList = styled.div`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 12px;
+  min-height: 536px;
 `;
 
 export const Pagination = styled.div`

@@ -1,10 +1,15 @@
 import { InputLabel, InputBox } from "./style";
 
-const TitleInput = () => {
+interface Props {
+  value: string;
+  setValue: (val: string) => void;
+}
+
+const TitleInput = ({ value, setValue }: Props) => {
   return (
     <>
-      <InputLabel>분실물 입력</InputLabel>
-      <InputBox placeholder="분실물 이름을 입력해주세요." />
+      <InputLabel>이름</InputLabel>
+      <InputBox  placeholder="분실물 이름을 입력해주세요." value={value} onChange={(e) => setValue(e.target.value)} />
     </>
   );
 };

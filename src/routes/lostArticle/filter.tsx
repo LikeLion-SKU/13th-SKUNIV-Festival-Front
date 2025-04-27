@@ -4,7 +4,12 @@ import AdminModal from "./adminModal";
 import { useAdminStore } from "../../stores/useAdminStore";
 import { useNavigate } from "react-router-dom";
 
-const Filter = () => {
+interface FilterProps {
+  sort: "LATEST" | "OLDEST";
+  onSortChange: (sort: "LATEST" | "OLDEST") => void;
+}
+
+const Filter = ({ sort, onSortChange }: FilterProps) => {
   const [clickCount, setClickCount] = useState(0);
   const [showModal, setShowModal] = useState(false);
   const [password, setPassword] = useState("");
@@ -28,13 +33,9 @@ const Filter = () => {
     }
   };
 
-  const handleSubmitPassword = (input: string) => {
-    if (input === "1234") {
-      login();
-      setShowModal(false);
-    } else {
-      alert("비밀번호가 틀렸습니다.");
-    }
+  const handleSortClick = () => {
+    const newSort = sort === "LATEST" ? "OLDEST" : "LATEST";
+    onSortChange(newSort);
   };
 
   return (
@@ -53,7 +54,9 @@ const Filter = () => {
         </SubText>
       )}
       <FilterWrapper>
-        <button>최신순</button>
+        <button onClick={handleSortClick}>
+          {sort === "LATEST" ? "최신순" : "오래된순"}
+        </button>
       </FilterWrapper>
       {showModal && (
         <AdminModal
@@ -65,6 +68,15 @@ const Filter = () => {
       )}
     </FilterContainer>
   );
+
+  function handleSubmitPassword(input: string) {
+    if (input === "1234") {
+      login();
+      setShowModal(false);
+    } else {
+      alert("비밀번호가 틀렸습니다.");
+    }
+  }
 };
 
 export default Filter;

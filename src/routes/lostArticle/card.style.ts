@@ -11,6 +11,16 @@ export const CardWrapper = styled.div`
   position: relative;
 `;
 
+export const Overlay = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(transparent, rgba(0,0,0,0.5));
+  z-index: 1;
+`;
+
 export const Location = styled.div`
   color: #b3b3b3;
   font-size: 8px;

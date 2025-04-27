@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { SubText, CardWrapper, Location, DateText, Title, CheckIcon } from "./card.style";
+import { SubText, CardWrapper, Location, DateText, Title, CheckIcon, Overlay } from "./card.style";
 import { FiCheckCircle, FiCheck } from "react-icons/fi";
 import { useAdminStore } from "../../stores/useAdminStore";
 import CardActionModal from "./cardActionModal";
@@ -11,44 +11,57 @@ interface CardProps {
   location: string;
   date: string;
   title: string;
+  imageUrl: string;
+  returned: boolean;
 }
 
-const Card = ({ location, date, title }: CardProps) => {
+const Card = ({ location, date, title, imageUrl, returned }: CardProps) => {
   const isLoggedIn = useAdminStore((state) => state.isLoggedIn);
 
-  const [showActionModal, setShowActionModal] = useState(false);
-  const [showConfirmModal, setShowConfirmModal] = useState(false);
-  const [showSuccessModal, setShowSuccessModal] = useState(false);
-  const [showPickupModal, setShowPickupModal] = useState(false);
+  const [activeModal, setActiveModal] = useState<"action" | "confirm" | "success" | "pickup" | null>(null);
   const [isPickedUp, setIsPickedUp] = useState(false);
 
   const handleCardClick = () => {
-    if (isLoggedIn) setShowActionModal(true);
+    if (isLoggedIn) setActiveModal("action");
   };
 
   const handleDelete = () => {
-    setShowActionModal(false);
-    setShowConfirmModal(true);
+    setActiveModal(null);
+    setActiveModal("confirm");
   };
 
   const handleConfirmDelete = () => {
-    setShowConfirmModal(false);
-    setShowSuccessModal(true);
+    setActiveModal("success");
   };
 
   const handleCheckClick = (e: React.MouseEvent) => {
     e.stopPropagation();
-    setShowPickupModal(true);
+    setActiveModal("pickup");
   };
 
   const handleConfirmPickup = () => {
-    setShowPickupModal(false);
+    setActiveModal(null);
     setIsPickedUp(true);
   };
 
   return (
     <>
       <CardWrapper onClick={handleCardClick}>
+        <img
+          src={imageUrl}
+          alt={title}
+          style={{
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            position: "absolute",
+            top: 0,
+            left: 0,
+            zIndex: 0,
+          }}
+        />
+        <Overlay />
+
         {isLoggedIn && (
           <CheckIcon onClick={handleCheckClick}>
             {isPickedUp ? (
@@ -68,26 +81,26 @@ const Card = ({ location, date, title }: CardProps) => {
         </Location>
       </CardWrapper>
 
-      {showActionModal && (
+      {activeModal === "action" && (
         <CardActionModal
-          onClose={() => setShowActionModal(false)}
+          onClose={() => setActiveModal(null)}
           onEdit={() => alert("수정 기능은 추후 구현")}
           onDelete={handleDelete}
         />
       )}
 
-      {showConfirmModal && (
+      {activeModal === "confirm" && (
         <ConfirmDeleteModal
-          onCancel={() => setShowConfirmModal(false)}
+          onCancel={() => setActiveModal(null)}
           onConfirm={handleConfirmDelete}
         />
       )}
 
-      {showSuccessModal && <SuccessModal onClose={() => setShowSuccessModal(false)} />}
+      {activeModal === "success" && <SuccessModal onClose={() => setActiveModal(null)} />}
 
-      {showPickupModal && (
+      {activeModal === "pickup" && (
         <PickupModal
-          onCancel={() => setShowPickupModal(false)}
+          onCancel={() => setActiveModal(null)}
           onConfirm={handleConfirmPickup}
         />
       )}
