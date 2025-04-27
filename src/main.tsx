@@ -7,6 +7,8 @@ import Home from "./routes/home";
 import RootLayout from "./shared/layouts/root-layout";
 import About from "./routes/about";
 import Tabling from "./routes/tabling";
+import BoothInfo from "./routes/booth";
+import BoothMenu from "./routes/booth/BoothMenu";
 
 const router = createBrowserRouter([
   {
@@ -19,6 +21,8 @@ const router = createBrowserRouter([
     children: [
       { path: "about", Component: About },
       { path: "tabling", Component: Tabling },
+      { path: "booth", Component: BoothInfo },
+      { path: "booth/:department", Component: BoothMenu },
     ],
   },
 ]);
