@@ -23,7 +23,7 @@ export const InfoSection = styled.div`
 export const InfoHeader = styled.div`
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 12px;
 `;
 
 export const InfoTitle = styled.span`
@@ -57,7 +57,7 @@ export const Description = styled.p`
   font-size: 13px;
   font-style: normal;
   font-weight: 400;
-  line-height: 24px; /* 184.615% */
+  line-height: 20.8px;
   letter-spacing: -0.325px;
   word-break: break-all;
 `;
