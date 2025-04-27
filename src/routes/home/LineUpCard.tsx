@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from "@emotion/styled";
 
 interface CardProps {
   image: string;
@@ -14,10 +14,7 @@ export default function LineUpCard({ image, date, name, time, description, isCen
     <Card image={image} $isCenter={isCenter}>
       <TextBox>
         <ArtistText16 className="date">{date}</ArtistText16>
-        <VerticalDiv>
-          <ArtistText16>{name}</ArtistText16>
-          <Button>상세 보기 &nbsp;&gt;</Button>
-        </VerticalDiv>
+        <ArtistText16>{name}</ArtistText16>
         <VerticalDiv>
           <ArtistText10>{description}</ArtistText10>
           <ArtistText10>{time}</ArtistText10>
@@ -70,20 +67,6 @@ const ArtistText10 = styled.p`
   font-weight: 400;
   line-height: 140%;
   margin-right: 3px;
-`;
-
-const Button = styled.button`
-  width: 62px;
-  height: 20px;
-  border-radius: 5px;
-  padding: 2px 0px;
-  background-color: #ff6783;
-  color: white;
-  font-size: 8px;
-  font-weight: 700;
-  line-height: 130%;
-  cursor: pointer;
-  border: none;
 `;
 
 const VerticalDiv = styled.div`

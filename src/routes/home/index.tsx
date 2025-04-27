@@ -1,5 +1,5 @@
-import { useState } from "react";
-import styled from "styled-components";
+import { useState, useEffect } from "react";
+import styled from "@emotion/styled";
 import MainSection from "./MainSection";
 import Section from "./Section";
 import TimeTable from "./TimeTable";
@@ -12,8 +12,16 @@ import Intro from "./Intro";
 export default function Home() {
   const [lang, setLang] = useState<string | null>(null);
 
+  useEffect(() => {
+    const savedLang = localStorage.getItem("selectedLang");
+    if (savedLang) {
+      setLang(savedLang);
+    }
+  }, []);
+
   const handleLangSelect = (selectedLang: string) => {
     setLang(selectedLang);
+    localStorage.setItem("selectedLang", selectedLang);
   };
 
   return (
@@ -25,8 +33,8 @@ export default function Home() {
           <Section title="공연 시간표" content={<TimeTable />} />
           <Section title="라인업" content={<LineUp />} />
           <Section title="부스 보러가기" content={<Booth />} />
-          <Section title="about" content={<About />} />
           <Section title="대피로 & AED 위치" content={<Emergency />} />
+          <Section title="about" content={<About />} />
         </>
       )}
     </HomeWrapper>

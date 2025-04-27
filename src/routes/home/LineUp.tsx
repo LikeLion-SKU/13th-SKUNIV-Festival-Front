@@ -1,5 +1,5 @@
 import { useState } from "react";
-import styled from "styled-components";
+import styled from "@emotion/styled";
 import LineUpCard from "./LineUpCard";
 import artistList from "./ArtistList";
 import leftArrow from "@icon/arrow_left.svg";

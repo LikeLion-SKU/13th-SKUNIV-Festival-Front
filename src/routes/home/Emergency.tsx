@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from "@emotion/styled";
 import loc from "@icon/location.svg";
 
 export default function Emergency() {

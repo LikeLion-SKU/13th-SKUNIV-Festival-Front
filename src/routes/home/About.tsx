@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from "@emotion/styled";
 import logo from "@icon/likelion_logo.svg";
 
 export default function About() {
@@ -30,6 +30,7 @@ const AboutWrapper = styled.div`
   justify-content: center;
   align-items: center;
   max-width: 318px;
+  margin-bottom: 200px;
 
   & > .dot {
     font-size: 20px;
