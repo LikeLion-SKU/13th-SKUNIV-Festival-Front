@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
-import styled from "styled-components";
+import styled from "@emotion/styled";
 import mainImg from "@icon/main_title.svg";
 import flower1 from "@icon/flower_1.svg";
 import flower2 from "@icon/flower_2.svg";

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import styled from "styled-components";
+import styled from "@emotion/styled";
 import TimeTableCard from "./TimeTableCard";
 import TimeTableModal from "./TimeTableModal";
 import artistList, { Artist } from "./ArtistList";
