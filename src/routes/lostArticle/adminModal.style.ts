@@ -72,10 +72,14 @@ export const ButtonGroup = styled.div`
 
   button {
     flex: 1;
+    width: 129px;
+    height: 35px;
     padding: 8.845px 22.112px;
+    justify-content: center;
     border: none;
-    border-radius: 10px;
-    font-size: 14px;
+    border-radius: 5px;
+    font-size: 12px;
+    font-weight: 400;
     cursor: pointer;
   }
 

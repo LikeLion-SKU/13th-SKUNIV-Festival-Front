@@ -58,7 +58,7 @@ export const ModalButton = styled.button<{
   height: 35px;
   padding: 8.845px 22.112px;
   justify-content: center;
-  border-radius: 10px;
+  border-radius: 5px;
   font-size: 12px;
   font-weight: 400;
   background: ${({ background }) => background || "#f0f0f0"};

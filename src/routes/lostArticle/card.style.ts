@@ -15,9 +15,10 @@ export const Overlay = styled.div`
   position: absolute;
   top: 0;
   left: 0;
+  border-radius: 10px;
   width: 100%;
   height: 100%;
-  background: linear-gradient(transparent, rgba(0,0,0,0.5));
+  background: linear-gradient(transparent, rgba(0,0,0,1));
   z-index: 1;
 `;
 
@@ -27,6 +28,7 @@ export const Location = styled.div`
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+  z-index: 2;
 `;
 
 export const SubText = styled.p`
@@ -55,8 +57,21 @@ export const Title = styled.h3`
   letter-spacing: -0.5px;
 `;
 
+export const StyledImage = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 10px;
+  z-index: 0;
+`;
+
+
 export const CheckIcon = styled.div`
   position: absolute;
   top: 12px;
   right: 12px;
+  z-index: 3;
 `;

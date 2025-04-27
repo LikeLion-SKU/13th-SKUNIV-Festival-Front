@@ -1,6 +1,15 @@
 import { useState } from "react";
-import { SubText, CardWrapper, Location, DateText, Title, CheckIcon, Overlay } from "./card.style";
-import { FiCheckCircle, FiCheck } from "react-icons/fi";
+import {
+  StyledImage,
+  SubText,
+  CardWrapper,
+  Location,
+  DateText,
+  Title,
+  CheckIcon,
+  Overlay,
+} from "./card.style";
+import { FiCheckSquare, FiSquare } from "react-icons/fi";
 import { useAdminStore } from "../../stores/useAdminStore";
 import CardActionModal from "./cardActionModal";
 import ConfirmDeleteModal from "./deleteConfirmModal";
@@ -13,13 +22,16 @@ interface CardProps {
   title: string;
   imageUrl: string;
   returned: boolean;
+  id: number;
 }
 
-const Card = ({ location, date, title, imageUrl, returned }: CardProps) => {
+const Card = ({ location, date, title, imageUrl, returned, id }: CardProps) => {
   const isLoggedIn = useAdminStore((state) => state.isLoggedIn);
 
-  const [activeModal, setActiveModal] = useState<"action" | "confirm" | "success" | "pickup" | null>(null);
-  const [isPickedUp, setIsPickedUp] = useState(false);
+  const [activeModal, setActiveModal] = useState<
+    "action" | "confirm" | "success" | "pickup" | null
+  >(null);
+  const [isPickedUp, setIsPickedUp] = useState(returned); // 초기값으로 'returned' 상태를 사용
 
   const handleCardClick = () => {
     if (isLoggedIn) setActiveModal("action");
@@ -39,35 +51,23 @@ const Card = ({ location, date, title, imageUrl, returned }: CardProps) => {
     setActiveModal("pickup");
   };
 
-  const handleConfirmPickup = () => {
+  const handleConfirmPickup = (isPicked: boolean) => {
     setActiveModal(null);
-    setIsPickedUp(true);
+    setIsPickedUp(isPicked); // 주인이 찾았다고 상태 변경
   };
 
   return (
     <>
       <CardWrapper onClick={handleCardClick}>
-        <img
-          src={imageUrl}
-          alt={title}
-          style={{
-            width: "100%",
-            height: "100%",
-            objectFit: "cover",
-            position: "absolute",
-            top: 0,
-            left: 0,
-            zIndex: 0,
-          }}
-        />
+        <StyledImage src={imageUrl} alt={title} />
         <Overlay />
 
         {isLoggedIn && (
           <CheckIcon onClick={handleCheckClick}>
             {isPickedUp ? (
-              <FiCheck size={20} color="#2D9CDB" />
+              <FiCheckSquare size={20} color="#2D9CDB" /> // 체크된 아이콘
             ) : (
-              <FiCheckCircle size={20} color="#2D9CDB" />
+              <FiSquare size={20} color="#2D9CDB" /> // 체크되지 않은 아이콘
             )}
           </CheckIcon>
         )}
@@ -83,14 +83,15 @@ const Card = ({ location, date, title, imageUrl, returned }: CardProps) => {
 
       {activeModal === "action" && (
         <CardActionModal
+          id={id} // id를 전달
           onClose={() => setActiveModal(null)}
-          onEdit={() => alert("수정 기능은 추후 구현")}
           onDelete={handleDelete}
         />
       )}
 
       {activeModal === "confirm" && (
         <ConfirmDeleteModal
+          itemId={id}
           onCancel={() => setActiveModal(null)}
           onConfirm={handleConfirmDelete}
         />
@@ -100,6 +101,7 @@ const Card = ({ location, date, title, imageUrl, returned }: CardProps) => {
 
       {activeModal === "pickup" && (
         <PickupModal
+          itemId={id}
           onCancel={() => setActiveModal(null)}
           onConfirm={handleConfirmPickup}
         />

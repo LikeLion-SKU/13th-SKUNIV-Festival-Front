@@ -19,3 +19,23 @@ export const fetchLostItems = async ({ name, sort = "LATEST", page = 0 }: FetchL
   const response = await axios.get("https://api.2025skufestival.site/api/lost-items", { params });
   return response.data.data;
 };
+
+export const updateLostItemReturnedStatus = async (id: number, returned: boolean) => {
+  try {
+    const response = await axios.put(
+      `https://api.2025skufestival.site/api/lost-items/${id}/returned?returned=${returned}`
+    );
+    return response.data;
+  } catch (error) {
+    return;
+  }
+};
+
+export const deleteLostItem = async (id: number) => {
+  try {
+    const response = await axios.delete(`https://api.2025skufestival.site/api/lost-items/${id}`);
+    return response.data;
+  } catch (error) {
+    return null;
+  }
+};

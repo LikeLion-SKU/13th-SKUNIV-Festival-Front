@@ -16,6 +16,7 @@ const Filter = ({ sort, onSortChange }: FilterProps) => {
 
   const isAdmin = useAdminStore((state) => state.isLoggedIn);
   const login = useAdminStore((state) => state.login);
+  const logout = useAdminStore((state) => state.logout);
 
   const navigate = useNavigate();
 
@@ -38,6 +39,11 @@ const Filter = ({ sort, onSortChange }: FilterProps) => {
     onSortChange(newSort);
   };
 
+  const handleLogout = () => {
+    logout();
+    navigate("/lost");
+  };
+
   return (
     <FilterContainer>
       {isAdmin ? (
@@ -45,7 +51,7 @@ const Filter = ({ sort, onSortChange }: FilterProps) => {
           <AddButton>
             <button onClick={handleClickRegister}>등록</button>
           </AddButton>
-          <SaveText>저장하고 나가기</SaveText>
+          <SaveText onClick={handleLogout}>저장하고 나가기</SaveText>
         </>
       ) : (
         <SubText onClick={handleClickSubText}>

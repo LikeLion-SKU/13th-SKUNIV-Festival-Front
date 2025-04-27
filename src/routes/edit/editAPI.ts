@@ -1,35 +1,42 @@
 import axios from "axios";
 
-export interface LostItemData {
-  name: string;
-  imageUrl: string;
-  foundPlace: string;
-  foundDate: string;
-}
+export const postLostItem = async (formData: FormData) => {
+  const url = "https://api.2025skufestival.site/api/lost-items";  // 서버 API URL
 
-export const postLostItem = async (data: LostItemData) => {
   try {
-    const response = await axios.post("https://api.2025skufestival.site/api/lost-items", data);
+    const response = await axios.post(url, formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",  // 파일 전송을 위한 헤더
+      },
+    });
     return response.data;
   } catch (error) {
-    console.error("분실물 등록 실패:", error);
-    throw error;
+    return;
   }
 };
 
-export const uploadImage = async (file: File): Promise<string> => {
-  const formData = new FormData();
-  formData.append("file", file);
+export const putLostItem = async (id: number, formData: FormData) => {
+  const url = `https://api.2025skufestival.site/api/lost-items/${id}`;
 
-  const response = await axios.post(
-    "https://api.2025skufestival.site/api/image/lost-item/image-upload",
-    formData,
-    {
+  try {
+    const response = await axios.put(url, formData, {
       headers: {
         "Content-Type": "multipart/form-data",
       },
-    }
-  );
+    });
+    return response.data;
+  } catch (error) {
+    return;
+  }
+};
 
-  return response.data.imageUrl;
+export const getLostItem = async (id: number) => {
+  const url = `https://api.2025skufestival.site/api/lost-items/${id}`;
+
+  try {
+    const response = await axios.get(url);
+    return response.data;
+  } catch (error) {
+    return;
+  }
 };

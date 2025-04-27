@@ -37,6 +37,7 @@ const CardList = ({ name, sort }: CardListProps) => {
       {lostItems.map((item) => (
         <Card
           key={item.id}
+          id={item.id}
           location={item.foundPlace}
           date={item.foundDate}
           title={item.name}

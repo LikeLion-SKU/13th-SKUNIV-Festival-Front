@@ -92,3 +92,41 @@ export const Divider = styled.div`
   background-color: #d7d7d7;
   margin-top: 30px;
 `;
+
+// 미리보기 이미지와 X 버튼을 감싸는 Wrapper
+export const PreviewImageWrapper = styled.div`
+  position: relative;
+  width: 100%;
+  height: auto;
+  margin-top: 10px;
+`;
+
+// 미리보기 이미지 스타일
+export const PreviewImage = styled.img`
+  width: 100%;
+  height: 290px;
+  object-fit: cover;
+  border-radius: 8px;
+`;
+
+// X 버튼 스타일
+export const RemoveButton = styled.button`
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  cursor: pointer;
+
+  &:hover {
+    background: rgba(0, 0, 0, 0.8);
+  }
+`;

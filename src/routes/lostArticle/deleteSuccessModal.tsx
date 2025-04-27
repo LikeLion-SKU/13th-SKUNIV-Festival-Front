@@ -7,8 +7,13 @@ import {
 import { FiCheck } from "react-icons/fi";
 
 const SuccessModal = ({ onClose }: { onClose: () => void }) => {
+  const handleCloseAndRefresh = () => {
+    onClose();  // 모달을 닫는 함수 호출
+    window.location.reload();
+  };
+
   return (
-    <ModalBackdrop onClick={onClose}>
+    <ModalBackdrop onClick={handleCloseAndRefresh}>
       <StyledSuccessModal onClick={(e) => e.stopPropagation()}>
         <ModalIcon>
           <FiCheck size={48} color="#2D9CDB" />
