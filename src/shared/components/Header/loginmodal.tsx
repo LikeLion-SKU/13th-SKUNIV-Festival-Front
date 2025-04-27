@@ -3,8 +3,10 @@ import useAdminStore from "../../stores/useAdminStore";
 import Modal from "../Modal";
 import Lock from "@icon/lock.svg?react";
 import { useState } from "react";
+import { useNavigate } from "react-router";
 
 const LoginModal = () => {
+  const navigate = useNavigate();
   const { onClose } = useAdminStore();
 
   const [password, setPassword] = useState("");
@@ -20,7 +22,10 @@ const LoginModal = () => {
         {
           title: "로그인",
           variant: "confirm",
-          action: () => {},
+          action: () => {
+            onClose();
+            navigate("/tabling/admin");
+          },
         },
       ]}
       onClose={onClose}
