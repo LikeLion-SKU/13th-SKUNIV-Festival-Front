@@ -1,7 +1,7 @@
 import useHeader from "../../shared/hooks/useHeader";
 import * as S from "./style";
 
-import SearchIcon from "../../shared/assets/icon/Search.svg?react";
+import SearchIcon from "../../shared/assets/icon/search.svg?react";
 import Card from "./Card";
 
 const DUMMY = [
