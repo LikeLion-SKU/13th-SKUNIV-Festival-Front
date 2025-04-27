@@ -4,6 +4,7 @@ import Instagram from "@icon/Instagram.svg?react";
 import useHeader from "../../shared/hooks/useHeader";
 import ReservationButton from "./ReservationButton";
 import Modals from "./modals";
+import ModalTransition from "../../shared/components/Modal/ModalTransition";
 
 const menus = [
   {
@@ -93,7 +94,9 @@ export default function BoothDetail() {
         </S.MenuSection>
       </S.Layout>
       <ReservationButton disabled={false} />
-      <Modals />
+      <ModalTransition>
+        <Modals />
+      </ModalTransition>
     </>
   );
 }

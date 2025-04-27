@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
+import { motion } from "framer-motion";
 
-export const Backdrop = styled.div`
+export const Backdrop = styled(motion.div)`
   position: fixed;
   inset: 0;
   width: 100%;

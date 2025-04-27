@@ -1,3 +1,4 @@
+import ModalTransition from "../../shared/components/Modal/ModalTransition";
 import useHeader from "../../shared/hooks/useHeader";
 import Modals from "./modals";
 
@@ -32,7 +33,9 @@ export default function TablingAdmin() {
           ))}
         </S.WaitingRowContainer>
       </S.Layout>
-      <Modals />
+      <ModalTransition>
+        <Modals />
+      </ModalTransition>
     </>
   );
 }

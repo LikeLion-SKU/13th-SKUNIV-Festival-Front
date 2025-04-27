@@ -1,5 +1,4 @@
-import { ReactNode } from "react";
-import { createPortal } from "react-dom";
+import { ReactNode, useEffect } from "react";
 import { Actions, Backdrop, Wrapper } from "./style";
 import Action, { ActionProps } from "./Action";
 
@@ -11,8 +10,32 @@ interface ModalProps {
 }
 
 const Modal = ({ children, actions, onClose, padding }: ModalProps) => {
-  return createPortal(
-    <Backdrop onClick={onClose}>
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, []);
+
+  return (
+    <Backdrop
+      onClick={onClose}
+      initial={{
+        opacity: 0,
+        transition: {
+          duration: 0.25,
+          ease: "easeInOut",
+        },
+      }}
+      animate={{ opacity: 1 }}
+      exit={{
+        opacity: 0,
+        transition: {
+          duration: 0.2,
+        },
+      }}
+    >
       <Wrapper onClick={(e) => e.stopPropagation()} padding={padding}>
         {children}
         {actions && actions?.length > 0 && (
@@ -23,8 +46,7 @@ const Modal = ({ children, actions, onClose, padding }: ModalProps) => {
           </Actions>
         )}
       </Wrapper>
-    </Backdrop>,
-    document.body
+    </Backdrop>
   );
 };
 
