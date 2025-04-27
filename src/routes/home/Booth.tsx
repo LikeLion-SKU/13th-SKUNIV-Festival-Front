@@ -6,12 +6,12 @@ import boothImg from "@image/booth_sample.png";
 const boothList = [
   {
     department: "컴퓨터공학과",
-    location: "유담관 좌측",
+    location: "대일관 좌측",
     image: boothImg,
   },
   {
     department: "디자인학부",
-    location: "유담관 좌측",
+    location: "대일관 좌측",
     image: boothImg,
   },
   {
@@ -38,8 +38,8 @@ const boothList = [
 
 export default function Booth() {
   const [selectedLocation, setSelectedLocation] = useState<
-    "유담관" | "은주1관" | "은주2관" | "청운관" | "혜인관"
-  >("유담관");
+    "혜인관" | "은주1관" | "은주2관" | "청운관" | "대일관"
+  >("혜인관");
 
   const filteredList = boothList.filter((booth) => {
     const locationPrefix = booth.location.split(" ")[0];
@@ -50,10 +50,10 @@ export default function Booth() {
     <Wrapper>
       <NavWrapper>
         <NavBtn
-          selected={selectedLocation === "유담관"}
-          onClick={() => setSelectedLocation("유담관")}
+          selected={selectedLocation === "혜인관"}
+          onClick={() => setSelectedLocation("혜인관")}
         >
-          유담관
+          혜인관
         </NavBtn>
 
         <NavBtn
@@ -75,10 +75,10 @@ export default function Booth() {
           청운관
         </NavBtn>
         <NavBtn
-          selected={selectedLocation === "혜인관"}
-          onClick={() => setSelectedLocation("혜인관")}
+          selected={selectedLocation === "대일관"}
+          onClick={() => setSelectedLocation("대일관")}
         >
-          혜인관
+          대일관
         </NavBtn>
       </NavWrapper>
       <BoothWrapper>

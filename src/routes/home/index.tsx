@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styled from "styled-components";
 import MainSection from "./MainSection";
 import Section from "./Section";
@@ -12,8 +12,16 @@ import Intro from "./Intro";
 export default function Home() {
   const [lang, setLang] = useState<string | null>(null);
 
+  useEffect(() => {
+    const savedLang = localStorage.getItem("selectedLang");
+    if (savedLang) {
+      setLang(savedLang);
+    }
+  }, []);
+
   const handleLangSelect = (selectedLang: string) => {
     setLang(selectedLang);
+    localStorage.setItem("selectedLang", selectedLang);
   };
 
   return (
