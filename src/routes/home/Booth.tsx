@@ -2,6 +2,7 @@ import { useState } from "react";
 import styled from "@emotion/styled";
 import { useQuery } from "@tanstack/react-query";
 import { publicAPI } from "../../shared/lib/api";
+import useLanguage from "../../shared/hooks/useLanguage";
 import BoothCard from "./BoothCard";
 
 interface Booth {
@@ -17,12 +18,13 @@ export default function Booth() {
     "혜인관" | "은주1관" | "은주2관" | "청운관" | "대일관"
   >("혜인관");
 
-  const lang = localStorage.getItem("selectedLang") || "ko";
+  const [lang] = useLanguage();
 
   const { data: boothList = [] } = useQuery<Booth[]>({
-    queryKey: ["boothInfo", lang],
+    queryKey: ["boothInfo"],
     queryFn: () =>
       publicAPI.get("boothInfo", { params: { lang } }).then((response) => response.data.data),
+    enabled: !!lang,
   });
 
   const filteredList = boothList.filter((booth) => {

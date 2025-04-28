@@ -28,7 +28,7 @@ export default function BoothInfo() {
   const [searchTerm, setSearchTerm] = useState("");
 
   const { data: boothList = [] } = useQuery<Booth[]>({
-    queryKey: ["boothInfo", lang],
+    queryKey: ["boothInfo"],
     queryFn: () =>
       publicAPI.get("boothInfo", { params: { lang } }).then((response) => response.data.data),
     enabled: !!lang,
