@@ -6,7 +6,7 @@ const publicAPI = axios.create({
 
 const adminAPI = axios.create({
   baseURL: "https://api.2025skufestival.site/api/",
-  withCredentials: true,
+  withCredentials: false, // TODO dev only
 });
 
 export { publicAPI, adminAPI };

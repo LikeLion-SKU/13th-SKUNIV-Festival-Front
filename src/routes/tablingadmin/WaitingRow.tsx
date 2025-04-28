@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import useAdminStore from "../../shared/stores/useAdminStore";
+import { adminAPI } from "../../shared/lib/api";
 
 interface WaitingRowProps {
   name: string;
@@ -10,6 +11,18 @@ interface WaitingRowProps {
 const WaitingRow = ({ name, phoneNum, headCount }: WaitingRowProps) => {
   const { setModalStep } = useAdminStore();
 
+  async function call() {
+    const response = await adminAPI.post("/booths/admin/call", {
+      name,
+      phoneNum: String(phoneNum).replace(/-/g, ""),
+      message: `${name} 부스에서 호출되었습니다.`,
+    });
+
+    if (response.data?.success) {
+      setModalStep(3);
+    }
+  }
+
   return (
     <Wrapper>
       <Name>{name}</Name>
@@ -17,7 +30,7 @@ const WaitingRow = ({ name, phoneNum, headCount }: WaitingRowProps) => {
       <PhoneNumber>{phoneNum}</PhoneNumber>
       <Divider />
       <HeadCount>{headCount}</HeadCount>
-      <Call onClick={() => setModalStep(2)}>호출</Call>
+      <Call onClick={() => call()}>호출</Call>
     </Wrapper>
   );
 };
