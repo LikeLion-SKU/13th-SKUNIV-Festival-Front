@@ -1,48 +1,34 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styled from "@emotion/styled";
 import BoothCard from "./BoothCard";
-import boothImg from "@image/booth_sample.png";
+import { fetchBoothInfo } from "../../shared/lib/boothAPI";
 
-const boothList = [
-  {
-    department: "컴퓨터공학과",
-    location: "대일관 좌측",
-    image: boothImg,
-  },
-  {
-    department: "디자인학부",
-    location: "대일관 좌측",
-    image: boothImg,
-  },
-  {
-    department: "소프트웨어학과",
-    location: "은주2관 우측",
-    image: boothImg,
-  },
-  {
-    department: "경영학과",
-    location: "은주1관 중앙",
-    image: boothImg,
-  },
-  {
-    department: "저쩌구학과",
-    location: "청운관 중앙",
-    image: boothImg,
-  },
-  {
-    department: "어쩌구학과",
-    location: "혜인관 중앙",
-    image: boothImg,
-  },
-];
+interface Booth {
+  id: number;
+  boothFaculty: string;
+  boothThumbnailUrl: string;
+  boothWaitings: number;
+  boothLocation: string;
+}
 
 export default function Booth() {
+  const [boothList, setBoothList] = useState<Booth[]>([]);
   const [selectedLocation, setSelectedLocation] = useState<
     "혜인관" | "은주1관" | "은주2관" | "청운관" | "대일관"
   >("혜인관");
 
+  useEffect(() => {
+    const loadBoothInfo = async () => {
+      const lang = localStorage.getItem("selectedLang") || "ko";
+      const data = await fetchBoothInfo(lang);
+      setBoothList(data);
+    };
+
+    loadBoothInfo();
+  }, []);
+
   const filteredList = boothList.filter((booth) => {
-    const locationPrefix = booth.location.split(" ")[0];
+    const locationPrefix = booth.boothLocation.split(" ")[0];
     return locationPrefix === selectedLocation;
   });
 
@@ -82,12 +68,12 @@ export default function Booth() {
         </NavBtn>
       </NavWrapper>
       <BoothWrapper>
-        {filteredList.map((booth, index) => (
+        {filteredList.map((booth) => (
           <BoothCard
-            key={index}
-            department={booth.department}
-            location={booth.location}
-            image={booth.image}
+            key={booth.id}
+            department={booth.boothFaculty}
+            location={booth.boothLocation}
+            image={booth.boothThumbnailUrl}
           />
         ))}
       </BoothWrapper>
@@ -120,7 +106,7 @@ const NavBtn = styled.button<{ selected: boolean }>`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 57px;
+  min-width: 57px;
   height: 32px;
   border-radius: 10px;
   border: 1.3px solid #fff;
