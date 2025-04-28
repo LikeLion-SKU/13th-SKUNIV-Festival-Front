@@ -1,13 +1,13 @@
 import { useEffect } from "react";
-import useHeaderStore, { HeaderStoreProps } from "../stores/useHeaderStore";
+import useHeaderStore, { HeaderState } from "../stores/useHeaderStore";
 
 const useHeader = ({
   title,
   showBack = false,
   showHome = false,
   canAccessAdmin = false,
-}: Pick<HeaderStoreProps, "title"> &
-  Pick<Partial<HeaderStoreProps>, "showBack" | "showHome" | "canAccessAdmin">) => {
+}: Pick<HeaderState, "title"> &
+  Pick<Partial<HeaderState>, "showBack" | "showHome" | "canAccessAdmin">) => {
   const { update } = useHeaderStore();
 
   useEffect(() => {
