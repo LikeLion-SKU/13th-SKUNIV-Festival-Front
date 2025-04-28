@@ -7,7 +7,7 @@ const useLanguage = (): [LanguageState["locale"], LanguageState["setLang"]] => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (lang) {
+    if (!lang) {
       navigate("/");
     }
   }, []);
