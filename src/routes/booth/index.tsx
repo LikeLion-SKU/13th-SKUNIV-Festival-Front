@@ -4,7 +4,7 @@ import BoothCard from "./BoothCard";
 import SearchSection from "./SearchSection";
 import BoothMap from "./BoothMap";
 import LocNav from "./LocNav";
-import { fetchBoothInfo } from "../../shared/lib/boothAPI";
+import { fetchBoothInfo } from "./boothAPI";
 
 interface Booth {
   id: number;

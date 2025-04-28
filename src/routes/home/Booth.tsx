@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import styled from "@emotion/styled";
 import BoothCard from "./BoothCard";
-import { fetchBoothInfo } from "../../shared/lib/boothAPI";
+import { fetchBoothInfo } from "../booth/boothAPI";
 
 interface Booth {
   id: number;
