@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react";
 import styled from "@emotion/styled";
 import MainSection from "./MainSection";
 import Section from "./Section";
@@ -8,20 +7,13 @@ import Booth from "./Booth";
 import About from "./About";
 import Emergency from "./Emergency";
 import Intro from "./Intro";
+import useLanguage from "../../shared/hooks/useLanguage";
 
 export default function Home() {
-  const [lang, setLang] = useState<string | null>(null);
-
-  useEffect(() => {
-    const savedLang = localStorage.getItem("selectedLang");
-    if (savedLang) {
-      setLang(savedLang);
-    }
-  }, []);
+  const [lang, setLang] = useLanguage();
 
   const handleLangSelect = (selectedLang: string) => {
     setLang(selectedLang);
-    localStorage.setItem("selectedLang", selectedLang);
   };
 
   return (
