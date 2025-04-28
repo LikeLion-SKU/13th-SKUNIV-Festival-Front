@@ -1,7 +1,8 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import styled from "@emotion/styled";
+import { useQuery } from "@tanstack/react-query";
+import { publicAPI } from "../../shared/lib/api";
 import BoothCard from "./BoothCard";
-import { fetchBoothInfo } from "../booth/boothAPI";
 
 interface Booth {
   id: number;
@@ -12,20 +13,17 @@ interface Booth {
 }
 
 export default function Booth() {
-  const [boothList, setBoothList] = useState<Booth[]>([]);
   const [selectedLocation, setSelectedLocation] = useState<
     "혜인관" | "은주1관" | "은주2관" | "청운관" | "대일관"
   >("혜인관");
 
-  useEffect(() => {
-    const loadBoothInfo = async () => {
-      const lang = localStorage.getItem("selectedLang") || "ko";
-      const data = await fetchBoothInfo(lang);
-      setBoothList(data);
-    };
+  const lang = localStorage.getItem("selectedLang") || "ko";
 
-    loadBoothInfo();
-  }, []);
+  const { data: boothList = [] } = useQuery<Booth[]>({
+    queryKey: ["boothInfo", lang],
+    queryFn: () =>
+      publicAPI.get("boothInfo", { params: { lang } }).then((response) => response.data.data),
+  });
 
   const filteredList = boothList.filter((booth) => {
     const locationPrefix = booth.boothLocation.split(" ")[0];

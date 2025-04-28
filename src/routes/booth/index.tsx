@@ -1,10 +1,12 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { publicAPI } from "../../shared/lib/api";
 import useHeader from "../../shared/hooks/useHeader";
+import useLanguage from "../../shared/hooks/useLanguage";
 import BoothCard from "./BoothCard";
 import SearchSection from "./SearchSection";
 import BoothMap from "./BoothMap";
 import LocNav from "./LocNav";
-import { fetchBoothInfo } from "./boothAPI";
 
 interface Booth {
   id: number;
@@ -21,19 +23,16 @@ export default function BoothInfo() {
     showHome: true,
   });
 
-  const [boothList, setBoothList] = useState<Booth[]>([]);
+  const [lang] = useLanguage();
   const [selectedLocation, setSelectedLocation] = useState("혜인관");
   const [searchTerm, setSearchTerm] = useState("");
 
-  useEffect(() => {
-    const loadBoothInfo = async () => {
-      const lang = localStorage.getItem("selectedLang") || "ko";
-      const data = await fetchBoothInfo(lang);
-      setBoothList(data);
-    };
-
-    loadBoothInfo();
-  }, []);
+  const { data: boothList = [] } = useQuery<Booth[]>({
+    queryKey: ["boothInfo", lang],
+    queryFn: () =>
+      publicAPI.get("boothInfo", { params: { lang } }).then((response) => response.data.data),
+    enabled: !!lang,
+  });
 
   const filteredList = boothList.filter((booth) => {
     const locationPrefix = booth.boothLocation.split(" ")[0];
