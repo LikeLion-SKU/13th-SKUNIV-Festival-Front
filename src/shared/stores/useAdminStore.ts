@@ -1,12 +1,12 @@
 import { create } from "zustand";
 
-export interface AdminStoreProps {
+export interface AdminState {
   modalStep: number;
   onClose: () => void;
-  setModalStep: (modalStep: AdminStoreProps["modalStep"]) => void;
+  setModalStep: (modalStep: AdminState["modalStep"]) => void;
 }
 
-const useAdminStore = create<AdminStoreProps>((set) => ({
+const useAdminStore = create<AdminState>((set) => ({
   modalStep: 0, // default hidden,
   onClose: () => set(() => ({ modalStep: 0 })),
   setModalStep: (modalStep) => set(() => ({ modalStep })),
