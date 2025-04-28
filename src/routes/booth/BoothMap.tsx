@@ -104,7 +104,7 @@ const MapWrapper = styled.div`
 
 const Building = styled.div<{ selected: boolean }>`
   position: absolute;
-  background-color: ${({ selected }) => (selected ? "#3399FF" : "#B0DAFF")};
+  background-color: ${({ selected }) => (selected ? "#4AA3FF" : "#C6E2FF")};
   display: flex;
   align-items: center;
   justify-content: center;
@@ -155,7 +155,7 @@ const Dot = styled.div<{ active: boolean }>`
   position: absolute;
   width: 13px;
   height: 13px;
-  background-color: ${({ active }) => (active ? "#FF6B81" : "#686868")};
+  background-color: ${({ active }) => (active ? "#FF6783" : "#686868")};
   border-radius: 50%;
 `;
 
