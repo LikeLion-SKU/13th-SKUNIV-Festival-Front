@@ -3,6 +3,8 @@ import * as S from "./style";
 import Instagram from "@icon/Instagram.svg?react";
 import useHeader from "../../shared/hooks/useHeader";
 import ReservationButton from "./ReservationButton";
+import Modals from "./modals";
+import ModalTransition from "../../shared/components/Modal/ModalTransition";
 
 const menus = [
   {
@@ -49,6 +51,7 @@ export default function BoothDetail() {
     title: "컴퓨터공학과",
     showBack: true,
     showHome: true,
+    canAccessAdmin: true,
   });
 
   return (
@@ -90,7 +93,10 @@ export default function BoothDetail() {
           </S.Menus>
         </S.MenuSection>
       </S.Layout>
-      <ReservationButton />
+      <ReservationButton disabled={false} />
+      <ModalTransition>
+        <Modals />
+      </ModalTransition>
     </>
   );
 }

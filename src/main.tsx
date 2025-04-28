@@ -9,6 +9,7 @@ import About from "./routes/about";
 import Tabling from "./routes/tabling";
 import BoothInfo from "./routes/booth";
 import BoothDetail from "./routes/boothdetail";
+import TablingAdmin from "./routes/tablingadmin";
 
 const router = createBrowserRouter([
   {
@@ -21,6 +22,7 @@ const router = createBrowserRouter([
     children: [
       { path: "about", Component: About },
       { path: "tabling", Component: Tabling },
+      { path: "tabling/admin", Component: TablingAdmin },
       { path: "booth", Component: BoothInfo },
       { path: "booth/:boothId", Component: BoothDetail },
     ],
