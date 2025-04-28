@@ -29,6 +29,7 @@ const LoginModal = () => {
         },
       ]}
       onClose={onClose}
+      backdropClose={false}
     >
       <Layout>
         <Title>관리자 로그인</Title>
@@ -36,6 +37,7 @@ const LoginModal = () => {
         <InputWrapper>
           <InputIcon />
           <Input
+            id="booth_admin_password"
             type="password"
             placeholder="비밀번호 입력"
             autoFocus
@@ -52,6 +54,7 @@ const Layout = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  user-select: none;
 `;
 
 const Title = styled.span`
