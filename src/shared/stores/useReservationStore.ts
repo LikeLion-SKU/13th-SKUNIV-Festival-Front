@@ -1,12 +1,12 @@
 import { create } from "zustand";
 
-export interface ReservationStoreProps {
+export interface ReservationState {
   modalStep: number;
   onClose: () => void;
-  setModalStep: (modalStep: ReservationStoreProps["modalStep"]) => void;
+  setModalStep: (modalStep: ReservationState["modalStep"]) => void;
 }
 
-const useReservationStore = create<ReservationStoreProps>((set) => ({
+const useReservationStore = create<ReservationState>((set) => ({
   modalStep: 0, // default hidden,
   onClose: () => set(() => ({ modalStep: 0 })),
   setModalStep: (modalStep) => set(() => ({ modalStep })),
