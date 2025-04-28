@@ -11,6 +11,7 @@ export const Backdrop = styled(motion.div)`
   justify-content: center;
   overflow: hidden;
   background-color: rgba(0, 0, 0, 0.7);
+  z-index: 9999;
 `;
 
 export const Wrapper = styled.div<{ padding?: string }>`

@@ -7,9 +7,10 @@ interface ModalProps {
   actions?: ActionProps["actionData"][];
   onClose: () => void;
   padding?: string;
+  backdropClose?: boolean;
 }
 
-const Modal = ({ children, actions, onClose, padding }: ModalProps) => {
+const Modal = ({ children, actions, onClose, padding, backdropClose = true }: ModalProps) => {
   useEffect(() => {
     document.body.style.overflow = "hidden";
 
@@ -20,7 +21,7 @@ const Modal = ({ children, actions, onClose, padding }: ModalProps) => {
 
   return (
     <Backdrop
-      onClick={onClose}
+      onClick={backdropClose ? onClose : () => {}}
       initial={{
         opacity: 0,
         transition: {
@@ -30,6 +31,7 @@ const Modal = ({ children, actions, onClose, padding }: ModalProps) => {
       }}
       animate={{ opacity: 1 }}
       exit={{
+        // TODO not animated
         opacity: 0,
         transition: {
           duration: 0.2,
