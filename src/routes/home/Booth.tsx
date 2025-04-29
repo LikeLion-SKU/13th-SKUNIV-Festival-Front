@@ -106,7 +106,7 @@ const NavBtn = styled.button<{ selected: boolean }>`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-width: 57px;
+  min-width: 60px;
   height: 32px;
   border-radius: 10px;
   border: 1.3px solid #fff;
