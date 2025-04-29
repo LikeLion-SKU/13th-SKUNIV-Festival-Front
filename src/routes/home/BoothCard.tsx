@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { Link } from "react-router";
 
 interface CardProps {
   location: string;
@@ -8,12 +9,14 @@ interface CardProps {
 
 export default function BoothCard({ image, location, department }: CardProps) {
   return (
-    <Card image={image}>
-      <TextBox>
-        <p className="location">{location}</p>
-        <p className="department">{department}</p>
-      </TextBox>
-    </Card>
+    <Link to={`/booth/${encodeURIComponent(department)}`} style={{ textDecoration: "none" }}>
+      <Card image={image}>
+        <TextBox>
+          <p className="location">{location}</p>
+          <p className="department">{department}</p>
+        </TextBox>
+      </Card>
+    </Link>
   );
 }
 
