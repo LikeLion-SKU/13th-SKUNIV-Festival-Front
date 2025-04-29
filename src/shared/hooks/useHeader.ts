@@ -12,7 +12,7 @@ const useHeader = ({
 
   useEffect(() => {
     update({ title, showBack, showHome, canAccessAdmin });
-  }, []);
+  }, [title]);
 };
 
 export default useHeader;
