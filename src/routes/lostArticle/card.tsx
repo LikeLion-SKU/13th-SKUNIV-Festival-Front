@@ -8,6 +8,7 @@ import {
   Title,
   CheckIcon,
   Overlay,
+  PickupOverlay,
 } from "./card.style";
 import { FiCheckSquare, FiSquare } from "react-icons/fi";
 import { useAdminStore } from "../../stores/useAdminStore";
@@ -61,6 +62,8 @@ const Card = ({ location, date, title, imageUrl, returned, id }: CardProps) => {
       <CardWrapper onClick={handleCardClick}>
         <StyledImage src={imageUrl} alt={title} />
         <Overlay />
+
+        {!isLoggedIn && isPickedUp && <PickupOverlay>픽업 완료</PickupOverlay>}
 
         {isLoggedIn && (
           <CheckIcon onClick={handleCheckClick}>

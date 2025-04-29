@@ -4,10 +4,12 @@ export const Container = styled.div`
 `;
 
 export const CardList = styled.div`
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+   display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2개씩 고정 */
+  grid-template-rows: repeat(3, 1fr); 
   gap: 12px;
   min-height: 536px;
+  align-items: center;
 `;
 
 export const Pagination = styled.div`

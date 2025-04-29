@@ -18,7 +18,7 @@ export const Overlay = styled.div`
   border-radius: 10px;
   width: 100%;
   height: 100%;
-  background: linear-gradient(transparent, rgba(0,0,0,1));
+  background: linear-gradient(transparent, rgba(0, 0, 0, 1));
   z-index: 1;
 `;
 
@@ -68,10 +68,26 @@ export const StyledImage = styled.img`
   z-index: 0;
 `;
 
-
 export const CheckIcon = styled.div`
   position: absolute;
   top: 12px;
   right: 12px;
   z-index: 3;
+`;
+
+export const PickupOverlay = styled.div`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 20px;
+  font-weight: 700;
+  top: 0;
+  left: 0;
+  z-index: 3;
+  border-radius: 10px;
 `;

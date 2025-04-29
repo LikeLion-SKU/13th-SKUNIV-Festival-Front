@@ -58,7 +58,7 @@ const LostArticlePage = () => {
         {lostItems.length > 0 ? (
           lostItems.map((item) => <Card key={item.id} {...item} />)
         ) : (
-          <p>분실물이 없습니다.</p>
+          <p></p>
         )}
       </CardList>
 
