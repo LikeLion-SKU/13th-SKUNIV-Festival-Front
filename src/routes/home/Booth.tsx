@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 import { useQuery } from "@tanstack/react-query";
 import { publicAPI } from "../../shared/lib/api";
 import useLanguage from "../../shared/hooks/useLanguage";
-import BoothCard from "./BoothCard";
+import BoothCard from "../booth/BoothCard";
 
 interface Booth {
   id: number;
