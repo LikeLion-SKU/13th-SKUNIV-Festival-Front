@@ -6,7 +6,9 @@ export const Header = styled.header`
   padding: 20px;
   display: flex;
   align-items: center;
+  background: #fff;
   border-bottom: 1px solid #d7d7d7;
+  z-index: 999;
 `;
 
 export const Title = styled.h1`
@@ -16,4 +18,6 @@ export const Title = styled.h1`
   font-weight: 500;
   line-height: normal;
   letter-spacing: -0.5px;
+  cursor: default;
+  user-select: none;
 `;

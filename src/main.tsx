@@ -1,30 +1,8 @@
-import { createBrowserRouter, RouterProvider } from "react-router";
 import ReactDOM from "react-dom/client";
+import App from "./App";
 
 import "./shared/styles/app.css";
 
-import Home from "./routes/home";
-import RootLayout from "./shared/layouts/root-layout";
-import About from "./routes/about";
-import LostArticle from "./routes/lostArticle";
-import Edit from "./routes/edit";
-
-const router = createBrowserRouter([
-  {
-    path: "/",
-    index: true,
-    Component: Home,
-  },
-  {
-    Component: RootLayout,
-    children: [
-      { path: "about", Component: About },
-      { path: "lost", Component: LostArticle },
-      { path: "edit", Component: Edit },
-    ],
-  },
-]);
-
 const root = document.body;
 
-ReactDOM.createRoot(root).render(<RouterProvider router={router} />);
+ReactDOM.createRoot(root).render(<App />);

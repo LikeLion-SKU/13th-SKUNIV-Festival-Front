@@ -1,0 +1,51 @@
+import styled from "@emotion/styled";
+import useReservationStore from "../../shared/stores/useReservationStore";
+
+interface ReservationButtonProps {
+  disabled?: boolean;
+}
+
+const ReservationButton = ({ disabled }: ReservationButtonProps) => {
+  const { setModalStep } = useReservationStore();
+
+  return (
+    <Footer>
+      <Button disabled={disabled} onClick={() => !disabled && setModalStep(1)}>
+        {disabled ? "지금은 예약이 불가능합니다" : "예약하기"}
+      </Button>
+    </Footer>
+  );
+};
+
+const Footer = styled.div`
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  border-top: 1.5px solid #d7d7d7;
+`;
+
+const Button = styled.button<{ disabled?: boolean }>`
+  all: unset;
+  width: 100%;
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 24px;
+  letter-spacing: -0.4px;
+  border-radius: 10px;
+  background: ${(props) => (props.disabled ? "#919191" : "#4aa4ff")};
+  cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
+`;
+
+export default ReservationButton;

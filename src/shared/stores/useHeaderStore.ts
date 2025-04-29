@@ -1,16 +1,18 @@
 import { create } from "zustand";
 
-export interface HeaderStoreProps {
+export interface HeaderState {
   title: string;
   showBack: boolean;
   showHome: boolean;
-  update: (state: Partial<HeaderStoreProps>) => void;
+  canAccessAdmin: boolean;
+  update: (state: Partial<HeaderState>) => void;
 }
 
-const useHeaderStore = create<HeaderStoreProps>((set) => ({
+const useHeaderStore = create<HeaderState>((set) => ({
   title: "불러오는 중...",
   showBack: false,
   showHome: false,
+  canAccessAdmin: false,
   update: (state) => set((prev) => ({ ...prev, ...state })),
 }));
 
