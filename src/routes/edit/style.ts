@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from "@emotion/styled";
 
 // 전체 페이지 컨테이너
 export const Container = styled.div``;

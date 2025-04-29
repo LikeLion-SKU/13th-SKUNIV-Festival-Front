@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from "@emotion/styled";
 
 export const CardWrapper = styled.div`
   background: linear-gradient(to bottom, #666, #333);
