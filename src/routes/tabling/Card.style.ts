@@ -1,12 +1,13 @@
 import styled from "@emotion/styled";
+import { Link } from "react-router";
 
-export const Container = styled.div<{ imgUrl: string }>`
+export const Container = styled(Link)<{ imgurl: string }>`
   overflow: hidden;
   position: relative;
   aspect-ratio: 1 / 1;
   border-radius: 12px;
   background: linear-gradient(to top, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 70%),
-    url(${(props) => props.imgUrl}) no-repeat center center / cover;
+    url(${(props) => props.imgurl}) no-repeat center center / cover;
 `;
 
 export const Info = styled.span`
