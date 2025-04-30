@@ -23,7 +23,7 @@ export default defineConfig({
       manifest: {
         name: "sku",
         short_name: "sku",
-        description: "축제 페이지지",
+        description: "축제 페이지",
         theme_color: "#ffffff",
         background_color: "#ffffff",
         display: "standalone",

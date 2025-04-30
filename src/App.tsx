@@ -7,6 +7,8 @@ import Tabling from "./routes/tabling";
 import BoothInfo from "./routes/booth";
 import BoothDetail from "./routes/boothdetail";
 import TablingAdmin from "./routes/tablingadmin";
+import Edit from "./routes/edit";
+import LostArticle from "./routes/lostArticle";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 const router = createBrowserRouter([
@@ -23,6 +25,8 @@ const router = createBrowserRouter([
       { path: "tabling/admin/:boothName", Component: TablingAdmin },
       { path: "booth", Component: BoothInfo },
       { path: "booth/:boothId", Component: BoothDetail },
+      { path: "lost", Component: LostArticle },
+      { path: "edit", Component: Edit },
     ],
   },
 ]);
