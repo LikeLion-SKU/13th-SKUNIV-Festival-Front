@@ -21,7 +21,7 @@ const Modal = ({ children, actions, onClose, padding, backdropClose = true }: Mo
 
   return (
     <Backdrop
-      onClick={backdropClose ? onClose : () => {}}
+      onClick={backdropClose ? onClose : () => {}} // TODO stop propagation
       initial={{
         opacity: 0,
         transition: {

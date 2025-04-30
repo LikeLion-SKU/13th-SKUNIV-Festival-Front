@@ -48,6 +48,7 @@ export default function BoothInfo() {
       {filteredList.map((booth) => (
         <BoothCard
           key={booth.id}
+          id={booth.id}
           department={booth.boothFaculty}
           location={booth.boothLocation}
           image={booth.boothThumbnailUrl}

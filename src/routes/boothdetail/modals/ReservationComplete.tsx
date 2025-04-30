@@ -3,7 +3,7 @@ import Modal from "../../../shared/components/Modal";
 import useReservationStore from "../../../shared/stores/useReservationStore";
 
 const ReservationComplete = () => {
-  const { onClose } = useReservationStore();
+  const { onClose, waitingOrder, setModalStep } = useReservationStore();
 
   return (
     <Modal
@@ -16,7 +16,9 @@ const ReservationComplete = () => {
         {
           title: "예약 확인",
           variant: "confirm",
-          action: () => {},
+          action: () => {
+            setModalStep(4);
+          },
         },
       ]}
       onClose={onClose}
@@ -24,7 +26,7 @@ const ReservationComplete = () => {
       <Layout>
         <Title>예약이 완료되었습니다.</Title>
         <Waiting>내 대기 순서</Waiting>
-        <WaitingNumber>3번째</WaitingNumber>
+        <WaitingNumber>{waitingOrder}번째</WaitingNumber>
       </Layout>
     </Modal>
   );
