@@ -2,17 +2,17 @@ import styled from "@emotion/styled";
 import madeby from "@image/madeby.svg";
 import RoleBlock, { Member } from "./RoleBlock";
 
-import she from "@image/she.svg"; // 서현은
-import idh from "@image/idh.svg"; // 임다현
-import jyj from "@image/jyj.svg"; // 정영진
-import nyj from "@image/nyj.svg"; // 나윤주
-import hyh from "@image/hyh.svg"; // 허윤호
-import psy from "@image/psy.svg"; // 박성연
-import ptk from "@image/ptk.svg"; // 박태경
-import yhj from "@image/yhj.svg"; // 윤희준
-import mdm from "@image/mdm.svg"; // 민동명
-import lyj from "@image/lyj.svg"; // 이윤정
-import ljd from "@image/ljd.svg"; // 이진동
+import she from "@image/she.webp";
+import idh from "@image/idh.webp";
+import jyj from "@image/jyj.webp";
+import nyj from "@image/nyj.webp";
+import hyh from "@image/hyh.webp";
+import psy from "@image/psy.webp";
+import ptk from "@image/ptk.webp";
+import yhj from "@image/yhj.webp";
+import mdm from "@image/mdm.webp";
+import lyj from "@image/lyj.webp";
+import ljd from "@image/ljd.webp";
 
 const LionList: Member[] = [
   { role: "PM", name: "서현은", department: "컴퓨터공학과 22", img: she },
