@@ -13,6 +13,7 @@ interface ReservationsResponse {
   name: string;
   phoneNum: string;
   headCount: number;
+  reservationTime: string;
 }
 
 export default function TablingAdmin() {
@@ -49,6 +50,7 @@ export default function TablingAdmin() {
               name={waiting.name}
               phoneNum={waiting.phoneNum}
               headCount={waiting.headCount}
+              reservationTime={waiting.reservationTime}
             />
           ))}
         </S.WaitingRowContainer>

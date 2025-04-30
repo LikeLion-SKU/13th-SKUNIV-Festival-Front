@@ -3,9 +3,11 @@ import Modal from "../../../shared/components/Modal";
 import useAdminStore from "../../../shared/stores/useAdminStore";
 import { DotLottiePlayer } from "@dotlottie/react-player";
 import Paper from "../../../shared/assets/lottie/paper.lottie";
+import useHeaderStore from "../../../shared/stores/useHeaderStore";
 
 const CallComplete = () => {
   const { onClose } = useAdminStore();
+  const { title } = useHeaderStore();
 
   return (
     <Modal
@@ -21,7 +23,7 @@ const CallComplete = () => {
       onClose={onClose}
     >
       <Layout>
-        <Faculty>디자인학부 부스</Faculty>
+        <Faculty>{title} 부스</Faculty>
         <DotLottiePlayer
           src={Paper}
           autoplay

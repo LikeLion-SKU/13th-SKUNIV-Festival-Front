@@ -15,7 +15,6 @@ import Checked from "@icon/checked.svg?react";
 import Error from "../../../shared/assets/lottie/error.lottie";
 import { publicAPI } from "../../../shared/lib/api";
 import useHeaderStore from "../../../shared/stores/useHeaderStore";
-import useWaitingStore from "../../../shared/stores/useWaitingStore";
 import BaseResponse from "../../../shared/interfaces/BaseResponse";
 import { AxiosError } from "axios";
 
@@ -31,9 +30,8 @@ interface ReservationResponse {
 }
 
 const Reservation = () => {
-  const { setModalStep, onClose } = useReservationStore();
+  const { setModalStep, onClose, setWaitingOrder } = useReservationStore();
   const { title } = useHeaderStore();
-  const { setWaitingOrder } = useWaitingStore();
 
   const {
     register,

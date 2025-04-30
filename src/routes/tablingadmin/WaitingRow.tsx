@@ -1,40 +1,24 @@
 import styled from "@emotion/styled";
 import useAdminStore from "../../shared/stores/useAdminStore";
-import { adminAPI } from "../../shared/lib/api";
 
 interface WaitingRowProps {
   name: string;
   phoneNum: string;
   headCount: number;
+  reservationTime: string;
 }
 
-const WaitingRow = ({ name, phoneNum, headCount }: WaitingRowProps) => {
+const WaitingRow = ({ name, phoneNum, headCount, reservationTime }: WaitingRowProps) => {
   const { setModalStep } = useAdminStore();
-
-  async function call() {
-    try {
-      const response = await adminAPI.post("/booths/admin/call", {
-        name,
-        phoneNum: String(phoneNum).replace(/-/g, ""),
-        message: `${name} 부스에서 호출되었습니다.`,
-      });
-
-      if (response.data?.success) {
-        setModalStep(3);
-      }
-    } catch (err) {
-      alert("호출에 실패하였습니다.");
-    }
-  }
 
   return (
     <Wrapper>
       <Name>{name}</Name>
       <Divider />
-      <PhoneNumber>{phoneNum}</PhoneNumber>
+      <ReservationTime>{reservationTime}</ReservationTime>
       <Divider />
-      <HeadCount>{headCount}</HeadCount>
-      <Call onClick={() => call()}>호출</Call>
+      <HeadCount>{headCount}명</HeadCount>
+      <Call onClick={() => setModalStep(2, { phoneNum, name })}>호출</Call>
     </Wrapper>
   );
 };
@@ -62,7 +46,7 @@ const Divider = styled.hr`
   background: #d8d8d8;
 `;
 
-const PhoneNumber = styled.span`
+const ReservationTime = styled.span`
   color: #7d7d7d;
   font-size: 14px;
   font-style: normal;

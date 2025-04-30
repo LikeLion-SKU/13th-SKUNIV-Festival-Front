@@ -3,7 +3,7 @@ import CallComplete from "./CallComplete";
 import CallPerson from "./CallPerson";
 
 const Modals = () => {
-  const { modalStep } = useAdminStore();
+  const { modalStep, phoneNum } = useAdminStore();
 
   switch (modalStep) {
     case 0:
