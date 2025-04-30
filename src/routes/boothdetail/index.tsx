@@ -5,50 +5,40 @@ import useHeader from "../../shared/hooks/useHeader";
 import ReservationButton from "./ReservationButton";
 import Modals from "./modals";
 import ModalTransition from "../../shared/components/Modal/ModalTransition";
+import { useQuery } from "@tanstack/react-query";
+import { publicAPI } from "../../shared/lib/api";
+import useLanguage from "../../shared/hooks/useLanguage";
+import BaseResponse from "../../shared/interfaces/BaseResponse";
 
-const menus = [
-  {
-    id: 0,
-    menu: "군고구마",
-    menuPrice: 3000,
-  },
-  {
-    id: 0,
-    menu: "군고구마",
-    menuKR: "군고구마",
-    menuPrice: 3000,
-  },
-  {
-    id: 0,
-    menu: "군고구마",
-    menuPrice: 3000,
-  },
-  {
-    id: 0,
-    menu: "군고구마",
-    menuPrice: 3000,
-  },
-  {
-    id: 0,
-    menu: "군고구마",
-    menuPrice: 3000,
-  },
-  {
-    id: 0,
-    menu: "군고구마",
-    menuPrice: 3000,
-  },
-  {
-    id: 0,
-    menu: "군고구마",
-    menuPrice: 3000,
-  },
-];
+type BoothInfoResponse = {
+  id: number;
+  boothFaculty: string;
+  boothTitle: string;
+  boothDescription: string;
+  boothInstagram: string;
+  imageUrls: string[];
+  openingHours: string;
+  boothMenus: {
+    menu: string;
+    menuKR: string;
+    menuPrice: number;
+  }[];
+};
 
 export default function BoothDetail() {
   const { boothId } = useParams();
+  const [lang] = useLanguage();
+  const { data: response } = useQuery<BaseResponse<BoothInfoResponse>>({
+    queryKey: ["boothDetail"],
+    queryFn: () =>
+      publicAPI
+        .get(`/boothInfo/${boothId}`, { params: { lang } })
+        .then((response) => response.data),
+    enabled: !!boothId,
+  });
+
   useHeader({
-    title: "컴퓨터공학과",
+    title: response?.data.boothFaculty!,
     showBack: true,
     showHome: true,
     canAccessAdmin: true,
@@ -62,26 +52,21 @@ export default function BoothDetail() {
         {/* 설명 */}
         <S.InfoSection>
           <S.InfoHeader>
-            <S.InfoTitle>디자인 주점 오픈</S.InfoTitle>
-            <S.InstagramChip to="https://www.instagram.com/sku.design_/">
+            <S.InfoTitle>{response?.data.boothTitle}</S.InfoTitle>
+            <S.InstagramChip to={`https://www.instagram.com/${response?.data.boothInstagram}`}>
               <Instagram />
-              sku.design_
+              {response?.data.boothInstagram}
             </S.InstagramChip>
           </S.InfoHeader>
         </S.InfoSection>
-        <S.Description>
-          여기에는 각 학과의 원하는 말을 쓰면 될 것 같습니다 예를 들면 우리는 당신들을 위해 뭘
-          준비했다~! 우리 부스에는 어떤 게임도 있지롱 과 같은 간략하게 학과에서 쓰고싶은 멘트, 혹은
-          학생회 인스타 게시글의 멘트를 작성하는 곳을 사용하면 좋을 것 같습니다 / 몇시부터 몇시까지
-          등..
-        </S.Description>
+        <S.Description>{response?.data.boothDescription}</S.Description>
         <S.Divider />
         {/* 메뉴 */}
         <S.MenuSection>
           <S.MenuTitle>메뉴</S.MenuTitle>
           <S.Menus>
-            {menus.map((menu, index) => (
-              <S.Menu key={index}>
+            {response?.data?.boothMenus?.map((menu) => (
+              <S.Menu key={menu.menuKR}>
                 <span>
                   {menu.menu}
                   <br />

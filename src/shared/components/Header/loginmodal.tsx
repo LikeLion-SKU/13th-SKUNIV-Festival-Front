@@ -4,12 +4,27 @@ import Modal from "../Modal";
 import Lock from "@icon/lock.svg?react";
 import { useState } from "react";
 import { useNavigate } from "react-router";
+import useHeaderStore from "../../stores/useHeaderStore";
+import { adminAPI } from "../../lib/api";
 
 const LoginModal = () => {
+  const { title } = useHeaderStore();
+
   const navigate = useNavigate();
   const { onClose } = useAdminStore();
 
   const [password, setPassword] = useState("");
+
+  async function Login() {
+    const response = await adminAPI.post("/booths/admin/login", { name: title, password });
+
+    if (response.data.success) {
+      onClose();
+      navigate(`/tabling/admin/${title || response.data?.data?.name}`);
+    } else {
+      // TODO 인풋 흔들기 효과
+    }
+  }
 
   return (
     <Modal
@@ -22,10 +37,7 @@ const LoginModal = () => {
         {
           title: "로그인",
           variant: "confirm",
-          action: () => {
-            onClose();
-            navigate("/tabling/admin");
-          },
+          action: Login,
         },
       ]}
       onClose={onClose}
@@ -33,7 +45,7 @@ const LoginModal = () => {
     >
       <Layout>
         <Title>관리자 로그인</Title>
-        <Subtitle>디자인학부 부스</Subtitle>
+        <Subtitle>{title} 부스</Subtitle>
         <InputWrapper>
           <InputIcon />
           <Input
