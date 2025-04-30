@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import { createJSONStorage, persist } from "zustand/middleware";
 
 export interface ReservationState {
   modalStep: number;
@@ -15,19 +16,31 @@ export interface ReservationState {
   cancelIdToDelete: (id: number) => void;
 }
 
-const useReservationStore = create<ReservationState>((set) => ({
-  modalStep: 0, // default hidden,
-  waitingOrder: undefined,
-  name: undefined,
-  phoneNum: undefined,
-  idsToDelete: [],
-  onClose: () => set(() => ({ modalStep: 0 })),
-  setModalStep: (modalStep) => set(() => ({ modalStep })),
-  setReservation: (data) => set(() => ({ ...data })),
-  addIdToDelete: (id, boothName) =>
-    set((prev) => ({ idsToDelete: [...prev.idsToDelete, { id, boothName }] })),
-  cancelIdToDelete: (id) =>
-    set((prev) => ({ idsToDelete: [...prev.idsToDelete.filter((i) => i.id !== id)] })),
-}));
+const useReservationStore = create<ReservationState>()(
+  persist(
+    (set) => ({
+      modalStep: 0, // default hidden,
+      waitingOrder: undefined,
+      name: undefined,
+      phoneNum: undefined,
+      idsToDelete: [],
+      onClose: () => set(() => ({ modalStep: 0 })),
+      setModalStep: (modalStep) => set(() => ({ modalStep })),
+      setReservation: (data) => set(() => ({ ...data })),
+      addIdToDelete: (id, boothName) =>
+        set((prev) => ({ idsToDelete: [...prev.idsToDelete, { id, boothName }] })),
+      cancelIdToDelete: (id) =>
+        set((prev) => ({ idsToDelete: [...prev.idsToDelete.filter((i) => i.id !== id)] })),
+    }),
+    {
+      name: "tabling",
+      storage: createJSONStorage(() => localStorage),
+      partialize: (state) => ({
+        name: state.name,
+        phoneNum: state.phoneNum,
+      }),
+    }
+  )
+);
 
 export default useReservationStore;

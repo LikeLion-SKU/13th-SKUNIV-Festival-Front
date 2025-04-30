@@ -26,14 +26,14 @@ export default function TablingAdmin() {
   });
 
   const { data: response } = useQuery<BaseResponse<ReservationsResponse[]>>({
-    queryKey: ["adminReservations"],
+    queryKey: ["adminReservations", boothName],
     queryFn: () =>
       adminAPI.get(`/reservations/admin/${boothName}`).then((response) => response.data),
     enabled: !!boothName,
   });
 
   const { data: waitings } = useQuery<number>({
-    queryKey: ["adminBoothWaitings"],
+    queryKey: ["adminBoothWaitings", boothName],
     queryFn: () => adminAPI.get(`/booths/admin/${boothName}`).then((response) => response.data),
     enabled: !!boothName,
   });

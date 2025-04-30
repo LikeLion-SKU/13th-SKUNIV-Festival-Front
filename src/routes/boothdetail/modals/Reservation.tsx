@@ -17,6 +17,7 @@ import { publicAPI } from "../../../shared/lib/api";
 import useHeaderStore from "../../../shared/stores/useHeaderStore";
 import BaseResponse from "../../../shared/interfaces/BaseResponse";
 import { AxiosError } from "axios";
+import { useQuery } from "@tanstack/react-query";
 
 interface ReservationResponse {
   id: number;
@@ -29,9 +30,20 @@ interface ReservationResponse {
   createdAt: string;
 }
 
+type ReservationWaitingsResponse = string;
+
 const Reservation = () => {
   const { setModalStep, onClose, setReservation } = useReservationStore();
   const { title } = useHeaderStore();
+
+  const { data: waitings } = useQuery<BaseResponse<ReservationWaitingsResponse>>({
+    queryKey: ["reservationWaitings", title],
+    queryFn: () =>
+      publicAPI
+        .get("/reservations/waiting", { params: { boothName: title } })
+        .then((response) => response.data),
+    enabled: !!title,
+  });
 
   const {
     register,
@@ -64,7 +76,12 @@ const Reservation = () => {
         });
 
         if (response.data?.success) {
-          setReservation({ waitingOrder: response.data?.data?.waitingOrder });
+          // 예약 성공
+          setReservation({
+            name: data.name,
+            phoneNum: data.phoneNum,
+            waitingOrder: response.data?.data?.waitingOrder,
+          });
           setModalStep(2);
         } else {
           alert("예약에 실패하였습니다.");
@@ -91,7 +108,7 @@ const Reservation = () => {
         onClose={onClose}
       >
         <Layout>
-          <Title>디자인학부 부스 예약</Title>
+          <Title>{title} 부스 예약</Title>
           <Subtitle>
             5분 내 미도착 시 자동 취소
             <br />
@@ -119,7 +136,7 @@ const Reservation = () => {
             />
           </Form>
           <WaitingText>
-            현재 대기팀 : <Waitings>3팀</Waitings>
+            현재 대기팀 : <Waitings>{waitings?.data ?? "?"}팀</Waitings>
           </WaitingText>
           <Agreement onClick={() => setAgreed((prev) => !prev)}>
             {agreed === true ? <Checked /> : <Unchecked />}

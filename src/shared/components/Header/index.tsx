@@ -19,7 +19,9 @@ const Header = () => {
     <>
       <S.Header>
         {showBack && <Back onClick={() => navigate(-1)} />}
-        <S.Title onClick={() => canAccessAdmin && handleClick()}>{title}</S.Title>
+        <S.Title onClick={() => canAccessAdmin && handleClick()}>
+          {title ?? "불러오는 중..."}
+        </S.Title>
         {showHome && (
           <Link to="/">
             <Home />

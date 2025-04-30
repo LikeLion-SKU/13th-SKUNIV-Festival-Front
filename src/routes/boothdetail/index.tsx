@@ -9,6 +9,9 @@ import { useQuery } from "@tanstack/react-query";
 import { publicAPI } from "../../shared/lib/api";
 import useLanguage from "../../shared/hooks/useLanguage";
 import BaseResponse from "../../shared/interfaces/BaseResponse";
+import useHeaderStore from "../../shared/stores/useHeaderStore";
+import DayChip from "./DayChip";
+import NightChip from "./NightChip";
 
 type BoothInfoResponse = {
   id: number;
@@ -25,11 +28,15 @@ type BoothInfoResponse = {
   }[];
 };
 
+type BoothTimeResponse = string;
+
 export default function BoothDetail() {
+  const { title } = useHeaderStore();
   const { boothId } = useParams();
   const [lang] = useLanguage();
+
   const { data: response } = useQuery<BaseResponse<BoothInfoResponse>>({
-    queryKey: ["boothDetail"],
+    queryKey: ["boothDetail", boothId],
     queryFn: () =>
       publicAPI
         .get(`/boothInfo/${boothId}`, { params: { lang } })
@@ -42,6 +49,12 @@ export default function BoothDetail() {
     showBack: true,
     showHome: true,
     canAccessAdmin: true,
+  });
+
+  const { data: times } = useQuery<BaseResponse<BoothTimeResponse>>({
+    queryKey: ["boothTimes", title],
+    queryFn: () => publicAPI.get(`/booths/${title}`).then((response) => response.data),
+    enabled: !!title,
   });
 
   return (
@@ -62,6 +75,16 @@ export default function BoothDetail() {
               {response?.data.boothInstagram}
             </S.InstagramChip>
           </S.InfoHeader>
+          <S.Chips>
+            {times?.data === "DAY" && <DayChip />}
+            {times?.data === "NIGHT" && <NightChip />}
+            {times?.data === "FULL" && (
+              <>
+                <DayChip />
+                <NightChip />
+              </>
+            )}
+          </S.Chips>
         </S.InfoSection>
         <S.Description>{response?.data.boothDescription}</S.Description>
         <S.Divider />

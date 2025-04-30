@@ -4,10 +4,12 @@ import useAdminStore from "../../../shared/stores/useAdminStore";
 import { DotLottiePlayer } from "@dotlottie/react-player";
 import Paper from "../../../shared/assets/lottie/paper.lottie";
 import useHeaderStore from "../../../shared/stores/useHeaderStore";
+import { useQueryClient } from "@tanstack/react-query";
 
 const CallComplete = () => {
   const { onClose } = useAdminStore();
   const { title } = useHeaderStore();
+  const queryClient = useQueryClient();
 
   return (
     <Modal
@@ -16,6 +18,12 @@ const CallComplete = () => {
           title: "확인",
           variant: "confirm",
           action: () => {
+            queryClient.invalidateQueries({
+              queryKey: ["adminReservations", title],
+            });
+            queryClient.invalidateQueries({
+              queryKey: ["adminBoothWaitings", title],
+            });
             onClose();
           },
         },

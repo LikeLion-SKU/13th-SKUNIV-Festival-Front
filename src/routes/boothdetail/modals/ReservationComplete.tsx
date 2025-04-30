@@ -16,7 +16,9 @@ const ReservationComplete = () => {
         {
           title: "예약 확인",
           variant: "confirm",
-          action: () => setModalStep(5),
+          action: () => {
+            setModalStep(4);
+          },
         },
       ]}
       onClose={onClose}

@@ -17,7 +17,8 @@ export const BoothImage = styled.div<{ imgUrl: string }>`
 
 export const InfoSection = styled.div`
   display: flex;
-  gap: 20px;
+  flex-direction: column;
+  gap: 8px;
 `;
 
 export const InfoHeader = styled.div`
@@ -33,6 +34,12 @@ export const InfoTitle = styled.span`
   font-weight: 700;
   line-height: normal;
   letter-spacing: -0.5px;
+`;
+
+export const Chips = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 8px;
 `;
 
 export const InstagramChip = styled(Link)`
