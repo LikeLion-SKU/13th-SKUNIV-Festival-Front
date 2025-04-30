@@ -1,7 +1,10 @@
 import styled from "@emotion/styled";
+import { useNavigate } from "react-router-dom";
 import logo from "@icon/likelion_logo.svg";
 
 export default function About() {
+  const navigate = useNavigate();
+
   return (
     <AboutWrapper>
       <p className="dot">.</p>
@@ -15,7 +18,7 @@ export default function About() {
         지원하세요 아, 근데 내년에요 아래는 제작자보는 버튼이니까요 눌러주세요안녕하세요 여러분
         즐거운 축제 즐기시
       </p>
-      <AboutButton>제작자 보러가기</AboutButton>
+      <AboutButton onClick={() => navigate("madeby")}>제작자 보러가기</AboutButton>
       <AboutButton onClick={() => window.open("https://skulikelion.com/")}>
         멋사 홈페이지 보러가기
       </AboutButton>

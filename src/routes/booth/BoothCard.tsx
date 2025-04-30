@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { Link } from "react-router";
+import { useNavigate } from "react-router-dom";
 
 interface CardProps {
   location: string;
@@ -8,15 +8,15 @@ interface CardProps {
 }
 
 export default function BoothCard({ image, location, department }: CardProps) {
+  const navigate = useNavigate();
+
   return (
-    <Link to={`/booth/${encodeURIComponent(department)}`} style={{ textDecoration: "none" }}>
-      <Card image={image}>
-        <TextBox>
-          <p className="location">{location}</p>
-          <p className="department">{department}</p>
-        </TextBox>
-      </Card>
-    </Link>
+    <Card onClick={() => navigate(`/booth/${encodeURIComponent(department)}`)} image={image}>
+      <TextBox>
+        <p className="location">{location}</p>
+        <p className="department">{department}</p>
+      </TextBox>
+    </Card>
   );
 }
 

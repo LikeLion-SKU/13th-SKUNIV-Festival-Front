@@ -39,6 +39,7 @@ const Wrapper = styled.div`
     font-size: 12px;
     font-weight: 500;
     margin-bottom: 24px;
+    opacity: 0.8;
   }
 `;
 
