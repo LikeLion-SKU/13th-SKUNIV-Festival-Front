@@ -18,8 +18,8 @@ export const Search = styled.div`
 `;
 
 export const SearchInput = styled.input`
-  flex: 1;
   all: unset;
+  width: 100%;
   &::placeholder {
     color: #a3a3a3;
     font-size: 14px;
