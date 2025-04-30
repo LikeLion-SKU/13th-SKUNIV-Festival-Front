@@ -53,7 +53,11 @@ export default function BoothDetail() {
         <S.InfoSection>
           <S.InfoHeader>
             <S.InfoTitle>{response?.data.boothTitle}</S.InfoTitle>
-            <S.InstagramChip to={`https://www.instagram.com/${response?.data.boothInstagram}`}>
+            <S.InstagramChip
+              to={`https://www.instagram.com/${response?.data.boothInstagram}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <Instagram />
               {response?.data.boothInstagram}
             </S.InstagramChip>

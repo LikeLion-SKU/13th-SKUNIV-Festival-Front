@@ -1,4 +1,5 @@
 import useReservationStore from "../../../shared/stores/useReservationStore";
+import AlreadyReserved from "./AlreadyReserved";
 import Reservation from "./Reservation";
 import ReservationComplete from "./ReservationComplete";
 
@@ -17,6 +18,10 @@ const Modals = () => {
     //   예약 완료
     case 2:
       return <ReservationComplete />;
+
+    //   이미 예약
+    case 3:
+      return <AlreadyReserved />;
   }
 };
 

@@ -4,6 +4,7 @@ import Plus from "@icon/plus.svg?react";
 import CircleClose from "@icon/circle_close.svg?react";
 import { useNavigate } from "react-router";
 import useReservationStore from "../../stores/useReservationStore";
+import Modals from "./modals";
 
 const FloatingButton = () => {
   const [opened, setOpened] = useState(false);
@@ -19,13 +20,14 @@ const FloatingButton = () => {
             <Button onClick={() => navigate("/booth")}>부스 안내</Button>
             <CircleClose onClick={() => setOpened(false)} />
             <Button onClick={() => navigate("/lost")}>분실물</Button>
-            <Button onClick={() => {}}>예약 확인</Button>
+            <Button onClick={() => setModalStep(4)}>예약 확인</Button>
           </Buttons>
         )}
       </Container>
       <MainButton onClick={() => setOpened(true)}>
         <Plus />
       </MainButton>
+      <Modals />
     </>
   );
 };

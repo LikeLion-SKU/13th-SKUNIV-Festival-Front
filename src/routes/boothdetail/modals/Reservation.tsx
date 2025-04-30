@@ -30,7 +30,7 @@ interface ReservationResponse {
 }
 
 const Reservation = () => {
-  const { setModalStep, onClose, setWaitingOrder } = useReservationStore();
+  const { setModalStep, onClose, setReservation } = useReservationStore();
   const { title } = useHeaderStore();
 
   const {
@@ -64,14 +64,14 @@ const Reservation = () => {
         });
 
         if (response.data?.success) {
-          setWaitingOrder(response.data?.data?.waitingOrder);
+          setReservation({ waitingOrder: response.data?.data?.waitingOrder });
           setModalStep(2);
         } else {
           alert("예약에 실패하였습니다.");
         }
       } catch (err) {
         if ((err as AxiosError).status === 400) {
-          alert("이미 예약한 사용자입니다.");
+          setModalStep(3);
         }
       }
     }

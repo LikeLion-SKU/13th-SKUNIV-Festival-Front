@@ -49,14 +49,15 @@ const TextBox = styled.div`
 `;
 
 interface BoothProps {
+  id: number;
   location: string;
   department: string;
   image: string;
 }
 
-export default function BoothCard({ image, location, department }: BoothProps) {
+export default function BoothCard({ id, image, location, department }: BoothProps) {
   return (
-    <Link to={`/booth/${encodeURIComponent(department)}`} style={{ textDecoration: "none" }}>
+    <Link to={`/booth/${id}`} style={{ textDecoration: "none" }}>
       <Card image={image}>
         <p className="location">{location}</p>
         <TextBox>
