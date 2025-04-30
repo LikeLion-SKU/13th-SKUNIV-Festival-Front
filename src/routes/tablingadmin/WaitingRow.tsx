@@ -12,14 +12,18 @@ const WaitingRow = ({ name, phoneNum, headCount }: WaitingRowProps) => {
   const { setModalStep } = useAdminStore();
 
   async function call() {
-    const response = await adminAPI.post("/booths/admin/call", {
-      name,
-      phoneNum: String(phoneNum).replace(/-/g, ""),
-      message: `${name} 부스에서 호출되었습니다.`,
-    });
+    try {
+      const response = await adminAPI.post("/booths/admin/call", {
+        name,
+        phoneNum: String(phoneNum).replace(/-/g, ""),
+        message: `${name} 부스에서 호출되었습니다.`,
+      });
 
-    if (response.data?.success) {
-      setModalStep(3);
+      if (response.data?.success) {
+        setModalStep(3);
+      }
+    } catch (err) {
+      alert("호출에 실패하였습니다.");
     }
   }
 

@@ -1,8 +1,8 @@
-import { Booth } from ".";
+import { BoothResponse } from ".";
 import * as S from "./Card.style";
 
 interface CardProps {
-  data: Booth;
+  data: BoothResponse;
 }
 
 const Card = ({ data }: CardProps) => {

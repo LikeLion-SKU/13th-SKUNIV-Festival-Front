@@ -11,7 +11,7 @@ import { useInView } from "react-intersection-observer";
 import { useEffect, useState } from "react";
 import useDebounce from "../../shared/hooks/useDebounce";
 
-export interface Booth {
+export interface BoothResponse {
   id: number;
   boothFaculty: string;
   boothThumbnailUrl: string;
@@ -30,7 +30,7 @@ export default function Tabling() {
   const debouncedSearchQuery = useDebounce(searchQuery);
 
   const [lang] = useLanguage();
-  const { data: response, fetchNextPage } = useInfiniteQuery<BaseResponse<Booth[]>>({
+  const { data: response, fetchNextPage } = useInfiniteQuery<BaseResponse<BoothResponse[]>>({
     queryKey: ["boothInfo", debouncedSearchQuery],
     queryFn: ({ pageParam: cursor }) =>
       publicAPI

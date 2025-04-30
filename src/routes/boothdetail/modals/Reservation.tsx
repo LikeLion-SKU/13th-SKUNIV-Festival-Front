@@ -3,7 +3,7 @@ import Modal from "../../../shared/components/Modal";
 import useReservationStore from "../../../shared/stores/useReservationStore";
 import Input from "../Input";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 import reservationSchema from "./reservationSchema";
 import { z } from "zod";
 import { DotLottiePlayer } from "@dotlottie/react-player";
@@ -13,15 +13,32 @@ import Unchecked from "@icon/unchecked.svg?react";
 import Checked from "@icon/checked.svg?react";
 
 import Error from "../../../shared/assets/lottie/error.lottie";
+import { publicAPI } from "../../../shared/lib/api";
+import useHeaderStore from "../../../shared/stores/useHeaderStore";
+import useWaitingStore from "../../../shared/stores/useWaitingStore";
+import BaseResponse from "../../../shared/interfaces/BaseResponse";
+import { AxiosError } from "axios";
+
+interface ReservationResponse {
+  id: number;
+  boothName: string;
+  name: string;
+  phoneNum: string;
+  headCount: number;
+  waitingOrder: number;
+  status: string;
+  createdAt: string;
+}
 
 const Reservation = () => {
   const { setModalStep, onClose } = useReservationStore();
+  const { title } = useHeaderStore();
+  const { setWaitingOrder } = useWaitingStore();
 
   const {
     register,
     handleSubmit,
     formState: { isValid, errors },
-    trigger,
   } = useForm<z.infer<typeof reservationSchema>>({
     resolver: zodResolver(reservationSchema),
     defaultValues: {
@@ -35,14 +52,32 @@ const Reservation = () => {
   const [agreed, setAgreed] = useState(false);
   const [showNotAgreed, setShowNowAgreed] = useState(false);
 
-  async function onSubmit() {
-    await trigger();
-
+  const onSubmit: SubmitHandler<z.infer<typeof reservationSchema>> = async (data) => {
     if (isValid) {
       if (!agreed) return setShowNowAgreed(true);
-      setModalStep(2);
+
+      try {
+        // 예약
+        const response = await publicAPI.post<BaseResponse<ReservationResponse>>("/reservations", {
+          boothName: title,
+          name: data.name,
+          phoneNum: data.phoneNum,
+          headCount: data.headCount,
+        });
+
+        if (response.data?.success) {
+          setWaitingOrder(response.data?.data?.waitingOrder);
+          setModalStep(2);
+        } else {
+          alert("예약에 실패하였습니다.");
+        }
+      } catch (err) {
+        if ((err as AxiosError).status === 400) {
+          alert("이미 예약한 사용자입니다.");
+        }
+      }
     }
-  }
+  };
 
   return (
     <>
@@ -52,7 +87,7 @@ const Reservation = () => {
           {
             title: "예약하기",
             variant: "confirm",
-            action: () => onSubmit(),
+            action: handleSubmit(onSubmit),
           },
         ]}
         onClose={onClose}
