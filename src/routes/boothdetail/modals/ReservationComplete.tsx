@@ -19,6 +19,7 @@ const ReservationComplete = () => {
           action: () => {},
         },
       ]}
+      onClose={onClose}
     >
       <Layout>
         <Title>예약이 완료되었습니다.</Title>
