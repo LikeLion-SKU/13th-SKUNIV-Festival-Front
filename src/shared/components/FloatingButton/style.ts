@@ -41,6 +41,7 @@ export const Menu = styled.a`
   all: unset;
   width: 44px;
   color: #fff;
+  text-align: center;
   font-size: 10px;
   font-style: normal;
   font-weight: 500;
