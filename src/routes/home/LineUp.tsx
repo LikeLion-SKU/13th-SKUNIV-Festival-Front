@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import styled from "@emotion/styled";
 import Swiper from "swiper";
 import "swiper/swiper-bundle.css";
@@ -10,7 +10,6 @@ import rightArrow from "@icon/arrow_right.svg";
 export default function LineUp() {
   const swiperContainerRef = useRef<HTMLDivElement | null>(null);
   const swiperInstanceRef = useRef<Swiper | null>(null);
-  const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
     if (swiperContainerRef.current) {
@@ -24,11 +23,6 @@ export default function LineUp() {
           slideShadows: true,
         },
         spaceBetween: 20,
-        on: {
-          slideChange: function (this: Swiper) {
-            setCurrentIndex(this.realIndex);
-          },
-        },
       });
 
       swiperInstanceRef.current = swiperInstance;
@@ -93,7 +87,7 @@ const SwiperWrapper = styled.div`
 
   .swiper-wrapper {
     display: flex;
-    padding-left: 80px;
+    padding-left: 82px;
     align-items: center;
   }
 `;
