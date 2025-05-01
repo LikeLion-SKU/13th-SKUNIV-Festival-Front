@@ -91,6 +91,7 @@ const Subtitle = styled.span`
 `;
 
 const InputWrapper = styled.div`
+  position: relative;
   margin-top: 30px;
   padding: 10px 30px;
   display: flex;
@@ -100,11 +101,13 @@ const InputWrapper = styled.div`
 `;
 
 const InputIcon = styled(Lock)`
-  margin-right: 20px;
+  position: absolute;
 `;
 
 const Input = styled.input`
   all: unset;
+  padding-inline: 16px;
+  text-align: center;
   font-size: 12px;
   color: #000;
   &::placeholder {

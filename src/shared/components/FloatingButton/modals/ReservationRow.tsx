@@ -1,0 +1,80 @@
+import styled from "@emotion/styled";
+import useReservationStore from "../../../stores/useReservationStore";
+
+import Checked from "@icon/checked.svg?react";
+import Unchecked from "@icon/unchecked.svg?react";
+
+interface WaitingRowProps {
+  id: number;
+  boothName: string;
+  headCount: number;
+  waitingTeam: number;
+}
+
+const ReservationRow = ({ id, boothName, headCount, waitingTeam }: WaitingRowProps) => {
+  const { idsToDelete, addIdToDelete, cancelIdToDelete } = useReservationStore();
+
+  return (
+    <Wrapper>
+      <Name>{boothName}</Name>
+      <Divider />
+      <HeadCount>{headCount}명</HeadCount>
+      <Divider />
+      <WaitingTeam>대기팀 {waitingTeam}팀</WaitingTeam>
+      <CheckButton>
+        {idsToDelete?.some((c) => id === c.id) ? (
+          <Checked width={16} height={16} onClick={() => cancelIdToDelete(id)} />
+        ) : (
+          <Unchecked width={16} height={16} onClick={() => addIdToDelete(id, boothName)} />
+        )}
+      </CheckButton>
+    </Wrapper>
+  );
+};
+
+const Wrapper = styled.div`
+  width: 100%;
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-bottom: 1px solid #cdcdcd;
+`;
+
+const Name = styled.span`
+  color: #1a1a1a;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  letter-spacing: -0.35px;
+`;
+
+const Divider = styled.hr`
+  width: 1px;
+  height: 14px;
+  background: #d8d8d8;
+`;
+
+const WaitingTeam = styled.span`
+  color: #7d7d7d;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: -0.3px;
+`;
+
+const HeadCount = styled.span`
+  color: #7d7d7d;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: -0.3px;
+`;
+
+const CheckButton = styled.button`
+  all: unset;
+  margin-left: auto;
+  cursor: pointer;
+`;
+
+export default ReservationRow;

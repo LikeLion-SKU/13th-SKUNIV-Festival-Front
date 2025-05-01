@@ -1,7 +1,7 @@
 import { create } from "zustand";
 
 export interface HeaderState {
-  title: string;
+  title: string | null;
   showBack: boolean;
   showHome: boolean;
   canAccessAdmin: boolean;
@@ -9,7 +9,7 @@ export interface HeaderState {
 }
 
 const useHeaderStore = create<HeaderState>((set) => ({
-  title: "불러오는 중...",
+  title: null,
   showBack: false,
   showHome: false,
   canAccessAdmin: false,

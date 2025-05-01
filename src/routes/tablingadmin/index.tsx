@@ -13,6 +13,7 @@ interface ReservationsResponse {
   name: string;
   phoneNum: string;
   headCount: number;
+  reservationTime: string;
 }
 
 export default function TablingAdmin() {
@@ -25,14 +26,14 @@ export default function TablingAdmin() {
   });
 
   const { data: response } = useQuery<BaseResponse<ReservationsResponse[]>>({
-    queryKey: ["adminReservations"],
+    queryKey: ["adminReservations", boothName],
     queryFn: () =>
       adminAPI.get(`/reservations/admin/${boothName}`).then((response) => response.data),
     enabled: !!boothName,
   });
 
   const { data: waitings } = useQuery<number>({
-    queryKey: ["adminBoothWaitings"],
+    queryKey: ["adminBoothWaitings", boothName],
     queryFn: () => adminAPI.get(`/booths/admin/${boothName}`).then((response) => response.data),
     enabled: !!boothName,
   });
@@ -49,6 +50,7 @@ export default function TablingAdmin() {
               name={waiting.name}
               phoneNum={waiting.phoneNum}
               headCount={waiting.headCount}
+              reservationTime={waiting.reservationTime}
             />
           ))}
         </S.WaitingRowContainer>

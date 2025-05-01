@@ -6,6 +6,7 @@ import ko from "@icon/ko.svg";
 import en from "@icon/en.svg";
 import ch from "@icon/ch.svg";
 import jp from "@icon/jp.svg";
+import FloatingButton from "../../shared/components/FloatingButton";
 
 interface MainSectionProps {
   onSelectLang: (lang: string) => void;
@@ -48,6 +49,7 @@ export default function MainSection({ onSelectLang, langSelected }: MainSectionP
           </LangButton>
         </LanguageWrapper>
       )}
+      <FloatingButton />
     </MainWrapper>
   );
 }

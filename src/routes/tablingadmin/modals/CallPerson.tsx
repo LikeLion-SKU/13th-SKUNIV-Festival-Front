@@ -1,9 +1,12 @@
 import styled from "@emotion/styled";
 import Modal from "../../../shared/components/Modal";
 import useAdminStore from "../../../shared/stores/useAdminStore";
+import useHeaderStore from "../../../shared/stores/useHeaderStore";
+import { adminAPI } from "../../../shared/lib/api";
 
 const CallPerson = () => {
-  const { setModalStep, onClose } = useAdminStore();
+  const { setModalStep, onClose, phoneNum, name } = useAdminStore();
+  const { title } = useHeaderStore();
 
   return (
     <Modal
@@ -16,17 +19,29 @@ const CallPerson = () => {
         {
           title: "호출하기",
           variant: "confirm",
-          action: () => {
+          action: async () => {
             // 호출
-            setModalStep(3);
+            try {
+              const response = await adminAPI.post("/reservations/admin/call", {
+                name: title,
+                phoneNum,
+                message: `${title} 부스에서 호출되었습니다.`,
+              });
+
+              if (response.data?.success) {
+                setModalStep(3);
+              }
+            } catch (err) {
+              alert("호출에 실패하였습니다.");
+            }
           },
         },
       ]}
       onClose={onClose}
     >
       <Layout>
-        <Faculty>디자인학부 부스</Faculty>
-        <Message>나윤주님을 호출하시겠습니까?</Message>
+        <Faculty>{title} 부스</Faculty>
+        <Message>{name}님을 호출하시겠습니까?</Message>
       </Layout>
     </Modal>
   );
