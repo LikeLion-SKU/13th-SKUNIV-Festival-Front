@@ -9,10 +9,13 @@ import { useQuery } from "@tanstack/react-query";
 import { publicAPI } from "../../shared/lib/api";
 import useLanguage from "../../shared/hooks/useLanguage";
 import BaseResponse from "../../shared/interfaces/BaseResponse";
-import useHeaderStore from "../../shared/stores/useHeaderStore";
 import DayChip from "./DayChip";
 import NightChip from "./NightChip";
 import { Fragment } from "react/jsx-runtime";
+import { useState } from "react";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Slider from "react-slick";
 
 type BoothInfoResponse = {
   id: number;
@@ -58,11 +61,23 @@ export default function BoothDetail() {
     enabled: !!response?.data.boothFaculty,
   });
 
+  const [isZoomed, setIsZoomed] = useState(false);
+
   return (
     <>
       <S.Layout>
         {/* 부스 이미지 */}
-        <S.BoothImage imgUrl="https://i.imgur.com/NvoBOIH.png"></S.BoothImage>
+        <Slider dots={true} infinite={false} speed={500} slidesToShow={1} slidesToScroll={1}>
+          {response?.data?.imageUrls?.map((imageUrl) => (
+            <S.BoothImage
+              key={imageUrl}
+              imgUrl={imageUrl}
+              zoom={isZoomed}
+              onClick={() => setIsZoomed((prev) => !prev)}
+            ></S.BoothImage>
+          ))}
+        </Slider>
+
         {/* 설명 */}
         <S.InfoSection>
           <S.InfoHeader>
