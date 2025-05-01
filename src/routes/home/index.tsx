@@ -8,6 +8,7 @@ import About from "./About";
 import Emergency from "./Emergency";
 import Intro from "./Intro";
 import useLanguage from "../../shared/hooks/useLanguage";
+import FloatingButton from "../../shared/components/FloatingButton";
 
 export default function Home() {
   const [lang, setLang] = useLanguage();
@@ -27,6 +28,7 @@ export default function Home() {
           <Section title="부스 보러가기" content={<Booth />} />
           <Section title="대피로 & AED 위치" content={<Emergency />} />
           <Section title="about" content={<About />} />
+          <FloatingButton />
         </>
       )}
     </HomeWrapper>
