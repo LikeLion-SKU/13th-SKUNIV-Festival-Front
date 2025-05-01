@@ -63,7 +63,6 @@ export default function MainSection({ onSelectLang, langSelected }: MainSectionP
 
 const BeforeWrapper = styled.div`
   height: auto;
-  min-height: 800px;
 `;
 
 const AfterWrapper = styled.div`
@@ -97,6 +96,7 @@ const LanguageWrapper = styled.div`
   justify-content: center;
   align-items: center;
   min-width: 300px;
+  padding-bottom: 40px;
 `;
 
 const TextBox = styled.div`
