@@ -1,4 +1,4 @@
-import { Outlet } from "react-router";
+import { Outlet, ScrollRestoration } from "react-router";
 import Header from "../components/Header";
 import styled from "@emotion/styled";
 
@@ -8,6 +8,7 @@ export default function RootLayout() {
       <Header />
       <Container>
         <Outlet />
+        <ScrollRestoration />
       </Container>
     </main>
   );
