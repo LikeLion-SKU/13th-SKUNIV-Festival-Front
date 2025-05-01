@@ -17,7 +17,11 @@ interface ReservationListResponse {
 const ReservationList = () => {
   const { onClose, name, phoneNum, idsToDelete, setModalStep } = useReservationStore();
 
-  const { isLoading, data: response } = useQuery<BaseResponse<ReservationListResponse[]>>({
+  const {
+    isLoading,
+    data: response,
+    error,
+  } = useQuery<BaseResponse<ReservationListResponse[]>>({
     queryKey: ["reservationList"],
     queryFn: () =>
       publicAPI
@@ -31,6 +35,8 @@ const ReservationList = () => {
 
   //   TODO
   if (isLoading) return <h1>로딩중...</h1>;
+
+  if (error) return <ReservationNotFound />;
 
   if (response?.data?.length === 0) return <ReservationNotFound />;
 
