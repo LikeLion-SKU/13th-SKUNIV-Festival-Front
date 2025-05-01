@@ -61,7 +61,7 @@ export default function BoothDetail() {
     enabled: !!response?.data.boothFaculty,
   });
 
-  const [isZoomed, setIsZoomed] = useState(false);
+  const [isZoomed, setIsZoomed] = useState(true);
 
   return (
     <>
