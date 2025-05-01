@@ -5,13 +5,14 @@ interface CardProps {
   location: string;
   department: string;
   image: string;
+  id: number;
 }
 
-export default function BoothCard({ image, location, department }: CardProps) {
+export default function BoothCard({ image, location, department, id }: CardProps) {
   const navigate = useNavigate();
 
   return (
-    <Card onClick={() => navigate(`/booth/${encodeURIComponent(department)}`)} image={image}>
+    <Card onClick={() => navigate(`/booth/${id}`)} image={image}>
       <TextBox>
         <p className="location">{location}</p>
         <p className="department">{department}</p>

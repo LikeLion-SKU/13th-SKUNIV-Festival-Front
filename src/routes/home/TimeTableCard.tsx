@@ -41,7 +41,7 @@ export const AboutWrapper = styled.div`
 export const ArtistTime = styled.p`
   color: #1e3dc7;
   font-size: 10px;
-  font-weight: 600;
+  font-weight: 500;
   margin-bottom: auto;
 `;
 
@@ -54,7 +54,7 @@ export const ArtistDescription = styled.p`
 export const ArtistName = styled.p`
   color: #1a1a1a;
   font-size: 20px;
-  font-weight: 700;
+  font-weight: 600;
   justify-content: flex-end;
   line-height: 120%;
 `;

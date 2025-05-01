@@ -11,7 +11,7 @@ interface SectionProps {
 
 export default function Section({ title, content }: SectionProps) {
   const ref = useRef(null);
-  const isInView = useInView(ref, { amount: 0.9 });
+  const isInView = useInView(ref, { amount: 0.8 });
   return (
     <SectionWrapper ref={ref}>
       <StarIcon src={isInView ? starYellow : starWhite} alt="star" />
@@ -35,7 +35,7 @@ export const StarIcon = styled(motion.img)`
 
 export const SectionTitle = styled.p`
   font-size: 16px;
-  font-weight: 700;
+  font-weight: 600;
   color: white;
   margin-top: 8px;
   margin-bottom: 28px;
@@ -45,6 +45,6 @@ export const SectionContent = styled.div`
   align-items: center;
   color: white;
   font-size: 12px;
-  font-weight: 600;
+  font-weight: 500;
   margin-bottom: 120px;
 `;

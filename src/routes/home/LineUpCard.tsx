@@ -48,7 +48,7 @@ const TextBox = styled.div`
 
 const ArtistText16 = styled.p`
   font-size: 16px;
-  font-weight: 700;
+  font-weight: 600;
   line-height: 140%;
 `;
 
