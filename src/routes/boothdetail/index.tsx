@@ -12,6 +12,7 @@ import BaseResponse from "../../shared/interfaces/BaseResponse";
 import useHeaderStore from "../../shared/stores/useHeaderStore";
 import DayChip from "./DayChip";
 import NightChip from "./NightChip";
+import { Fragment } from "react/jsx-runtime";
 
 type BoothInfoResponse = {
   id: number;
@@ -31,7 +32,6 @@ type BoothInfoResponse = {
 type BoothTimeResponse = string;
 
 export default function BoothDetail() {
-  const { title } = useHeaderStore();
   const { boothId } = useParams();
   const [lang] = useLanguage();
 
@@ -52,9 +52,10 @@ export default function BoothDetail() {
   });
 
   const { data: times } = useQuery<BaseResponse<BoothTimeResponse>>({
-    queryKey: ["boothTimes", title],
-    queryFn: () => publicAPI.get(`/booths/${title}`).then((response) => response.data),
-    enabled: !!title,
+    queryKey: ["boothTimes", response?.data.boothFaculty],
+    queryFn: () =>
+      publicAPI.get(`/booths/${response?.data.boothFaculty}`).then((response) => response.data),
+    enabled: !!response?.data.boothFaculty,
   });
 
   return (
@@ -86,20 +87,29 @@ export default function BoothDetail() {
             )}
           </S.Chips>
         </S.InfoSection>
-        <S.Description>{response?.data.boothDescription}</S.Description>
+        <S.Description>
+          {response?.data.boothDescription?.split("<br>").map((line, idx) => (
+            <Fragment key={idx}>
+              {line}
+              <br />
+            </Fragment>
+          ))}
+        </S.Description>
         <S.Divider />
         {/* 메뉴 */}
         <S.MenuSection>
           <S.MenuTitle>메뉴</S.MenuTitle>
           <S.Menus>
             {response?.data?.boothMenus?.map((menu) => (
-              <S.Menu key={menu.menuKR}>
+              <S.Menu key={menu.menu}>
                 <span>
                   {menu.menu}
                   <br />
                   {menu?.menuKR && <span className="menu-kr">({menu?.menuKR})</span>}
                 </span>
-                <span style={{ fontWeight: 600 }}>{menu.menuPrice}원</span>
+                <S.MenuPrice style={{ fontWeight: 600 }}>
+                  {menu.menuPrice.toLocaleString()}원
+                </S.MenuPrice>
               </S.Menu>
             ))}
           </S.Menus>

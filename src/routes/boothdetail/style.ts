@@ -34,6 +34,7 @@ export const InfoTitle = styled.span`
   font-weight: 700;
   line-height: normal;
   letter-spacing: -0.5px;
+  word-break: break-all;
 `;
 
 export const Chips = styled.div`
@@ -114,12 +115,14 @@ export const Menu = styled.div`
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
+  gap: 4px;
   color: #1a1a1a;
   font-size: 13px;
   font-style: normal;
   font-weight: 400;
   line-height: 24px;
   letter-spacing: -0.325px;
+  word-break: break-all;
   & .menu-kr {
     color: #7d7d7d;
     font-size: 12px;
@@ -128,4 +131,14 @@ export const Menu = styled.div`
     line-height: 24px;
     letter-spacing: -0.3px;
   }
+`;
+
+export const MenuPrice = styled.span`
+  color: #1a1a1a;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: -0.325px;
+  white-space: nowrap;
 `;

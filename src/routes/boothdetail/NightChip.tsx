@@ -22,7 +22,7 @@ const Chip = styled.div`
 `;
 
 const ChipText = styled.span`
-  color: #1a1a1a;
+  color: #fff;
   text-align: center;
   font-size: 10px;
   font-style: normal;
