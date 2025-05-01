@@ -1,9 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styled from "@emotion/styled";
-import { useQuery } from "@tanstack/react-query";
 import { publicAPI } from "../../shared/lib/api";
 import useLanguage from "../../shared/hooks/useLanguage";
-import BoothCard from "./BoothCard";
+import BoothCard from "../booth/BoothCard";
 
 interface Booth {
   id: number;
@@ -14,18 +13,40 @@ interface Booth {
 }
 
 export default function Booth() {
-  const [selectedLocation, setSelectedLocation] = useState<
-    "혜인관" | "은주1관" | "은주2관" | "청운관" | "대일관"
-  >("혜인관");
-
   const [lang] = useLanguage();
+  const [selectedLocation, setSelectedLocation] = useState("혜인관");
+  const [boothList, setBoothList] = useState<Booth[]>([]);
 
-  const { data: boothList = [] } = useQuery<Booth[]>({
-    queryKey: ["boothInfo"],
-    queryFn: () =>
-      publicAPI.get("boothInfo", { params: { lang } }).then((response) => response.data.data),
-    enabled: !!lang,
-  });
+  useEffect(() => {
+    let isMounted = true;
+
+    const fetchAllBooths = async () => {
+      let cursor: number | null = null;
+      let allBooths: Booth[] = [];
+
+      while (true) {
+        const { data } = await publicAPI.get("boothInfo", {
+          params: { lang, cursor },
+        });
+
+        const fetched: Booth[] = data.data;
+        allBooths = [...allBooths, ...fetched];
+
+        if (fetched.length < 8) break;
+        cursor = fetched.at(-1)?.id ?? null;
+      }
+
+      if (isMounted) setBoothList(allBooths);
+    };
+
+    if (lang) {
+      fetchAllBooths();
+    }
+
+    return () => {
+      isMounted = false;
+    };
+  }, [lang]);
 
   const filteredList = boothList.filter((booth) => {
     const locationPrefix = booth.boothLocation.split(" ")[0];
@@ -70,6 +91,7 @@ export default function Booth() {
       <BoothWrapper>
         {filteredList.map((booth) => (
           <BoothCard
+            id={booth.id}
             key={booth.id}
             department={booth.boothFaculty}
             location={booth.boothLocation}

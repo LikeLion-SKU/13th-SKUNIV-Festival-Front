@@ -3,14 +3,16 @@ import styled from "@emotion/styled";
 export default function Intro() {
   return (
     <IntroWrapper>
-      이번 축제는 어쩌구 이러한 이번 축제의 목적은 뭐고 축제는 뭐시기.. 축제에 대한 간략 설명 목적
-      이번 축제는 어쩌구 이러한 이번 축제의 목적은 뭐고 축제는 뭐시기.. 축제에 대한 간략 설명 목적
+      ‘Blooming’이라는 단어는 <br /> [꽃 피는], [개화] 라는 의미를 가지고 있습니다. <br />{" "}
+      대학생활을 거치며 서경대학교 학우들의 인생에 <br /> 활짝 꽃이 피기를 염원하는 의미를 담고
+      있으며, <br /> 축제는 대학의 꽃이기에 축제 기간 동안 <br /> 청춘의 개화기가 시작된다는 의미
+      또한 담겨있습니다.
     </IntroWrapper>
   );
 }
 
 const IntroWrapper = styled.div`
-  max-width: 240px;
+  max-width: 270px;
   text-align: center;
   font-size: 12px;
   font-weight: 500;

@@ -6,12 +6,11 @@ interface CardProps {
   name: string;
   time: string;
   description: string;
-  isCenter: boolean;
 }
 
-export default function LineUpCard({ image, date, name, time, description, isCenter }: CardProps) {
+export default function LineUpCard({ image, date, name, time, description }: CardProps) {
   return (
-    <Card image={image} $isCenter={isCenter}>
+    <Card image={image}>
       <TextBox>
         <ArtistText16 className="date">{date}</ArtistText16>
         <ArtistText16>{name}</ArtistText16>
@@ -24,17 +23,13 @@ export default function LineUpCard({ image, date, name, time, description, isCen
   );
 }
 
-const Card = styled.div<{ image: string; $isCenter: boolean }>`
-  scroll-snap-align: center;
-  flex: 0 0 auto;
-
+const Card = styled.div<{ image: string }>`
+  flex-shrink: 0;
   width: 227px;
   height: 283px;
-  margin: 0 -80px;
   padding: 16px;
   background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.12) 35.1%, #000 100%),
     url(${(props) => props.image});
-
   background-size: cover;
   background-position: center;
   border-radius: 10px;
@@ -43,11 +38,6 @@ const Card = styled.div<{ image: string; $isCenter: boolean }>`
   flex-direction: column;
   justify-content: flex-end;
   color: white;
-
-  filter: ${(props) => (props.$isCenter ? "none" : "blur(2px)")};
-  transform: ${(props) => (props.$isCenter ? "scale(1)" : "scale(0.8)")};
-  z-index: ${(props) => (props.$isCenter ? 3 : 1)};
-  transition: transform 0.3s ease, filter 0.3s ease, z-index 0.3s ease;
 `;
 
 const TextBox = styled.div`
@@ -58,7 +48,7 @@ const TextBox = styled.div`
 
 const ArtistText16 = styled.p`
   font-size: 16px;
-  font-weight: 700;
+  font-weight: 600;
   line-height: 140%;
 `;
 

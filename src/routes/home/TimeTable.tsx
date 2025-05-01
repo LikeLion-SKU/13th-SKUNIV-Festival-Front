@@ -65,7 +65,7 @@ export const NavBtn = styled.button<{ selected: boolean }>`
   border: 1.5px solid #fff;
   background-color: ${(props) => (props.selected ? "#fff" : "transparent")};
   color: ${(props) => (props.selected ? "#2F47A4" : "#fff")};
-  font-weight: 700;
+  font-weight: 600;
   font-size: 10px;
   cursor: pointer;
 

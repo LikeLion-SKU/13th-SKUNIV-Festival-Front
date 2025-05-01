@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { useQuery } from "@tanstack/react-query";
+import { useState, useEffect } from "react";
+import styled from "@emotion/styled";
 import { publicAPI } from "../../shared/lib/api";
 import useHeader from "../../shared/hooks/useHeader";
 import useLanguage from "../../shared/hooks/useLanguage";
@@ -22,17 +22,42 @@ export default function BoothInfo() {
     showBack: true,
     showHome: true,
   });
+  const [searchTerm, setSearchTerm] = useState("");
 
   const [lang] = useLanguage();
   const [selectedLocation, setSelectedLocation] = useState("혜인관");
-  const [searchTerm, setSearchTerm] = useState("");
+  const [boothList, setBoothList] = useState<Booth[]>([]);
 
-  const { data: boothList = [] } = useQuery<Booth[]>({
-    queryKey: ["boothInfo"],
-    queryFn: () =>
-      publicAPI.get("boothInfo", { params: { lang } }).then((response) => response.data.data),
-    enabled: !!lang,
-  });
+  useEffect(() => {
+    let isMounted = true;
+
+    const fetchAllBooths = async () => {
+      let cursor: number | null = null;
+      let allBooths: Booth[] = [];
+
+      while (true) {
+        const { data } = await publicAPI.get("boothInfo", {
+          params: { lang, cursor },
+        });
+
+        const fetched: Booth[] = data.data;
+        allBooths = [...allBooths, ...fetched];
+
+        if (fetched.length < 8) break;
+        cursor = fetched.at(-1)?.id ?? null;
+      }
+
+      if (isMounted) setBoothList(allBooths);
+    };
+
+    if (lang) {
+      fetchAllBooths();
+    }
+
+    return () => {
+      isMounted = false;
+    };
+  }, [lang]);
 
   const filteredList = boothList.filter((booth) => {
     const locationPrefix = booth.boothLocation.split(" ")[0];
@@ -45,15 +70,23 @@ export default function BoothInfo() {
       <LocNav selectedLocation={selectedLocation} setSelectedLocation={setSelectedLocation} />
       <BoothMap selectedLocation={selectedLocation} setSelectedLocation={setSelectedLocation} />
 
-      {filteredList.map((booth) => (
-        <BoothCard
-          key={booth.id}
-          id={booth.id}
-          department={booth.boothFaculty}
-          location={booth.boothLocation}
-          image={booth.boothThumbnailUrl}
-        />
-      ))}
+      <BoothWrapper>
+        {filteredList.map((booth) => (
+          <BoothCard
+            id={booth.id}
+            key={booth.id}
+            department={booth.boothFaculty}
+            location={booth.boothLocation}
+            image={booth.boothThumbnailUrl}
+          />
+        ))}
+      </BoothWrapper>
     </>
   );
 }
+
+const BoothWrapper = styled.div`
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 12px;
+`;
