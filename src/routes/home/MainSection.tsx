@@ -88,7 +88,7 @@ const LanguageWrapper = styled.div`
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -20%);
+  transform: translate(-50%, -10%);
   z-index: 2;
 
   display: flex;
@@ -96,7 +96,7 @@ const LanguageWrapper = styled.div`
   justify-content: center;
   align-items: center;
   min-width: 300px;
-  padding-bottom: 40px;
+  padding-bottom: 30px;
 `;
 
 const TextBox = styled.div`
