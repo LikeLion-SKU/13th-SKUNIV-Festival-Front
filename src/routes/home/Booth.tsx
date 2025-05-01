@@ -70,6 +70,7 @@ export default function Booth() {
       <BoothWrapper>
         {filteredList.map((booth) => (
           <BoothCard
+            id={booth.id}
             key={booth.id}
             department={booth.boothFaculty}
             location={booth.boothLocation}
