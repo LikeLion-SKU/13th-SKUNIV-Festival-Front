@@ -27,6 +27,7 @@ export const InfoSection = styled.div`
 export const InfoHeader = styled.div`
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   gap: 12px;
 `;
 
