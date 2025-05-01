@@ -68,6 +68,8 @@ const BeforeWrapper = styled.div`
 
 const AfterWrapper = styled.div`
   & > .img {
+    width: 100vw;
+    height: auto;
     padding-top: 60px;
     margin-bottom: 100px;
   }
