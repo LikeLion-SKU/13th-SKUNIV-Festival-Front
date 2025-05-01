@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 import { useQuery } from "@tanstack/react-query";
 import { publicAPI } from "../../shared/lib/api";
 import useLanguage from "../../shared/hooks/useLanguage";
-import BoothCard from "./BoothCard";
+import BoothCard from "../booth/BoothCard";
 
 interface Booth {
   id: number;
@@ -106,7 +106,7 @@ const NavBtn = styled.button<{ selected: boolean }>`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-width: 57px;
+  min-width: 60px;
   height: 32px;
   border-radius: 10px;
   border: 1.3px solid #fff;

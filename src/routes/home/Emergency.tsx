@@ -57,7 +57,7 @@ const Subtitle = styled.div`
   color: #576141;
   text-align: center;
   font-size: 10px;
-  font-weight: 800;
+  font-weight: 700;
   width: 61px;
   padding-bottom: 2px;
   margin-bottom: 16px;
@@ -68,6 +68,7 @@ const LocationBox = styled.div`
   flex-direction: column;
   gap: 8px;
   width: 100%;
+  font-weight: 500;
 `;
 
 const LocationItem = styled.div`

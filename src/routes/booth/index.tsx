@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
+import styled from "@emotion/styled";
 import { publicAPI } from "../../shared/lib/api";
 import useHeader from "../../shared/hooks/useHeader";
 import useLanguage from "../../shared/hooks/useLanguage";
@@ -45,15 +46,22 @@ export default function BoothInfo() {
       <LocNav selectedLocation={selectedLocation} setSelectedLocation={setSelectedLocation} />
       <BoothMap selectedLocation={selectedLocation} setSelectedLocation={setSelectedLocation} />
 
-      {filteredList.map((booth) => (
-        <BoothCard
-          key={booth.id}
-          id={booth.id}
-          department={booth.boothFaculty}
-          location={booth.boothLocation}
-          image={booth.boothThumbnailUrl}
-        />
-      ))}
+      <BoothWrapper>
+        {filteredList.map((booth) => (
+          <BoothCard
+            key={booth.id}
+            department={booth.boothFaculty}
+            location={booth.boothLocation}
+            image={booth.boothThumbnailUrl}
+          />
+        ))}
+      </BoothWrapper>
     </>
   );
 }
+
+const BoothWrapper = styled.div`
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 12px;
+`;

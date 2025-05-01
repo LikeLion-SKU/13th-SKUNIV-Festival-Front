@@ -35,7 +35,7 @@ export const StarIcon = styled(motion.img)`
 
 export const SectionTitle = styled.p`
   font-size: 16px;
-  font-weight: 800;
+  font-weight: 700;
   color: white;
   margin-top: 8px;
   margin-bottom: 28px;

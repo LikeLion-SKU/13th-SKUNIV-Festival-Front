@@ -7,8 +7,9 @@ import Tabling from "./routes/tabling";
 import BoothInfo from "./routes/booth";
 import BoothDetail from "./routes/boothdetail";
 import TablingAdmin from "./routes/tablingadmin";
-import Edit from "./routes/edit";
 import LostArticle from "./routes/lostArticle";
+import Edit from "./routes/edit";
+import Madeby from "./routes/madeby";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 const router = createBrowserRouter([
@@ -17,6 +18,7 @@ const router = createBrowserRouter([
     index: true,
     Component: Home,
   },
+  { path: "madeby", index: true, Component: Madeby },
   {
     Component: RootLayout,
     children: [
