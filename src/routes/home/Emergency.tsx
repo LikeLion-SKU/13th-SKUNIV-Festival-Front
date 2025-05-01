@@ -57,8 +57,8 @@ const Subtitle = styled.div`
   color: #576141;
   text-align: center;
   font-size: 10px;
-  font-weight: 700;
-  width: 61px;
+  font-weight: 600;
+  width: auto;
   padding-bottom: 2px;
   margin-bottom: 16px;
 `;

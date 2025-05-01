@@ -67,7 +67,7 @@ const LineupWrapper = styled.div`
 const ArrowButton = styled.button<{ $left?: boolean }>`
   position: absolute;
   top: 50%;
-  ${(props) => (props.$left ? "left: 45px" : "right: 45px")};
+  ${(props) => (props.$left ? "left: 35px" : "right: 35px")};
   transform: translateY(-50%);
   background: none;
   border: none;
