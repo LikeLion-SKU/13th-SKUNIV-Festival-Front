@@ -6,23 +6,47 @@ import { useState } from "react";
 import { useNavigate } from "react-router";
 import useHeaderStore from "../../stores/useHeaderStore";
 import { adminAPI } from "../../lib/api";
+import { motion, useAnimation } from "framer-motion";
+
+const InputWrapper = styled.div`
+  position: relative;
+  margin-top: 30px;
+  padding: 10px 30px;
+  display: flex;
+  align-items: center;
+  background: #e4e4e4;
+  border-radius: 20px;
+`;
+
+const MotionInputWrapper = motion(InputWrapper);
+
+const shakingAnimation = {
+  x: [-10, 10, -8, 8, -6, 6, -4, 4, -2, 2, 0],
+  transition: {
+    duration: 0.8,
+    ease: "easeInOut",
+  },
+};
 
 const LoginModal = () => {
   const { title } = useHeaderStore();
-
   const navigate = useNavigate();
   const { onClose } = useAdminStore();
+
+  const controls = useAnimation();
 
   const [password, setPassword] = useState("");
 
   async function Login() {
-    const response = await adminAPI.post("/booths/admin/login", { name: title, password });
+    try {
+      const response = await adminAPI.post("/booths/admin/login", { name: title, password });
 
-    if (response.data.success) {
-      onClose();
-      navigate(`/tabling/admin/${title || response.data?.data?.name}`);
-    } else {
-      // TODO 인풋 흔들기 효과
+      if (response.data.success) {
+        onClose();
+        navigate(`/tabling/admin/${title || response.data?.data?.name}`);
+      }
+    } catch (err) {
+      await controls.start(shakingAnimation);
     }
   }
 
@@ -46,7 +70,7 @@ const LoginModal = () => {
       <Layout>
         <Title>관리자 로그인</Title>
         <Subtitle>{title} 부스</Subtitle>
-        <InputWrapper>
+        <MotionInputWrapper initial={{ x: 0 }} animate={controls}>
           <InputIcon />
           <Input
             id="booth_admin_password"
@@ -56,7 +80,7 @@ const LoginModal = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value.trim())}
           />
-        </InputWrapper>
+        </MotionInputWrapper>
       </Layout>
     </Modal>
   );
@@ -90,20 +114,6 @@ const Subtitle = styled.span`
   letter-spacing: -0.325px;
 `;
 
-const InputWrapper = styled.div`
-  position: relative;
-  margin-top: 30px;
-  padding: 10px 30px;
-  display: flex;
-  align-items: center;
-  background: #e4e4e4;
-  border-radius: 20px;
-`;
-
-const InputIcon = styled(Lock)`
-  position: absolute;
-`;
-
 const Input = styled.input`
   all: unset;
   padding-inline: 16px;
@@ -116,6 +126,10 @@ const Input = styled.input`
     font-weight: 400;
     line-height: normal;
   }
+`;
+
+const InputIcon = styled(Lock)`
+  position: absolute;
 `;
 
 export default LoginModal;
