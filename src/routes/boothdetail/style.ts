@@ -8,11 +8,14 @@ export const Layout = styled.div`
   gap: 40px;
 `;
 
-export const BoothImage = styled.div<{ imgUrl: string }>`
+export const BoothImage = styled.div<{ imgUrl: string; zoom: boolean }>`
   width: 100%;
   height: 288px;
   border-radius: 10px;
-  background: url(${(props) => props.imgUrl}) no-repeat center center / cover;
+  background: url(${(props) => props.imgUrl}) no-repeat center center /
+    ${(props) => (props.zoom ? "cover" : "contain")};
+  background-color: #000;
+  cursor: pointer;
 `;
 
 export const InfoSection = styled.div`
@@ -24,6 +27,7 @@ export const InfoSection = styled.div`
 export const InfoHeader = styled.div`
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   gap: 12px;
 `;
 
@@ -34,6 +38,7 @@ export const InfoTitle = styled.span`
   font-weight: 700;
   line-height: normal;
   letter-spacing: -0.5px;
+  word-break: break-all;
 `;
 
 export const Chips = styled.div`
@@ -114,12 +119,14 @@ export const Menu = styled.div`
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
+  gap: 4px;
   color: #1a1a1a;
   font-size: 13px;
   font-style: normal;
   font-weight: 400;
   line-height: 24px;
   letter-spacing: -0.325px;
+  word-break: break-all;
   & .menu-kr {
     color: #7d7d7d;
     font-size: 12px;
@@ -128,4 +135,14 @@ export const Menu = styled.div`
     line-height: 24px;
     letter-spacing: -0.3px;
   }
+`;
+
+export const MenuPrice = styled.span`
+  color: #1a1a1a;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: -0.325px;
+  white-space: nowrap;
 `;

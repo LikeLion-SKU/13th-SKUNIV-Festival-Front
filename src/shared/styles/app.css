@@ -81,3 +81,7 @@ h5,
 h6 {
   text-wrap: balance;
 }
+
+.slick-slide > div {
+  margin-inline: 15px;
+}

@@ -24,18 +24,17 @@ const Modal = ({ children, actions, onClose, padding, backdropClose = true }: Mo
       onClick={backdropClose ? onClose : () => {}} // TODO stop propagation
       initial={{
         opacity: 0,
-        transition: {
-          duration: 0.25,
-          ease: "easeInOut",
-        },
       }}
-      animate={{ opacity: 1 }}
+      animate={{
+        opacity: 1,
+      }}
       exit={{
         // TODO not animated
         opacity: 0,
-        transition: {
-          duration: 0.2,
-        },
+      }}
+      transition={{
+        ease: "easeInOut",
+        duration: 0.3,
       }}
     >
       <Wrapper onClick={(e) => e.stopPropagation()} padding={padding}>

@@ -9,9 +9,13 @@ import { useQuery } from "@tanstack/react-query";
 import { publicAPI } from "../../shared/lib/api";
 import useLanguage from "../../shared/hooks/useLanguage";
 import BaseResponse from "../../shared/interfaces/BaseResponse";
-import useHeaderStore from "../../shared/stores/useHeaderStore";
 import DayChip from "./DayChip";
 import NightChip from "./NightChip";
+import { Fragment } from "react/jsx-runtime";
+import { useState } from "react";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Slider from "react-slick";
 
 type BoothInfoResponse = {
   id: number;
@@ -31,7 +35,6 @@ type BoothInfoResponse = {
 type BoothTimeResponse = string;
 
 export default function BoothDetail() {
-  const { title } = useHeaderStore();
   const { boothId } = useParams();
   const [lang] = useLanguage();
 
@@ -52,28 +55,43 @@ export default function BoothDetail() {
   });
 
   const { data: times } = useQuery<BaseResponse<BoothTimeResponse>>({
-    queryKey: ["boothTimes", title],
-    queryFn: () => publicAPI.get(`/booths/${title}`).then((response) => response.data),
-    enabled: !!title,
+    queryKey: ["boothTimes", response?.data.boothFaculty],
+    queryFn: () =>
+      publicAPI.get(`/booths/${response?.data.boothFaculty}`).then((response) => response.data),
+    enabled: !!response?.data.boothFaculty,
   });
+
+  const [isZoomed, setIsZoomed] = useState(true);
 
   return (
     <>
       <S.Layout>
         {/* 부스 이미지 */}
-        <S.BoothImage imgUrl="https://i.imgur.com/NvoBOIH.png"></S.BoothImage>
+        <Slider dots={true} infinite={false} speed={500} slidesToShow={1} slidesToScroll={1}>
+          {response?.data?.imageUrls?.map((imageUrl) => (
+            <S.BoothImage
+              key={imageUrl}
+              imgUrl={imageUrl}
+              zoom={isZoomed}
+              onClick={() => setIsZoomed((prev) => !prev)}
+            ></S.BoothImage>
+          ))}
+        </Slider>
+
         {/* 설명 */}
         <S.InfoSection>
           <S.InfoHeader>
             <S.InfoTitle>{response?.data.boothTitle}</S.InfoTitle>
-            <S.InstagramChip
-              to={`https://www.instagram.com/${response?.data.boothInstagram}`}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Instagram />
-              {response?.data.boothInstagram}
-            </S.InstagramChip>
+            {response?.data?.boothInstagram && (
+              <S.InstagramChip
+                to={`https://www.instagram.com/${response?.data.boothInstagram}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Instagram />
+                {response?.data.boothInstagram}
+              </S.InstagramChip>
+            )}
           </S.InfoHeader>
           <S.Chips>
             {times?.data === "DAY" && <DayChip />}
@@ -86,20 +104,29 @@ export default function BoothDetail() {
             )}
           </S.Chips>
         </S.InfoSection>
-        <S.Description>{response?.data.boothDescription}</S.Description>
+        <S.Description>
+          {response?.data.boothDescription?.split("<br>").map((line, idx) => (
+            <Fragment key={idx}>
+              {line}
+              <br />
+            </Fragment>
+          ))}
+        </S.Description>
         <S.Divider />
         {/* 메뉴 */}
         <S.MenuSection>
           <S.MenuTitle>메뉴</S.MenuTitle>
           <S.Menus>
             {response?.data?.boothMenus?.map((menu) => (
-              <S.Menu key={menu.menuKR}>
+              <S.Menu key={menu.menu}>
                 <span>
                   {menu.menu}
                   <br />
                   {menu?.menuKR && <span className="menu-kr">({menu?.menuKR})</span>}
                 </span>
-                <span style={{ fontWeight: 600 }}>{menu.menuPrice}원</span>
+                <S.MenuPrice style={{ fontWeight: 600 }}>
+                  {menu.menuPrice.toLocaleString()}원
+                </S.MenuPrice>
               </S.Menu>
             ))}
           </S.Menus>
