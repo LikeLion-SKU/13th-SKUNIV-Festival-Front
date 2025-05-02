@@ -2,16 +2,17 @@ import styled from "@emotion/styled";
 import searchIcon from "@icon/search.svg";
 
 interface Props {
-  searchTerm: string;
-  onSearchTermChange: (term: string) => void;
+  searchQuery: string;
+  onSearchQueryChange: (term: string) => void;
 }
 
-export default function SearchSection({ searchTerm, onSearchTermChange }: Props) {
+export default function SearchSection({ searchQuery, onSearchQueryChange }: Props) {
   return (
     <Wrapper>
       <SearchBox
-        value={searchTerm}
-        onChange={(e) => onSearchTermChange(e.target.value)}
+        type="search"
+        value={searchQuery}
+        onChange={(e) => onSearchQueryChange(e.target.value.trim())}
         placeholder="학과 부스 검색"
       />
       <SearchIcon src={searchIcon} alt="search" />

@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import styled from "@emotion/styled";
 import { publicAPI } from "../../shared/lib/api";
 import useHeader from "../../shared/hooks/useHeader";
+import useDebounce from "../../shared/hooks/useDebounce";
 import useLanguage from "../../shared/hooks/useLanguage";
 import BoothCard from "./BoothCard";
 import SearchSection from "./SearchSection";
@@ -22,7 +23,8 @@ export default function BoothInfo() {
     showBack: true,
     showHome: true,
   });
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchQuery, setSearchQuery] = useState("");
+  const debouncedSearchQuery = useDebounce(searchQuery);
 
   const [lang] = useLanguage();
   const [selectedLocation, setSelectedLocation] = useState("혜인관");
@@ -59,17 +61,32 @@ export default function BoothInfo() {
     };
   }, [lang]);
 
+  const isSearching = debouncedSearchQuery.length > 0;
+
   const filteredList = boothList.filter((booth) => {
+    if (isSearching) {
+      return booth.boothFaculty.toLowerCase().includes(debouncedSearchQuery.toLowerCase());
+    }
+
     const locationPrefix = booth.boothLocation.split(" ")[0];
     return locationPrefix === selectedLocation;
   });
 
   return (
     <>
-      <SearchSection searchTerm={searchTerm} onSearchTermChange={setSearchTerm} />
-      <LocNav selectedLocation={selectedLocation} setSelectedLocation={setSelectedLocation} />
-      <BoothMap selectedLocation={selectedLocation} setSelectedLocation={setSelectedLocation} />
-
+      <SearchSection searchQuery={searchQuery} onSearchQueryChange={setSearchQuery} />
+      {!isSearching && (
+        <>
+          <LocNav selectedLocation={selectedLocation} setSelectedLocation={setSelectedLocation} />
+          {/* <BoothMap selectedLocation={selectedLocation} setSelectedLocation={setSelectedLocation} /> */}
+        </>
+      )}
+      <BoothMap
+        selectedLocation={selectedLocation}
+        setSelectedLocation={setSelectedLocation}
+        filteredBooths={filteredList}
+        isSearching={!!isSearching}
+      />
       <BoothWrapper>
         {filteredList.map((booth) => (
           <BoothCard
