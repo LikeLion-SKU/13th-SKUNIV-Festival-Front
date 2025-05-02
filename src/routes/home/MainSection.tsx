@@ -109,7 +109,7 @@ const TextBox = styled.div`
     font-size: 16px;
     font-weight: 600;
     letter-spacing: -0.2px;
-    margin-bottom: 4px;
+    margin-bottom: 2px;
   }
 
   & > .text_14 {
