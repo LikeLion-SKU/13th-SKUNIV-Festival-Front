@@ -12,7 +12,9 @@ export default function About() {
       <p className="dot">.</p>
       <img className="img" src={logo} alt="logo" />
       <p className="title">SKU LIKELION 13TH</p>
-      <p className="subtitle">안녕하세요, 멋쟁이사자처럼 서경대입니다.</p>
+      <p className="subtitle">
+        안녕하세요, <strong>멋쟁이사자처럼 서경대</strong>입니다.
+      </p>
       <p className="content">
         학우분들께서 축제를 더욱 즐겁고 <br />
         편리하게 즐길 수 있도록 축제 페이지를 제작하였습니다. <br />
@@ -35,11 +37,13 @@ const AboutWrapper = styled.div`
   align-items: center;
   max-width: 318px;
   margin-bottom: 100px;
+  color: #1a1a1a;
 
   & > .dot {
     font-size: 20px;
     font-weight: 800;
     line-height: 110%;
+    color: white;
   }
 
   & > .img {
