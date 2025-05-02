@@ -10,6 +10,9 @@ import sdr from "@image/artists/SDR.webp";
 import udream from "@image/artists/udream.webp";
 import workers from "@image/artists/workers.webp";
 import YB from "@image/artists/YB.webp";
+import ci28 from "@image/artists/ci28.webp";
+import music from "@image/artists/music.webp";
+import dance from "@image/artists/dance.webp";
 
 export interface Artist {
   date: "DAY 2" | "DAY 3";
@@ -39,7 +42,7 @@ const artistList: Artist[] = [
     time: "19:30 - 20:00",
     description: "소모임 공연",
     name: "철인 28호",
-    image: artistImg,
+    image: ci28,
   },
   {
     date: "DAY 2",
@@ -74,7 +77,7 @@ const artistList: Artist[] = [
     time: "15:30 - 16:00",
     description: "학과 공연",
     name: "실용음악 공연 (1)",
-    image: artistImg,
+    image: music,
   },
   {
     date: "DAY 3",
@@ -102,14 +105,14 @@ const artistList: Artist[] = [
     time: "17:30 - 19:30",
     description: "학과 공연",
     name: "실용음악 공연 (2)",
-    image: artistImg,
+    image: music,
   },
   {
     date: "DAY 3",
     time: "19:30 - 20:00",
     description: "학과 공연",
     name: "실용무용 공연",
-    image: artistImg,
+    image: dance,
   },
   {
     date: "DAY 3",
