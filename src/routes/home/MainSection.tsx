@@ -34,8 +34,8 @@ export default function MainSection({ onSelectLang, langSelected }: MainSectionP
 
           <LanguageWrapper>
             <TextBox>
-              <p className="text_20">Please select language.</p>
-              <p className="text_16">언어를 선택해주세요.</p>
+              <p className="text_16">Please select language.</p>
+              <p className="text_14">언어를 선택해주세요.</p>
             </TextBox>
 
             <LangButton onClick={() => onSelectLang("ko")}>
@@ -88,7 +88,7 @@ const LanguageWrapper = styled.div`
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -10%);
+  transform: translate(-50%, -5%);
   z-index: 2;
 
   display: flex;
@@ -105,18 +105,18 @@ const TextBox = styled.div`
   text-align: center;
   color: white;
 
-  & > .text_20 {
-    font-size: 20px;
+  & > .text_16 {
+    font-size: 16px;
     font-weight: 600;
     letter-spacing: -0.2px;
     margin-bottom: 4px;
   }
 
-  & > .text_16 {
-    font-size: 16px;
+  & > .text_14 {
+    font-size: 14px;
     font-weight: 600;
     letter-spacing: -0.2px;
-    margin-bottom: 43px;
+    margin-bottom: 16px;
   }
 `;
 
