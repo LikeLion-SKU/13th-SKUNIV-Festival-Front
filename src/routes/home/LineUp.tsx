@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
 import styled from "@emotion/styled";
 import Swiper from "swiper";
+import { Autoplay } from "swiper/modules";
 import "swiper/swiper-bundle.css";
 import LineUpCard from "./LineUpCard";
 import artistList from "./ArtistList";
@@ -14,6 +15,7 @@ export default function LineUp() {
   useEffect(() => {
     if (swiperContainerRef.current) {
       const swiperInstance = new Swiper(swiperContainerRef.current, {
+        modules: [Autoplay],
         loop: true,
         centeredSlides: true,
         slideToClickedSlide: true,
@@ -23,6 +25,10 @@ export default function LineUp() {
           slideShadows: true,
         },
         spaceBetween: 20,
+        autoplay: {
+          delay: 2000,
+          disableOnInteraction: false,
+        },
       });
 
       swiperInstanceRef.current = swiperInstance;
