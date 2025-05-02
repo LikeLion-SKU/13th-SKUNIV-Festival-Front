@@ -1,6 +1,5 @@
 import styled from "@emotion/styled";
 import { useEffect } from "react";
-
 import Section from "../home/Section";
 import Daum from "./Daum";
 import Hanbit from "./Hanbit";

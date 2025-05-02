@@ -1,18 +1,18 @@
 import styled from "@emotion/styled";
-import madeby from "@image/madeby.svg";
+import madeby from "@image/lions/madeby.svg";
 import RoleBlock, { Member } from "./RoleBlock";
 
-import she from "@image/she.webp";
-import idh from "@image/idh.webp";
-import jyj from "@image/jyj.webp";
-import nyj from "@image/nyj.webp";
-import hyh from "@image/hyh.webp";
-import psy from "@image/psy.webp";
-import ptk from "@image/ptk.webp";
-import yhj from "@image/yhj.webp";
-import mdm from "@image/mdm.webp";
-import lyj from "@image/lyj.webp";
-import ljd from "@image/ljd.webp";
+import she from "@image/lions/she.webp";
+import idh from "@image/lions/idh.webp";
+import jyj from "@image/lions/jyj.webp";
+import nyj from "@image/lions/nyj.webp";
+import hyh from "@image/lions/hyh.webp";
+import psy from "@image/lions/psy.webp";
+import ptk from "@image/lions/ptk.webp";
+import yhj from "@image/lions/yhj.webp";
+import mdm from "@image/lions/mdm.webp";
+import lyj from "@image/lions/lyj.webp";
+import ljd from "@image/lions/ljd.webp";
 
 const LionList: Member[] = [
   { role: "PM", name: "서현은", department: "컴퓨터공학과 22", img: she },

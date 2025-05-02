@@ -62,8 +62,9 @@ export const ArtistName = styled.p`
 export const ArtistImage = styled.div<{ image: string }>`
   width: 230px;
   height: 132px;
-  background-image: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, #121212 160%),
-    url(${(props) => props.image});
+  /* background-image: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, #121212 160%),
+    url(${(props) => props.image}); */
+  background-image: url(${(props) => props.image});
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
