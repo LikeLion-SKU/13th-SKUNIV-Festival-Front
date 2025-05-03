@@ -64,7 +64,10 @@ export default function BoothDetail() {
   });
 
   const [isZoomed, setIsZoomed] = useState(true);
-  const [selectedTime, setSelectedTime] = useState({ value: "DAY", label: "낮" });
+  const [selectedTime, setSelectedTime] = useState<{
+    value: BoothInfoResponse["openingHours"];
+    label: string;
+  }>({ value: "DAY", label: "낮" });
 
   return (
     <>
@@ -142,9 +145,10 @@ export default function BoothDetail() {
           </S.MenuHeader>
           <S.Menus>
             {response?.data?.boothMenus
-              ?.filter(
-                (menu) =>
-                  menu.menuOpeningHours === selectedTime.value || menu.menuOpeningHours === "FULL"
+              ?.filter((menu) =>
+                selectedTime.value === "FULL"
+                  ? true
+                  : menu.menuOpeningHours === selectedTime.value || menu.menuOpeningHours === "FULL"
               )
               ?.map((menu) => (
                 <S.Menu key={menu.menu}>
