@@ -26,7 +26,7 @@ export default function LineUp() {
         },
         spaceBetween: 20,
         autoplay: {
-          delay: 2000,
+          delay: 2500,
           disableOnInteraction: false,
         },
       });
@@ -47,11 +47,13 @@ export default function LineUp() {
 
       <SwiperWrapper className="swiper" ref={swiperContainerRef}>
         <div className="swiper-wrapper">
-          {artistList.map((artist, i) => (
-            <div className="swiper-slide" key={`${artist.name}-${i}`}>
-              <LineUpCard {...artist} />
-            </div>
-          ))}
+          {artistList
+            .filter((artist) => artist.description === "아티스트 축하공연")
+            .map((artist, i) => (
+              <div className="swiper-slide" key={`${artist.name}-${i}`}>
+                <LineUpCard {...artist} />
+              </div>
+            ))}
         </div>
       </SwiperWrapper>
 

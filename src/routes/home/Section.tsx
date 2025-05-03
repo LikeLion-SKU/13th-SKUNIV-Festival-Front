@@ -11,7 +11,7 @@ interface SectionProps {
 
 export default function Section({ title, content }: SectionProps) {
   const ref = useRef(null);
-  const isInView = useInView(ref, { amount: 0.8 });
+  const isInView = useInView(ref, { amount: 0.5 });
   return (
     <SectionWrapper ref={ref}>
       <StarIcon src={isInView ? starYellow : starWhite} alt="star" />
