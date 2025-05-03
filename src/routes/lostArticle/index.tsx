@@ -29,7 +29,8 @@ const LostArticlePage = () => {
       title: "분실물",
       showBack: true,
       showHome: true,
-      canAccessAdmin: true,
+      canAccessAdmin: false,
+      canAccessLost: true,
     });
   }, [updateHeader]);
 
@@ -37,7 +38,6 @@ const LostArticlePage = () => {
     const getLostItems = async () => {
       try {
         const data = await fetchLostItems({ name, sort, page: currentPage });
-        console.log(data);
 
         const mapped = data.content.map((item: any) => ({
           id: item.id,

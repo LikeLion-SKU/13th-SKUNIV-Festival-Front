@@ -11,7 +11,7 @@ import {
   PickupOverlay,
 } from "./card.style";
 import { FiCheckSquare, FiSquare } from "react-icons/fi";
-import { useAdminStore } from "../../stores/useAdminStore";
+import { useAdminLostStore } from "../../stores/useAdminLostStore";
 import CardActionModal from "./cardActionModal";
 import ConfirmDeleteModal from "./deleteConfirmModal";
 import SuccessModal from "./deleteSuccessModal";
@@ -27,7 +27,7 @@ interface CardProps {
 }
 
 const Card = ({ location, date, title, imageUrl, returned, id }: CardProps) => {
-  const isLoggedIn = useAdminStore((state) => state.isLoggedIn);
+  const isLoggedIn = useAdminLostStore((state) => state.isLoggedIn);
 
   const [activeModal, setActiveModal] = useState<
     "action" | "confirm" | "success" | "pickup" | null
