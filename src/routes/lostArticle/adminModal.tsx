@@ -1,14 +1,30 @@
-import { FiLock } from 'react-icons/fi';
-import { Backdrop, ModalContainer, Title, Subtitle, InputWrapper, ButtonGroup } from './adminModal.style';
+import { useState } from "react";
+import { FiLock } from "react-icons/fi";
+import {
+  Backdrop,
+  ModalContainer,
+  Title,
+  Subtitle,
+  InputWrapper,
+  ButtonGroup,
+} from "./adminModal.style";
 
 interface Props {
   onClose: () => void;
-  onSubmit: (password: string) => void;
-  password: string;
-  setPassword: (v: string) => void;
+  onSuccess: () => void;
 }
 
-const AdminModal = ({ onClose, onSubmit, password, setPassword }: Props) => {
+const AdminModal = ({ onClose, onSuccess }: Props) => {
+  const [password, setPassword] = useState("");
+
+  const handleLogin = () => {
+    if (password === "1234") {
+      onSuccess();
+    } else {
+      alert("비밀번호가 틀렸습니다.");
+    }
+  };
+
   return (
     <Backdrop>
       <ModalContainer>
@@ -25,7 +41,7 @@ const AdminModal = ({ onClose, onSubmit, password, setPassword }: Props) => {
         </InputWrapper>
         <ButtonGroup>
           <button className="cancel" onClick={onClose}>닫기</button>
-          <button className="login" onClick={() => onSubmit(password)}>로그인</button>
+          <button className="login" onClick={handleLogin}>로그인</button>
         </ButtonGroup>
       </ModalContainer>
     </Backdrop>

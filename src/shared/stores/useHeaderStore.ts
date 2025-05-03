@@ -5,6 +5,7 @@ export interface HeaderState {
   showBack: boolean;
   showHome: boolean;
   canAccessAdmin: boolean;
+  canAccessLost: boolean;
   update: (state: Partial<HeaderState>) => void;
 }
 
@@ -13,6 +14,7 @@ const useHeaderStore = create<HeaderState>((set) => ({
   showBack: false,
   showHome: false,
   canAccessAdmin: false,
+  canAccessLost: false,
   update: (state) => set((prev) => ({ ...prev, ...state })),
 }));
 
