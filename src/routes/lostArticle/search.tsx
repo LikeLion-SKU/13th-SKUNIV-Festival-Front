@@ -17,7 +17,7 @@ const Search = ({ onSearch }: SearchProps) => {
     <SearchBox>
       <InputWrapper>
         <StyledInput
-          placeholder="분실물, 일자 검색"
+          placeholder="분실물 검색"
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
         />

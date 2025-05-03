@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import Search from "./search";
 import Filter from "./filter";
 import Card from "./card";
+import useHeaderStore from "../../shared/stores/useHeaderStore.ts";
 import { fetchLostItems } from "./lostArticleAPI";
 import { Container, CardList, Pagination } from "./style.ts";
 
@@ -20,6 +21,17 @@ const LostArticlePage = () => {
   const [name, setName] = useState("");
   const [lostItems, setLostItems] = useState<LostItem[]>([]);
   const [totalPages, setTotalPages] = useState(1);
+
+  const updateHeader = useHeaderStore((state) => state.update);
+
+  useEffect(() => {
+    updateHeader({
+      title: "분실물",
+      showBack: true,
+      showHome: true,
+      canAccessAdmin: true,
+    });
+  }, [updateHeader]);
 
   useEffect(() => {
     const getLostItems = async () => {
@@ -52,14 +64,21 @@ const LostArticlePage = () => {
 
   return (
     <Container>
-      <Search onSearch={(keyword) => { setName(keyword); setCurrentPage(0); }} />
-      <Filter sort={sort} onSortChange={(newSort) => { setSort(newSort); setCurrentPage(0); }} />
+      <Search
+        onSearch={(keyword) => {
+          setName(keyword);
+          setCurrentPage(0);
+        }}
+      />
+      <Filter
+        sort={sort}
+        onSortChange={(newSort) => {
+          setSort(newSort);
+          setCurrentPage(0);
+        }}
+      />
       <CardList>
-        {lostItems.length > 0 ? (
-          lostItems.map((item) => <Card key={item.id} {...item} />)
-        ) : (
-          <p></p>
-        )}
+        {lostItems.length > 0 ? lostItems.map((item) => <Card key={item.id} {...item} />) : <p></p>}
       </CardList>
 
       {totalPages > 1 && (
