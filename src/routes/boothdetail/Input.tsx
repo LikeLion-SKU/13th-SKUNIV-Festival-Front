@@ -54,6 +54,7 @@ const Label = styled.span`
   font-weight: 600;
   line-height: normal;
   letter-spacing: -0.3px;
+  white-space: nowrap;
 `;
 
 const TextInput = styled.input`
