@@ -8,8 +8,6 @@ interface ReservationButtonProps {
 const ReservationButton = ({ disabled }: ReservationButtonProps) => {
   const { setModalStep } = useReservationStore();
 
-  disabled = true;
-
   return (
     <Footer>
       <Button disabled={disabled} onClick={() => !disabled && setModalStep(1)}>
