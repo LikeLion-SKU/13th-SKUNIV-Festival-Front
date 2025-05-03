@@ -6,6 +6,7 @@ const DayChip = () => {
     <Chip>
       <Sun />
       <ChipText>낮 부스</ChipText>
+      <Time>~ 17:00</Time>
     </Chip>
   );
 };
@@ -28,6 +29,15 @@ const ChipText = styled.span`
   font-style: normal;
   font-weight: 600;
   letter-spacing: -0.25px;
+`;
+
+const Time = styled.span`
+  color: #a9a9a9;
+  text-align: center;
+  font-size: 8px;
+  font-style: normal;
+  font-weight: 500;
+  letter-spacing: -0.175px;
 `;
 
 export default DayChip;

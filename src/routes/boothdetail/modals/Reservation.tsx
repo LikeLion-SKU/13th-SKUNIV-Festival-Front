@@ -109,11 +109,7 @@ const Reservation = () => {
       >
         <Layout>
           <Title>{title} 부스 예약</Title>
-          <Subtitle>
-            5분 내 미도착 시 자동 취소
-            <br />
-            대표자 1명만 예약 가능 (중복 시 불이익)
-          </Subtitle>
+
           <Form onSubmit={handleSubmit(onSubmit)}>
             <Input
               label="예약자 명 :"
@@ -138,9 +134,17 @@ const Reservation = () => {
           <WaitingText>
             현재 대기팀 : <Waitings>{waitings?.data ?? "?"}팀</Waitings>
           </WaitingText>
+          <Subtitle>
+            수집된 개인정보는 당일 파기를 원칙으로 합니다.
+            <br />
+            <br />
+            5분 내 미도착 시 자동 취소
+            <br />
+            <br />* 대표자 1명만 예약 가능 (중복 시 불이익)
+          </Subtitle>
           <Agreement onClick={() => setAgreed((prev) => !prev)}>
             {agreed === true ? <Checked /> : <Unchecked />}
-            <AgreementText>개인정보 수집에 동의합니다.</AgreementText>
+            <AgreementText>위 안내사항을 모두 숙지하였습니다.</AgreementText>
           </Agreement>
         </Layout>
       </Modal>
@@ -186,15 +190,16 @@ const Title = styled.span`
   letter-spacing: -0.5px;
 `;
 
-const Subtitle = styled.span`
+const Subtitle = styled.p`
   margin-top: 4px;
-  color: #aaa;
+  color: #ff0000;
   text-align: center;
   font-size: 12px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
   letter-spacing: -0.3px;
+  word-break: keep-all;
 `;
 
 const Form = styled.form`
@@ -237,7 +242,7 @@ const Agreement = styled.div`
 `;
 
 const AgreementText = styled.span`
-  color: #aaa;
+  color: #000;
   text-align: center;
   font-size: 12px;
   font-style: normal;

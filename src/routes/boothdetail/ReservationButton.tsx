@@ -8,10 +8,12 @@ interface ReservationButtonProps {
 const ReservationButton = ({ disabled }: ReservationButtonProps) => {
   const { setModalStep } = useReservationStore();
 
+  disabled = true;
+
   return (
     <Footer>
       <Button disabled={disabled} onClick={() => !disabled && setModalStep(1)}>
-        {disabled ? "지금은 예약이 불가능합니다" : "예약하기"}
+        {disabled ? "밤 부스 17:00 ~ 22:30에 예악 가능합니다." : "예약하기"}
       </Button>
     </Footer>
   );
