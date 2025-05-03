@@ -2,12 +2,12 @@ import styled from "@emotion/styled";
 
 const DaumList = [
   { name: "이현택", department: "글로벌비즈니스 23" },
-  { name: "지연우", department: "글로벌비즈니스 20" },
+  { name: "지연우", department: "글로벌비즈니스 23" },
   { name: "문정우", department: "소프트웨어학과 22" },
   { name: "강대한", department: "글로벌비지니스 20" },
-  { name: "임상환", department: "전자컴퓨터공학 22" },
-  { name: "황효청", department: "뷰티테라피&메이크업 21" },
-  { name: "程雨薇", department: "뷰티테라피&메이크업 23" },
+  { name: "임상환", department: "전자컴퓨터공학 23" },
+  { name: "황효청", department: "뷰티테라피&메이크업 22" },
+  { name: "程雨薇", department: "뷰티테라피&메이크업 21" },
 ];
 
 export default function Daum() {
