@@ -1,8 +1,6 @@
 import styled from "@emotion/styled";
 import { DotLottiePlayer, type DotLottieCommonPlayer } from "@dotlottie/react-player";
-
 import { useEffect, useRef, useState } from "react";
-
 import blooming from "../../shared/assets/lottie/blooming.json";
 import maintitle from "@icon/main_title.svg";
 import ko from "@icon/ko.svg";
@@ -85,6 +83,7 @@ export default function MainSection({ onSelectLang, langSelected }: MainSectionP
 }
 
 const BeforeWrapper = styled.div`
+  width: 390px;
   height: auto;
 `;
 
@@ -98,10 +97,8 @@ const AfterWrapper = styled.div`
 `;
 
 const LottieWrapper = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
+  width: 100vw;
+  max-width: 390px;
   height: 100vh;
   z-index: 1;
   overflow: hidden;
