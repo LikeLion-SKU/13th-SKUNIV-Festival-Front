@@ -15,9 +15,8 @@ import { useAdminLostStore } from "../../../stores/useAdminLostStore";
 
 const Header = () => {
   const { title, showBack, showHome } = useHeaderStore();
-  const modalStep = useAdminStore((state) => state.modalStep);
-  const setModalStep = useAdminStore((state) => state.setModalStep);
-  const login = useAdminLostStore((state) => state.login);
+  const { modalStep, setModalStep } = useAdminStore();
+  const { login } = useAdminLostStore();  
 
   const [showLostModal, setShowLostModal] = useState(false);
 
