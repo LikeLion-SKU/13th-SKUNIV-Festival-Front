@@ -7,7 +7,7 @@ import LocationInput from "./locationInput";
 import SubmitButton from "./submitButton";
 import { Container } from "./style";
 import { postLostItem, putLostItem, getLostItem } from "./editAPI";
-import useHeaderStore from "../../shared/stores/useHeaderStore.ts";
+import useHeader from "../../shared/hooks/useHeader";
 
 const EditPage = () => {
   const [name, setName] = useState("");
@@ -17,17 +17,10 @@ const EditPage = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const updateHeader = useHeaderStore((state) => state.update);
-
-  useEffect(() => {
-    updateHeader({
-      title: "분실물",
-      showBack: true,
-      showHome: true,
-      canAccessAdmin: false,
-      canAccessLost: false,
-    });
-  }, [updateHeader]);
+  useHeader({ 
+    title: "분실물",
+    showBack: true,
+    showHome: true, });
 
   // URL에서 id 추출
   const itemId = new URLSearchParams(location.search).get("id");
