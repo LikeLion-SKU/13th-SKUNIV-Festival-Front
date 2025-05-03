@@ -86,6 +86,7 @@ const InputLabel = styled.span`
   font-weight: 500;
   line-height: normal;
   letter-spacing: -0.3px;
+  white-space: nowrap;
 `;
 
 const Input = styled.input`
