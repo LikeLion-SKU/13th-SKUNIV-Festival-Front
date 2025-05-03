@@ -16,6 +16,7 @@ import { useState } from "react";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
+import Select from "react-dropdown-select";
 
 type BoothInfoResponse = {
   id: number;
@@ -29,6 +30,7 @@ type BoothInfoResponse = {
     menu: string;
     menuKR: string;
     menuPrice: number;
+    menuOpeningHours: "DAY" | "NIGHT" | "FULL";
   }[];
 };
 
@@ -62,6 +64,7 @@ export default function BoothDetail() {
   });
 
   const [isZoomed, setIsZoomed] = useState(true);
+  const [selectedTime, setSelectedTime] = useState({ value: "DAY", label: "낮" });
 
   return (
     <>
@@ -115,20 +118,46 @@ export default function BoothDetail() {
         <S.Divider />
         {/* 메뉴 */}
         <S.MenuSection>
-          <S.MenuTitle>메뉴</S.MenuTitle>
+          <S.MenuHeader>
+            <S.MenuTitle>메뉴</S.MenuTitle>
+            <Select
+              onChange={(values) => setSelectedTime(values[0])}
+              options={[
+                {
+                  label: "낮",
+                  value: "DAY",
+                },
+                {
+                  label: "밤",
+                  value: "NIGHT",
+                },
+                {
+                  value: "FULL",
+                  label: "전체",
+                },
+              ]}
+              values={[selectedTime]}
+              multi={false}
+            />
+          </S.MenuHeader>
           <S.Menus>
-            {response?.data?.boothMenus?.map((menu) => (
-              <S.Menu key={menu.menu}>
-                <span>
-                  {menu.menu}
-                  <br />
-                  {menu?.menuKR && <span className="menu-kr">({menu?.menuKR})</span>}
-                </span>
-                <S.MenuPrice style={{ fontWeight: 600 }}>
-                  {menu.menuPrice.toLocaleString()}원
-                </S.MenuPrice>
-              </S.Menu>
-            ))}
+            {response?.data?.boothMenus
+              ?.filter(
+                (menu) =>
+                  menu.menuOpeningHours === selectedTime.value || menu.menuOpeningHours === "FULL"
+              )
+              ?.map((menu) => (
+                <S.Menu key={menu.menu}>
+                  <span>
+                    {menu.menu}
+                    <br />
+                    {menu?.menuKR && <span className="menu-kr">({menu?.menuKR})</span>}
+                  </span>
+                  <S.MenuPrice style={{ fontWeight: 600 }}>
+                    {menu.menuPrice.toLocaleString()}원
+                  </S.MenuPrice>
+                </S.Menu>
+              ))}
           </S.Menus>
         </S.MenuSection>
       </S.Layout>

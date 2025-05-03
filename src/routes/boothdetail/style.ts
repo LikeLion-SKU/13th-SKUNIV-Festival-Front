@@ -27,6 +27,7 @@ export const InfoSection = styled.div`
 export const InfoHeader = styled.div`
   display: flex;
   align-items: center;
+  justify-content: space-between;
   flex-wrap: wrap;
   gap: 12px;
 `;
@@ -86,6 +87,12 @@ export const MenuSection = styled.div`
   display: flex;
   flex-direction: column;
   gap: 28px;
+`;
+
+export const MenuHeader = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 `;
 
 export const MenuTitle = styled.span`
