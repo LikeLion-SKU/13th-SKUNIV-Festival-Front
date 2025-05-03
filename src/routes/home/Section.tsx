@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
-import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
+import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 import starWhite from "@icon/star_white.svg";
 import starYellow from "@icon/star_yellow.svg";
 
@@ -10,11 +10,13 @@ interface SectionProps {
 }
 
 export default function Section({ title, content }: SectionProps) {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { amount: 0.8 });
+  const { ref, inView } = useInView({
+    rootMargin: "-40% 0px -60% 0px",
+    triggerOnce: false,
+  });
   return (
     <SectionWrapper ref={ref}>
-      <StarIcon src={isInView ? starYellow : starWhite} alt="star" />
+      <StarIcon src={inView ? starYellow : starWhite} alt="star" />
       <SectionTitle>{title}</SectionTitle>
       <SectionContent>{content}</SectionContent>
     </SectionWrapper>
