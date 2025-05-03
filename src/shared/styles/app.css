@@ -1,0 +1,87 @@
+@font-face {
+  font-family: "Pretendard";
+  src: local("PretendardVariable"), url("../assets/font/PretendardVariable.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "HSSanTokki20-Regular";
+  src: local("HSSanTokki20-Regular"),
+    url("../assets/font/HSSanTokki20-Regular.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Syncopate-Bold";
+  src: local("Syncopate-Bold"), url("../assets/font/Syncopate-Bold.woff2") format("woff2");
+}
+
+html {
+  font-family: Pretendard, sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    interpolate-size: allow-keywords;
+  }
+}
+
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+  max-width: 390px; /* TODO 반응형 */
+  margin: 0 auto;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  text-wrap: balance;
+}
+
+.slick-slide > div {
+  margin-inline: 15px;
+}
