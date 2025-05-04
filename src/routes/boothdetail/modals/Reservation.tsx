@@ -122,6 +122,7 @@ const Reservation = () => {
               label="전화번호 :"
               type="tel"
               pattern="010-[0-9]{3,4}-[0-9]{4}"
+              maxLength={13}
               errorMessage={errors.phoneNum?.message}
               {...register("phoneNum", {
                 onChange: (e) => {
