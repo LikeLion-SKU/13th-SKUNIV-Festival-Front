@@ -119,7 +119,7 @@ const NavWrapper = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
-  gap: 8px;
+  gap: 10px;
   margin-bottom: 16px;
 `;
 
@@ -129,7 +129,7 @@ const NavBtn = styled.button<{ selected: boolean }>`
   justify-content: center;
   align-items: center;
   min-width: 57px;
-  height: 32px;
+  padding: 5px 10px;
   border-radius: 10px;
   border: 1.3px solid #fff;
   background-color: ${(props) => (props.selected ? "#fff" : "transparent")};

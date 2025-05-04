@@ -27,7 +27,7 @@ const NavWrapper = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
-  gap: 12px;
+  gap: 10px;
   margin-bottom: 8px;
   margin-top: 24px;
 `;
@@ -36,8 +36,8 @@ const NavBtn = styled.button<{ selected: boolean }>`
   display: flex;
   justify-content: center;
   align-items: center;
-  min-width: 60px;
-  height: 32px;
+  min-width: 57px;
+  padding: 5px 10px;
   border: 1.3px solid #4aa4ff;
   background-color: ${(props) => (props.selected ? "#4AA4FF" : "transparent")};
   color: ${(props) => (props.selected ? "#fff" : "#4AA4FF")};

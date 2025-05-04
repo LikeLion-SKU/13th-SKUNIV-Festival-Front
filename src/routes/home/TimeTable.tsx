@@ -44,6 +44,7 @@ export const TimeTableWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 10px;
+  padding: 0 10px;
 `;
 
 export const NavWrapper = styled.div`

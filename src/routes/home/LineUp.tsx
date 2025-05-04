@@ -26,7 +26,7 @@ export default function LineUp() {
         },
         spaceBetween: 20,
         autoplay: {
-          delay: 2500,
+          delay: 3000,
           disableOnInteraction: false,
         },
       });
@@ -66,7 +66,7 @@ export default function LineUp() {
 
 const LineupWrapper = styled.div`
   position: relative;
-  width: 390px;
+  width: 375px;
   height: 283px;
   overflow: hidden;
   margin: 0 auto;
@@ -75,7 +75,7 @@ const LineupWrapper = styled.div`
 const ArrowButton = styled.button<{ $left?: boolean }>`
   position: absolute;
   top: 50%;
-  ${(props) => (props.$left ? "left: 35px" : "right: 35px")};
+  ${(props) => (props.$left ? "left: 30px" : "right: 30px")};
   transform: translateY(-50%);
   background: none;
   border: none;
@@ -95,7 +95,7 @@ const SwiperWrapper = styled.div`
 
   .swiper-wrapper {
     display: flex;
-    padding-left: 82px;
+    padding-left: 75px;
     align-items: center;
   }
 `;

@@ -73,12 +73,11 @@ export default function BoothInfo() {
   });
 
   return (
-    <>
+    <Wrapper>
       <SearchSection searchQuery={searchQuery} onSearchQueryChange={setSearchQuery} />
       {!isSearching && (
         <>
           <LocNav selectedLocation={selectedLocation} setSelectedLocation={setSelectedLocation} />
-          {/* <BoothMap selectedLocation={selectedLocation} setSelectedLocation={setSelectedLocation} /> */}
         </>
       )}
       <BoothMap
@@ -98,9 +97,15 @@ export default function BoothInfo() {
           />
         ))}
       </BoothWrapper>
-    </>
+    </Wrapper>
   );
 }
+
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
 
 const BoothWrapper = styled.div`
   display: grid;
