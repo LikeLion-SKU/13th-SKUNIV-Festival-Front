@@ -11,7 +11,7 @@ const artistList: Artist[] = [
     date: "DAY 2",
     time: "18:30 - 19:00",
     description: "학과 공연",
-    name: "예교원 공연",
+    name: "예술교육원",
     image: "https://minio.2025skufestival.site/skufestival/booth/0dec.webp",
   },
   {
