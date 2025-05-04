@@ -11,7 +11,7 @@ const artistList: Artist[] = [
     date: "DAY 2",
     time: "18:30 - 19:00",
     description: "학과 공연",
-    name: "예교원공연",
+    name: "예교원 공연",
     image: "https://minio.2025skufestival.site/skufestival/booth/0dec.webp",
   },
   {
@@ -60,7 +60,7 @@ const artistList: Artist[] = [
     date: "DAY 3",
     time: "15:30 - 16:00",
     description: "학과 공연",
-    name: "실용음악공연 (1)",
+    name: "실용음악 공연 (1)",
     image: "https://minio.2025skufestival.site/skufestival/booth/cb79.webp",
   },
   {
@@ -88,14 +88,14 @@ const artistList: Artist[] = [
     date: "DAY 3",
     time: "17:30 - 19:30",
     description: "학과 공연",
-    name: "실용음악공연 (2)",
+    name: "실용음악 공연 (2)",
     image: "https://minio.2025skufestival.site/skufestival/booth/04a7.webp",
   },
   {
     date: "DAY 3",
     time: "19:30 - 20:00",
     description: "학과 공연",
-    name: "실용무용공연",
+    name: "실용무용 공연",
     image: "https://minio.2025skufestival.site/skufestival/booth/ba9e.webp",
   },
   {
