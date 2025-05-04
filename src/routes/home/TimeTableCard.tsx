@@ -15,7 +15,6 @@ export default function TimeTableCard({ time, description, name, image, onClick 
         <ArtistTime>{time}</ArtistTime>
         <ArtistDescription>{description}</ArtistDescription>
         <ArtistName>
-          {" "}
           {name.split("<br/>").map((line, index) => (
             <span key={index}>
               {line}

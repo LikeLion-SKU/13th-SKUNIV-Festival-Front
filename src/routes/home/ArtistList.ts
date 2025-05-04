@@ -114,7 +114,7 @@ const artistList: Artist[] = [
   },
   {
     date: "DAY 3",
-    time: "21:30 - 22:00",
+    time: "22:00 - 23:00",
     description: "아티스트 축하공연",
     name: "Pastello",
     image: "https://minio.2025skufestival.site/skufestival/booth/2b98.webp",
