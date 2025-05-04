@@ -15,7 +15,14 @@ export default function BoothCard({ image, location, department, id }: CardProps
     <Card onClick={() => navigate(`/booth/${id}`)} image={image}>
       <TextBox>
         <p className="location">{location}</p>
-        <p className="department">{department}</p>
+        <p className="department">
+          {department.split("<br/>").map((line, index) => (
+            <span key={index}>
+              {line}
+              <br />
+            </span>
+          ))}
+        </p>
       </TextBox>
     </Card>
   );
