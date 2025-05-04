@@ -85,8 +85,9 @@ export default function MainSection({ onSelectLang, langSelected }: MainSectionP
 }
 
 const BeforeWrapper = styled.div`
-  /* width: 390px; */
-  height: auto;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 `;
 
 const AfterWrapper = styled.div`
@@ -110,7 +111,7 @@ const AfterWrapper = styled.div`
 
 const LottieWrapper = styled.div`
   width: 100vw;
-  max-width: 390px;
+  max-width: 430px;
   height: 100vh;
   z-index: 1;
   overflow: hidden;
@@ -128,7 +129,6 @@ const LanguageWrapper = styled.div`
   justify-content: center;
   align-items: center;
   min-width: 300px;
-  padding-bottom: 30px;
   animation: fadeInUp 0.2s ease-out forwards;
 
   @keyframes fadeInUp {
