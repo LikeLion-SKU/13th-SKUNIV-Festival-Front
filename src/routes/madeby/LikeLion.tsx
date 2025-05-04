@@ -17,8 +17,8 @@ import ljd from "@image/lions/ljd.webp";
 const LionList: Member[] = [
   { role: "PM", name: "서현은", department: "컴퓨터공학과 22", img: she },
   { role: "PM", name: "임다현", department: "소프트웨어학과 23", img: idh },
-  { role: "Design", name: "정영진", department: "비주얼디자인학부 20", img: jyj },
-  { role: "Design", name: "나윤주", department: "비주얼디자인학부 21", img: nyj },
+  { role: "Design", name: "정영진", department: "비주얼디자인전공 20", img: jyj },
+  { role: "Design", name: "나윤주", department: "비주얼디자인전공 21", img: nyj },
   { role: "Frontend", name: "허윤호", department: "전자컴퓨터공학과 24", img: hyh },
   { role: "Frontend", name: "박성연", department: "소프트웨어학과 22", img: psy },
   { role: "Frontend", name: "박태경", department: "컴퓨터공학과 22", img: ptk },
