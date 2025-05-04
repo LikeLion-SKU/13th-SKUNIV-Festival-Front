@@ -39,6 +39,7 @@ const Message = styled.span`
   font-style: normal;
   font-weight: 600;
   letter-spacing: -0.2px;
+  white-space: nowrap;
 `;
 
 export default ReservationCancelComplete;
