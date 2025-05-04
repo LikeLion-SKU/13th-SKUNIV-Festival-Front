@@ -19,7 +19,7 @@ const artistList: Artist[] = [
     time: "19:00 - 19:30",
     description: "동아리 공연",
     name: "유드림",
-    image: "https://minio.2025skufestival.site/skufestival/booth/1635.webp",
+    image: "https://minio.2025skufestival.site/skufestival/booth/9854.png",
   },
   {
     date: "DAY 2",

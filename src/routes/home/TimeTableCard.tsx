@@ -24,18 +24,21 @@ export default function TimeTableCard({ time, description, name, image, onClick 
 export const ArtistWrapper = styled.div`
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: stretch;
   border-radius: 10px;
   overflow: hidden;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
 `;
 
 export const AboutWrapper = styled.div`
-  width: 125px;
-  height: 132px;
-  padding: 20px;
+  flex: 1;
+  padding: 16px;
   background-color: white;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
 `;
 
 export const ArtistTime = styled.p`
@@ -60,10 +63,10 @@ export const ArtistName = styled.p`
 `;
 
 export const ArtistImage = styled.div<{ image: string }>`
+  flex-shrink: 0;
   width: 230px;
-  height: 132px;
-  /* background-image: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, #121212 160%),
-    url(${(props) => props.image}); */
+  height: auto;
+  aspect-ratio: 230 / 132;
   background-image: url(${(props) => props.image});
   background-size: cover;
   background-position: center;

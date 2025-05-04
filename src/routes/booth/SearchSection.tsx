@@ -22,8 +22,8 @@ export default function SearchSection({ searchQuery, onSearchQueryChange }: Prop
 
 const Wrapper = styled.div`
   position: relative;
-  width: 354px;
-  margin-bottom: 16px;
+  width: 90vw;
+  max-width: 768px;
 `;
 
 const SearchBox = styled.input`
@@ -33,7 +33,7 @@ const SearchBox = styled.input`
   background-color: #f5f5f5;
   padding: 0 40px 0 15px;
   font-size: 15px;
-  color: #a3a3a3;
+  color: #1a1a1a;
   font-weight: 500;
   border: none;
   outline: none;

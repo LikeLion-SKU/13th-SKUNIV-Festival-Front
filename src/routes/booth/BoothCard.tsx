@@ -49,7 +49,7 @@ const TextBox = styled.div`
 
   & > .department {
     color: #fff;
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 700;
     line-height: normal;
     letter-spacing: -0.5px;

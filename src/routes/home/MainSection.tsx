@@ -36,6 +36,8 @@ export default function MainSection({ onSelectLang, langSelected }: MainSectionP
       {langSelected ? (
         <AfterWrapper>
           <img className="img" src={maintitle} alt="maintitle" />
+          <p className="text">2025 서경대학교 대동제</p>
+          <p className="text"> 05.07 ~ 05.09</p>
         </AfterWrapper>
       ) : (
         <BeforeWrapper>
@@ -83,22 +85,33 @@ export default function MainSection({ onSelectLang, langSelected }: MainSectionP
 }
 
 const BeforeWrapper = styled.div`
-  width: 390px;
-  height: auto;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 `;
 
 const AfterWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-bottom: 130px;
+
   & > .img {
-    width: 100%;
+    width: auto;
     height: auto;
-    padding-top: 60px;
-    margin-bottom: 100px;
+    padding-top: 100px;
+  }
+
+  & > .text {
+    color: white;
+    font-size: 12px;
+    font-family: "HSSanTokki20-Regular";
   }
 `;
 
 const LottieWrapper = styled.div`
   width: 100vw;
-  max-width: 390px;
+  max-width: 430px;
   height: 100vh;
   z-index: 1;
   overflow: hidden;
@@ -116,8 +129,7 @@ const LanguageWrapper = styled.div`
   justify-content: center;
   align-items: center;
   min-width: 300px;
-  padding-bottom: 30px;
-  animation: fadeInUp 0.5s ease-out forwards;
+  animation: fadeInUp 0.2s ease-out forwards;
 
   @keyframes fadeInUp {
     0% {
