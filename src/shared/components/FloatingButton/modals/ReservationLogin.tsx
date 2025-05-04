@@ -40,8 +40,18 @@ const ReservationLogin = () => {
             <InputLabel>전화번호</InputLabel>
             <Input
               type="tel"
+              pattern="010-[0-9]{3,4}-[0-9]{4}"
+              maxLength={13}
               value={phoneNum}
-              onChange={(e) => setReservation({ phoneNum: e.target.value.trim() })}
+              onChange={(e) =>
+                setReservation({
+                  phoneNum: e.target.value
+                    .trim()
+                    .replace(/[^0-9]/g, "")
+                    .replace(/^(\d{0,3})(\d{0,4})(\d{0,4})$/g, "$1-$2-$3")
+                    .replace(/(-{1,2})$/g, ""),
+                })
+              }
             />
           </InputWrapper>
         </Inputs>

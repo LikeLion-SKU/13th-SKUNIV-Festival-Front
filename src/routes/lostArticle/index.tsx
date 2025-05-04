@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import Search from "./search";
 import Filter from "./filter";
 import Card from "./card";
-import useHeaderStore from "../../shared/stores/useHeaderStore.ts";
+import useHeader from "../../shared/hooks/useHeader";
 import { fetchLostItems } from "./lostArticleAPI";
 import { Container, CardList, Pagination } from "./style.ts";
 
@@ -22,17 +22,13 @@ const LostArticlePage = () => {
   const [lostItems, setLostItems] = useState<LostItem[]>([]);
   const [totalPages, setTotalPages] = useState(1);
 
-  const updateHeader = useHeaderStore((state) => state.update);
-
-  useEffect(() => {
-    updateHeader({
-      title: "분실물",
-      showBack: true,
-      showHome: true,
-      canAccessAdmin: false,
-      canAccessLost: true,
-    });
-  }, [updateHeader]);
+  useHeader({
+    title: "분실물",
+    showBack: true,
+    showHome: true,
+    canAccessAdmin: false,
+    canAccessLost: true,
+  });
 
   useEffect(() => {
     const getLostItems = async () => {

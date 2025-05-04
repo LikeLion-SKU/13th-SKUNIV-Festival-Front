@@ -25,7 +25,7 @@ const CallPerson = () => {
               const response = await adminAPI.post("/reservations/admin/call", {
                 name: title,
                 phoneNum,
-                message: `${title} 부스에서 호출되었습니다.`,
+                message: "부스에서 호출되었습니다.",
               });
 
               if (response.data?.success) {

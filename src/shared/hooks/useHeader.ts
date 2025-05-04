@@ -6,12 +6,13 @@ const useHeader = ({
   showBack = false,
   showHome = false,
   canAccessAdmin = false,
+  canAccessLost = false,
 }: Pick<HeaderState, "title"> &
-  Pick<Partial<HeaderState>, "showBack" | "showHome" | "canAccessAdmin">) => {
+  Pick<Partial<HeaderState>, "showBack" | "showHome" | "canAccessAdmin" | "canAccessLost">) => {
   const { update } = useHeaderStore();
 
   useEffect(() => {
-    update({ title, showBack, showHome, canAccessAdmin });
+    update({ title, showBack, showHome, canAccessAdmin, canAccessLost });
   }, [title]);
 };
 

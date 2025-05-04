@@ -37,6 +37,7 @@ const Wrapper = styled.div`
   padding: 12px;
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 12px;
   border-bottom: 1px solid #cdcdcd;
 `;
@@ -47,6 +48,7 @@ const Name = styled.span`
   font-style: normal;
   font-weight: 600;
   letter-spacing: -0.35px;
+  white-space: nowrap;
 `;
 
 const Divider = styled.hr`
@@ -61,6 +63,7 @@ const WaitingTeam = styled.span`
   font-style: normal;
   font-weight: 400;
   letter-spacing: -0.3px;
+  white-space: nowrap;
 `;
 
 const HeadCount = styled.span`
@@ -69,11 +72,13 @@ const HeadCount = styled.span`
   font-style: normal;
   font-weight: 400;
   letter-spacing: -0.3px;
+  white-space: nowrap;
 `;
 
 const CheckButton = styled.button`
   all: unset;
   margin-left: auto;
+  flex-shrink: 0;
   cursor: pointer;
 `;
 
