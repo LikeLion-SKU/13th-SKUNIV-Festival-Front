@@ -49,6 +49,7 @@ const Reservation = () => {
     register,
     handleSubmit,
     formState: { isValid, errors },
+    setValue,
   } = useForm<z.infer<typeof reservationSchema>>({
     resolver: zodResolver(reservationSchema),
     defaultValues: {
@@ -120,8 +121,21 @@ const Reservation = () => {
             <Input
               label="전화번호 :"
               type="tel"
+              pattern="010-[0-9]{3,4}-[0-9]{4}"
               errorMessage={errors.phoneNum?.message}
-              {...register("phoneNum")}
+              {...register("phoneNum", {
+                onChange: (e) => {
+                  const input = e.target.value.trim() as string;
+
+                  setValue(
+                    "phoneNum",
+                    input
+                      .replace(/[^0-9]/g, "")
+                      .replace(/^(\d{0,3})(\d{0,4})(\d{0,4})$/g, "$1-$2-$3")
+                      .replace(/(-{1,2})$/g, "")
+                  );
+                },
+              })}
             />
             <Input
               label="인원 수 :"
