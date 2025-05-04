@@ -14,7 +14,15 @@ export default function TimeTableCard({ time, description, name, image, onClick 
       <AboutWrapper>
         <ArtistTime>{time}</ArtistTime>
         <ArtistDescription>{description}</ArtistDescription>
-        <ArtistName>{name}</ArtistName>
+        <ArtistName>
+          {" "}
+          {name.split("<br/>").map((line, index) => (
+            <span key={index}>
+              {line}
+              <br />
+            </span>
+          ))}
+        </ArtistName>
       </AboutWrapper>
       <ArtistImage image={image} />
     </ArtistWrapper>
@@ -24,11 +32,9 @@ export default function TimeTableCard({ time, description, name, image, onClick 
 export const ArtistWrapper = styled.div`
   display: flex;
   flex-direction: row;
-  align-items: stretch;
   border-radius: 10px;
   overflow: hidden;
   width: 100%;
-  max-width: 600px;
   margin: 0 auto;
 `;
 
@@ -38,7 +44,9 @@ export const AboutWrapper = styled.div`
   background-color: white;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  height: 132px;
+  width: 125px;
+  box-sizing: border-box;
 `;
 
 export const ArtistTime = styled.p`
