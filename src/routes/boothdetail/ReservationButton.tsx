@@ -1,6 +1,5 @@
 import styled from "@emotion/styled";
 import useReservationStore from "../../shared/stores/useReservationStore";
-import { useTranslation } from "react-i18next";
 
 interface ReservationButtonProps {
   disabled?: boolean;

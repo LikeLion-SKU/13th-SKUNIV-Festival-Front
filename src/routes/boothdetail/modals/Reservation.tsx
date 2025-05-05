@@ -73,7 +73,7 @@ const Reservation = () => {
       try {
         // 예약
         const response = await publicAPI.post<BaseResponse<ReservationResponse>>("/reservations", {
-          boothId,
+          boothId: Number(boothId),
           name: data.name,
           phoneNum: data.phoneNum,
           headCount: data.headCount,
