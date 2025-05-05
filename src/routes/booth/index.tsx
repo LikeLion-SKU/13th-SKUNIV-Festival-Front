@@ -35,8 +35,11 @@ export default function BoothInfo() {
 
   const [lang] = useLanguage();
 
-  const initialLocation = searchParams.get("location") ?? t("hyein_hall");
+  const initialLocation = searchParams.get("location");
   const [selectedLocation, setSelectedLocation] = useState(initialLocation);
+  useEffect(() => {
+    setSelectedLocation(t("hyein_hall"));
+  }, []);
 
   const [boothList, setBoothList] = useState<Booth[]>([]);
 
@@ -74,7 +77,7 @@ export default function BoothInfo() {
   useEffect(() => {
     setSearchParams((prev) => {
       const params = new URLSearchParams(prev);
-      params.set("location", selectedLocation);
+      params.set("location", selectedLocation!);
       return params;
     });
   }, [selectedLocation, setSearchParams]);
@@ -94,7 +97,7 @@ export default function BoothInfo() {
     <Wrapper>
       <SearchSection searchQuery={searchQuery} onSearchQueryChange={setSearchQuery} />
       {!isSearching && (
-        <LocNav selectedLocation={selectedLocation} setSelectedLocation={setSelectedLocation} />
+        <LocNav selectedLocation={selectedLocation!} setSelectedLocation={setSelectedLocation} />
       )}
       <BoothMap
         selectedLocation={selectedLocation}
