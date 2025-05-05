@@ -23,7 +23,9 @@ export const Back = styled.button`
 
 export const Title = styled.h1`
   position: absolute;
+  padding-inline: 64px;
   color: #121212;
+  text-align: center;
   font-size: 20px;
   font-weight: 500;
   line-height: normal;
