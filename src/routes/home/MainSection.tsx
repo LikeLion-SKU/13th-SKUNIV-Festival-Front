@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import { DotLottiePlayer, type DotLottieCommonPlayer } from "@dotlottie/react-player";
 import { useEffect, useRef, useState } from "react";
 import blooming from "../../shared/assets/lottie/blooming.json";
-import maintitle from "@icon/main_title.svg";
+import Maintitle from "@icon/main_title.svg?react";
 import ko from "@icon/ko.svg";
 import en from "@icon/en.svg";
 import ch from "@icon/ch.svg";
@@ -35,7 +35,7 @@ export default function MainSection({ onSelectLang, langSelected }: MainSectionP
     <>
       {langSelected ? (
         <AfterWrapper>
-          <img className="img" src={maintitle} alt="maintitle" />
+          <Maintitle />
           <p className="text">2025 서경대학교 대동제</p>
           <p className="text"> 05.07 ~ 05.09</p>
         </AfterWrapper>

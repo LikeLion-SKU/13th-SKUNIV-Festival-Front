@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import madeby from "@image/lions/madeby.svg";
+import Madeby from "@image/lions/madeby.svg?react";
 import RoleBlock, { Member } from "./RoleBlock";
 
 import she from "@image/lions/she.webp";
@@ -31,7 +31,7 @@ const LionList: Member[] = [
 export default function LikeLion() {
   return (
     <Wrapper>
-      <img src={madeby} />
+      <Madeby />
       <IntroWrapper>
         <p className="title">서경대학교 멋쟁이사자처럼 13기</p>
         <p className="content">

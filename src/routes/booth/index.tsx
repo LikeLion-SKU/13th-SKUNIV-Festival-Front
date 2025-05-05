@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
 import styled from "@emotion/styled";
 import { publicAPI } from "../../shared/lib/api";
 import useHeader from "../../shared/hooks/useHeader";
@@ -23,11 +24,17 @@ export default function BoothInfo() {
     showBack: true,
     showHome: true,
   });
+
+  const [searchParams, setSearchParams] = useSearchParams();
+
   const [searchQuery, setSearchQuery] = useState("");
   const debouncedSearchQuery = useDebounce(searchQuery);
 
   const [lang] = useLanguage();
-  const [selectedLocation, setSelectedLocation] = useState("혜인관");
+
+  const initialLocation = searchParams.get("location") ?? "혜인관";
+  const [selectedLocation, setSelectedLocation] = useState(initialLocation);
+
   const [boothList, setBoothList] = useState<Booth[]>([]);
 
   useEffect(() => {
@@ -61,6 +68,14 @@ export default function BoothInfo() {
     };
   }, [lang]);
 
+  useEffect(() => {
+    setSearchParams((prev) => {
+      const params = new URLSearchParams(prev);
+      params.set("location", selectedLocation);
+      return params;
+    });
+  }, [selectedLocation, setSearchParams]);
+
   const isSearching = debouncedSearchQuery.length > 0;
 
   const filteredList = boothList.filter((booth) => {
@@ -76,9 +91,7 @@ export default function BoothInfo() {
     <Wrapper>
       <SearchSection searchQuery={searchQuery} onSearchQueryChange={setSearchQuery} />
       {!isSearching && (
-        <>
-          <LocNav selectedLocation={selectedLocation} setSelectedLocation={setSelectedLocation} />
-        </>
+        <LocNav selectedLocation={selectedLocation} setSelectedLocation={setSelectedLocation} />
       )}
       <BoothMap
         selectedLocation={selectedLocation}
