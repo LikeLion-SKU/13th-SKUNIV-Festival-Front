@@ -113,7 +113,7 @@ export default function BoothInfo() {
                 image={booth.boothThumbnailUrl}
               />
             ))
-          : isSearching && <NoResultMessage>존재하지 않는 부스입니다</NoResultMessage>}
+          : isSearching && <NoResultMessage>{t("message")}</NoResultMessage>}
       </BoothWrapper>
     </Wrapper>
   );
