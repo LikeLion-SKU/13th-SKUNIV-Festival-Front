@@ -1,4 +1,5 @@
 import { BoothResponse } from ".";
+import Br from "../../shared/components/Br";
 import * as S from "./Card.style";
 
 interface CardProps {
@@ -11,7 +12,9 @@ const Card = ({ data }: CardProps) => {
       <S.Info>
         대기 | <S.Waitings>{data.boothWaitings ?? "?"}팀</S.Waitings>
         <br />
-        <S.Faculty>{data.boothFaculty}</S.Faculty>
+        <S.Faculty>
+          <Br content={data.boothFaculty} />
+        </S.Faculty>
       </S.Info>
     </S.Container>
   );

@@ -11,12 +11,10 @@ import useLanguage from "../../shared/hooks/useLanguage";
 import BaseResponse from "../../shared/interfaces/BaseResponse";
 import DayChip from "./DayChip";
 import NightChip from "./NightChip";
-import { Fragment } from "react/jsx-runtime";
 import { useState } from "react";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
-import Select from "react-dropdown-select";
+import Br from "../../shared/components/Br";
+import ArrowDown from "@icon/arrow-down.svg?react";
 
 type BoothInfoResponse = {
   id: number;
@@ -36,6 +34,21 @@ type BoothInfoResponse = {
 
 type BoothTimeResponse = string;
 
+const DROPDOWN_TIMES = [
+  {
+    value: "DAY",
+    label: "낮",
+  },
+  {
+    value: "NIGHT",
+    label: "밤",
+  },
+  {
+    value: "ALL",
+    label: "전체",
+  },
+];
+
 export default function BoothDetail() {
   const { boothId } = useParams();
   const [lang] = useLanguage();
@@ -50,24 +63,33 @@ export default function BoothDetail() {
   });
 
   useHeader({
-    title: response?.data.boothFaculty!,
+    title: response?.data?.boothFaculty ? response.data.boothFaculty : null,
     showBack: true,
-    showHome: true,
+    showHamburger: true,
     canAccessAdmin: true,
   });
 
   const { data: times } = useQuery<BaseResponse<BoothTimeResponse>>({
-    queryKey: ["boothTimes", response?.data.boothFaculty],
-    queryFn: () =>
-      publicAPI.get(`/booths/${response?.data.boothFaculty}`).then((response) => response.data),
-    enabled: !!response?.data.boothFaculty,
+    queryKey: ["boothTimes", boothId],
+    queryFn: () => publicAPI.get(`/booths/${boothId}`).then((response) => response.data),
+    enabled: !!boothId,
   });
 
   const [isZoomed, setIsZoomed] = useState(true);
-  const [selectedTime, setSelectedTime] = useState<{
-    value: BoothInfoResponse["openingHours"];
-    label: string;
-  }>({ value: "DAY", label: "낮" });
+
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [selectedTime, setSelectedTime] = useState<(typeof DROPDOWN_TIMES)[number]>({
+    value: "DAY",
+    label: "낮",
+  });
+
+  const filteredMenus = response?.data?.boothMenus
+    ?.filter((menu) =>
+      selectedTime.value === "ALL"
+        ? true
+        : menu.menuOpeningHours === selectedTime.value || menu.menuOpeningHours === "FULL"
+    )
+    .sort((a, b) => a.menuPrice - b.menuPrice); //오름차순
 
   return (
     <>
@@ -80,7 +102,7 @@ export default function BoothDetail() {
               imgUrl={imageUrl}
               zoom={isZoomed}
               onClick={() => setIsZoomed((prev) => !prev)}
-            ></S.BoothImage>
+            />
           ))}
         </Slider>
 
@@ -111,46 +133,43 @@ export default function BoothDetail() {
           </S.Chips>
         </S.InfoSection>
         <S.Description>
-          {response?.data.boothDescription?.split("<br>").map((line, idx) => (
-            <Fragment key={idx}>
-              {line}
-              <br />
-            </Fragment>
-          ))}
+          <Br content={response?.data.boothDescription} />
         </S.Description>
         <S.Divider />
         {/* 메뉴 */}
         <S.MenuSection>
           <S.MenuHeader>
             <S.MenuTitle>메뉴</S.MenuTitle>
-            <Select
-              onChange={(values) => setSelectedTime(values[0])}
-              options={[
-                {
-                  label: "낮",
-                  value: "DAY",
-                },
-                {
-                  label: "밤",
-                  value: "NIGHT",
-                },
-                {
-                  value: "FULL",
-                  label: "전체",
-                },
-              ]}
-              values={[selectedTime]}
-              multi={false}
-            />
+            <S.SelectWrapper>
+              <S.Select onClick={() => setIsDropdownOpen((prev) => !prev)} opened={isDropdownOpen}>
+                {selectedTime.label} 메뉴
+                <ArrowDown style={{ transform: isDropdownOpen ? "rotate(180deg)" : undefined }} />
+              </S.Select>
+              {isDropdownOpen && (
+                <S.Options>
+                  {DROPDOWN_TIMES.filter((t) => t.value !== selectedTime.value).map((t, idx) => (
+                    <S.Option
+                      key={t.value}
+                      value={t.value}
+                      last={idx === DROPDOWN_TIMES.length - 1}
+                      onClick={() => {
+                        setSelectedTime({
+                          label: t.label,
+                          value: t.value,
+                        });
+                        setIsDropdownOpen(false);
+                      }}
+                    >
+                      {t.label} 메뉴
+                    </S.Option>
+                  ))}
+                </S.Options>
+              )}
+            </S.SelectWrapper>
           </S.MenuHeader>
-          <S.Menus>
-            {response?.data?.boothMenus
-              ?.filter((menu) =>
-                selectedTime.value === "FULL"
-                  ? true
-                  : menu.menuOpeningHours === selectedTime.value || menu.menuOpeningHours === "FULL"
-              )
-              ?.map((menu) => (
+          {filteredMenus && filteredMenus?.length > 0 ? (
+            <S.Menus rows={Math.ceil(filteredMenus.length / 2)}>
+              {filteredMenus.map((menu) => (
                 <S.Menu key={menu.menu}>
                   <span>
                     {menu.menu}
@@ -162,7 +181,10 @@ export default function BoothDetail() {
                   </S.MenuPrice>
                 </S.Menu>
               ))}
-          </S.Menus>
+            </S.Menus>
+          ) : (
+            <div>메뉴가 없습니다.</div>
+          )}
         </S.MenuSection>
       </S.Layout>
       <ReservationButton disabled={false} />

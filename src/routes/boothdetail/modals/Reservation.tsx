@@ -18,6 +18,7 @@ import useHeaderStore from "../../../shared/stores/useHeaderStore";
 import BaseResponse from "../../../shared/interfaces/BaseResponse";
 import { AxiosError } from "axios";
 import { useQuery } from "@tanstack/react-query";
+import { useParams } from "react-router";
 
 interface ReservationResponse {
   id: number;
@@ -34,14 +35,13 @@ type ReservationWaitingsResponse = string;
 
 const Reservation = () => {
   const { setModalStep, onClose, setReservation } = useReservationStore();
+  const { boothId } = useParams();
   const { title } = useHeaderStore();
 
   const { data: waitings } = useQuery<BaseResponse<ReservationWaitingsResponse>>({
     queryKey: ["reservationWaitings", title],
     queryFn: () =>
-      publicAPI
-        .get("/reservations/waiting", { params: { boothName: title } })
-        .then((response) => response.data),
+      publicAPI.get(`/reservations/waiting/${boothId}`).then((response) => response.data),
     enabled: !!title,
   });
 
@@ -115,6 +115,7 @@ const Reservation = () => {
             <Input
               label="예약자 명 :"
               type="text"
+              autoComplete="off"
               errorMessage={errors.name?.message}
               {...register("name")}
             />
@@ -123,6 +124,7 @@ const Reservation = () => {
               type="tel"
               pattern="010-[0-9]{3,4}-[0-9]{4}"
               maxLength={13}
+              autoComplete="off"
               errorMessage={errors.phoneNum?.message}
               {...register("phoneNum", {
                 onChange: (e) => {
@@ -142,6 +144,7 @@ const Reservation = () => {
               label="인원 수 :"
               trailing="명"
               type="tel"
+              autoComplete="off"
               errorMessage={errors.headCount?.message}
               {...register("headCount")}
             />

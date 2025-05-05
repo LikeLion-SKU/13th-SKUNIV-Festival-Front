@@ -20,7 +20,7 @@ const EditPage = () => {
   useHeader({
     title: "분실물",
     showBack: true,
-    showHome: true,
+    showHamburger: true,
   });
 
   // URL에서 id 추출

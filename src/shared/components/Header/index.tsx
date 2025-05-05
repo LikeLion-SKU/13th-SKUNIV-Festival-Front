@@ -42,7 +42,9 @@ const Header = () => {
           </S.Back>
         )}
 
-        {!transparent && <S.Title onClick={handleClick}>{title ?? "불러오는 중..."}</S.Title>}
+        {!transparent && (
+          <S.Title onClick={handleClick}>{title?.replace("<br>", "") ?? "불러오는 중..."}</S.Title>
+        )}
 
         {showHamburger && (
           <S.Hamburger onClick={() => update({ showMenu: true })} transparent={transparent}>

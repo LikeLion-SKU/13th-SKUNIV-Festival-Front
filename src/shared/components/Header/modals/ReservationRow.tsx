@@ -5,13 +5,13 @@ import Checked from "@icon/checked.svg?react";
 import Unchecked from "@icon/unchecked.svg?react";
 
 interface WaitingRowProps {
-  id: number;
+  boothId: number;
   boothName: string;
   headCount: number;
   waitingTeam: number;
 }
 
-const ReservationRow = ({ id, boothName, headCount, waitingTeam }: WaitingRowProps) => {
+const ReservationRow = ({ boothId, boothName, headCount, waitingTeam }: WaitingRowProps) => {
   const { idsToDelete, addIdToDelete, cancelIdToDelete } = useReservationStore();
 
   return (
@@ -22,10 +22,10 @@ const ReservationRow = ({ id, boothName, headCount, waitingTeam }: WaitingRowPro
       <Divider />
       <WaitingTeam>대기팀 {waitingTeam}팀</WaitingTeam>
       <CheckButton>
-        {idsToDelete?.some((c) => id === c.id) ? (
-          <Checked width={16} height={16} onClick={() => cancelIdToDelete(id)} />
+        {idsToDelete?.some((c) => boothId === c.boothId) ? (
+          <Checked width={16} height={16} onClick={() => cancelIdToDelete(boothId)} />
         ) : (
-          <Unchecked width={16} height={16} onClick={() => addIdToDelete(id, boothName)} />
+          <Unchecked width={16} height={16} onClick={() => addIdToDelete(boothId, boothName)} />
         )}
       </CheckButton>
     </Wrapper>
