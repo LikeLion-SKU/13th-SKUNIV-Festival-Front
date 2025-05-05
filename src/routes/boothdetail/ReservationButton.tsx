@@ -11,7 +11,7 @@ const ReservationButton = ({ disabled }: ReservationButtonProps) => {
   return (
     <Footer>
       <Button disabled={disabled} onClick={() => !disabled && setModalStep(1)}>
-        {disabled ? "밤 부스 17:00 ~ 22:30에 예악 가능합니다." : "예약하기"}
+        {disabled ? "해당 부스는 예약 서비스를 운영하지 않습니다." : "예약하기"}
       </Button>
     </Footer>
   );
