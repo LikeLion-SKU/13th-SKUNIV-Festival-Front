@@ -81,15 +81,19 @@ export default function BoothInfo() {
 
   const isSearching = debouncedSearchQuery.length > 0;
 
-  const filteredList = boothList.filter((booth) => {
-    if (isSearching) {
-      return booth.boothFaculty.toLowerCase().includes(debouncedSearchQuery.toLowerCase());
-    }
+  const filteredList = boothList
+    .filter((booth) => {
+      if (isSearching) {
+        return booth.boothFaculty.toLowerCase().includes(debouncedSearchQuery.toLowerCase());
+      }
 
-    const locationPrefix = booth.boothLocation.split(" ")[0];
-    return locationPrefix === selectedLocation;
-  });
-
+      const locationPrefix = booth.boothLocation.includes(" ")
+        ? booth.boothLocation.split(" ")[0]
+        : booth.boothLocation;
+      return locationPrefix === selectedLocation;
+    })
+    .sort((a, b) => b.id - a.id);
+  console.log(boothList);
   return (
     <Wrapper>
       <SearchSection searchQuery={searchQuery} onSearchQueryChange={setSearchQuery} />
