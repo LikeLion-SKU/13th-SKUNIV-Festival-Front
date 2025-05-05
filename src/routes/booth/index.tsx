@@ -21,8 +21,8 @@ interface Booth {
 export default function BoothInfo() {
   useHeader({
     title: "부스 안내",
-    showBack: true,
-    showHome: true,
+    showBack: false,
+    showHamburger: true,
   });
 
   const [searchParams, setSearchParams] = useSearchParams();

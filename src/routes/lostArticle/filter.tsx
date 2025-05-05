@@ -24,7 +24,7 @@ const Filter = ({ sort, onSortChange }: FilterProps) => {
 
   const handleLogout = () => {
     logout();
-    navigate("/lost");
+    navigate("/lostandfound");
   };
 
   return (

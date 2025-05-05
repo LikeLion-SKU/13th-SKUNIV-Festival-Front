@@ -22,7 +22,7 @@ export interface BoothResponse {
 }
 
 export default function Tabling() {
-  useHeader({ title: "부스 테이블링", showHome: true });
+  useHeader({ title: "부스 테이블링", showHamburger: true });
 
   const { ref, inView } = useInView();
 
