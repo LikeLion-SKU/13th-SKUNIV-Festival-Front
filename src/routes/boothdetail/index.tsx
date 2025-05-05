@@ -12,8 +12,6 @@ import BaseResponse from "../../shared/interfaces/BaseResponse";
 import DayChip from "./DayChip";
 import NightChip from "./NightChip";
 import { useState } from "react";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import Br from "../../shared/components/Br";
 import ArrowDown from "@icon/arrow-down.svg?react";
