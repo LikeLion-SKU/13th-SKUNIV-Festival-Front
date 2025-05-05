@@ -9,6 +9,7 @@ import BoothCard from "./BoothCard";
 import SearchSection from "./SearchSection";
 import BoothMap from "./BoothMap";
 import LocNav from "./LocNav";
+import { useTranslation } from "react-i18next";
 
 interface Booth {
   id: number;
@@ -19,8 +20,10 @@ interface Booth {
 }
 
 export default function BoothInfo() {
+  const { t } = useTranslation("booth");
+
   useHeader({
-    title: "부스 안내",
+    title: t("booth_info"),
     showBack: false,
     showHamburger: true,
   });
@@ -28,11 +31,11 @@ export default function BoothInfo() {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const [searchQuery, setSearchQuery] = useState("");
-  const debouncedSearchQuery = useDebounce(searchQuery);
+  const debouncedSearchQuery = useDebounce(searchQuery.trim());
 
   const [lang] = useLanguage();
 
-  const initialLocation = searchParams.get("location") ?? "혜인관";
+  const initialLocation = searchParams.get("location") ?? t("hyein_hall");
   const [selectedLocation, setSelectedLocation] = useState(initialLocation);
 
   const [boothList, setBoothList] = useState<Booth[]>([]);

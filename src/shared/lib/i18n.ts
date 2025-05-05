@@ -1,24 +1,35 @@
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
 
-import KR from "../locales/kr/main.json";
-import EN from "../locales/en/main.json";
-import JP from "../locales/jp/main.json";
-import CN from "../locales/cn/main.json";
+import main_kr from "../locales/kr/main.json";
+import booth_kr from "../locales/kr/booth.json";
+
+import main_en from "../locales/en/main.json";
+import booth_en from "../locales/en/booth.json";
+
+import main_jp from "../locales/jp/main.json";
+import booth_jp from "../locales/jp/booth.json";
+
+import main_cn from "../locales/cn/main.json";
+import booth_cn from "../locales/cn/booth.json";
 
 i18n.use(initReactI18next).init({
   resources: {
     kr: {
-      main: KR,
+      main: main_kr,
+      booth: booth_kr,
     },
     en: {
-      main: EN,
+      main: main_en,
+      booth: booth_en,
     },
     jp: {
-      main: JP,
+      main: main_jp,
+      booth: booth_jp,
     },
     cn: {
-      main: CN,
+      main: main_cn,
+      booth: booth_cn,
     },
   },
   lng: "kr",
