@@ -25,7 +25,9 @@ export default function TablingAdmin() {
     enabled: !!boothId,
   });
 
-  const { data: userWaitings } = useQuery<{ boothName: string; waitingOrder: number }>({
+  const { data: userWaitings } = useQuery<
+    BaseResponse<{ boothName: string; waitingOrder: number }>
+  >({
     queryKey: ["waitings", boothId],
     queryFn: () =>
       publicAPI.get(`/reservations/waiting/${boothId}`).then((response) => response.data),
@@ -33,7 +35,7 @@ export default function TablingAdmin() {
   });
 
   useHeader({
-    title: userWaitings?.boothName ? userWaitings.boothName : null,
+    title: userWaitings?.data?.boothName ? userWaitings?.data?.boothName : null,
     showBack: true,
     showHamburger: false,
   });
