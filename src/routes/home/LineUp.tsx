@@ -17,7 +17,13 @@ export default function LineUp() {
   const { t } = useTranslation("main");
 
   useEffect(() => {
-    if (swiperContainerRef.current) {
+    if (!swiperContainerRef.current) return;
+
+    swiperInstanceRef.current?.destroy();
+
+    const timeout = setTimeout(() => {
+      if (!swiperContainerRef.current) return;
+
       const swiperInstance = new Swiper(swiperContainerRef.current, {
         modules: [Autoplay],
         loop: true,
@@ -33,12 +39,13 @@ export default function LineUp() {
       });
 
       swiperInstanceRef.current = swiperInstance;
+    }, 0);
 
-      return () => {
-        swiperInstance.destroy();
-      };
-    }
-  }, []);
+    return () => {
+      clearTimeout(timeout);
+      swiperInstanceRef.current?.destroy();
+    };
+  }, [artistList, t]);
 
   return (
     <LineupWrapper>

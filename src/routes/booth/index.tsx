@@ -39,7 +39,7 @@ export default function BoothInfo() {
   const [selectedLocation, setSelectedLocation] = useState(initialLocation);
   useEffect(() => {
     setSelectedLocation(t("hyein_hall"));
-  }, []);
+  }, [t]);
 
   const [boothList, setBoothList] = useState<Booth[]>([]);
 
@@ -96,7 +96,6 @@ export default function BoothInfo() {
       return locationPrefix === selectedLocation;
     })
     .sort((a, b) => b.id - a.id);
-  console.log(boothList);
   return (
     <Wrapper>
       <SearchSection searchQuery={searchQuery} onSearchQueryChange={setSearchQuery} />
