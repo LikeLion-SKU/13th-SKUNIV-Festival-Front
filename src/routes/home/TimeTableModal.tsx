@@ -49,7 +49,7 @@ export default function TimeTableModal({ artist, onClose }: ModalProps) {
             <InfoWrapper>
               <p className="time">{currentArtist.time}</p>
               <p className="name">
-                {currentArtist.name.split("<br/>").map((line, index) => (
+                {currentArtist.name.split("<br>").map((line, index) => (
                   <span key={index}>
                     {line}
                     <br />
