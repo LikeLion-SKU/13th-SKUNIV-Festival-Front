@@ -10,7 +10,10 @@
   "student_zone": "在校生专用区",
   "smoking_booth": "吸烟亭",
   "day_booth": "白天展位",
-
+  "waiting": "预约数",
+  "no_reservation": "该展位不提供预约服务。",
+  "day_break_time": "夜间展位可以在17:00至22:30之间预约。",
+  "reservation_unavailable": "现在无法预约。",
   "night_booth": "夜のブース",
   "menu": "菜单",
   "day_menu": "午餐菜单",
