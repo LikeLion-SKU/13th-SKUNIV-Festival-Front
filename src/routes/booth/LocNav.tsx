@@ -17,7 +17,6 @@ export default function LocNav({ selectedLocation, setSelectedLocation }: Props)
     t("daeil_hall"),
   ];
 
-  console.log(selectedLocation);
   return (
     <NavWrapper>
       {locations.map((loc) => (
@@ -46,7 +45,6 @@ const NavBtn = styled.button<{ selected: boolean }>`
   display: flex;
   justify-content: center;
   align-items: center;
-  min-width: 57px;
   padding: 5px 10px;
   border: 1.3px solid #4aa4ff;
   background-color: ${(props) => (props.selected ? "#4AA4FF" : "transparent")};
