@@ -50,9 +50,9 @@ export default function BoothDetail() {
   });
 
   useHeader({
-    title: response?.data.boothFaculty!,
+    title: response?.data?.boothFaculty ? response.data.boothFaculty : null,
     showBack: true,
-    showHome: true,
+    showHamburger: true,
     canAccessAdmin: true,
   });
 
