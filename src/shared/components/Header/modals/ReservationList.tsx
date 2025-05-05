@@ -9,6 +9,7 @@ import ReservationNotFound from "./ReservationNotFound";
 
 interface ReservationListResponse {
   id: number;
+  boothId: number;
   boothName: string;
   headCount: number;
   waitingTeam: number;
@@ -63,7 +64,7 @@ const ReservationList = () => {
           {response?.data?.map((reservation) => (
             <ReservationRow
               key={reservation.id}
-              id={reservation.id}
+              boothId={reservation.boothId}
               boothName={reservation.boothName}
               headCount={reservation.headCount}
               waitingTeam={reservation.waitingTeam}

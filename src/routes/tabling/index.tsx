@@ -45,7 +45,8 @@ export default function Tabling() {
         .then((response) => response.data),
     enabled: !!lang,
     initialPageParam: null,
-    getNextPageParam: (lastPage) => lastPage.data[lastPage.data.length - 1]?.id ?? null,
+    getNextPageParam: (lastPage) =>
+      lastPage.data.length < 8 ? undefined : lastPage.data[lastPage.data.length - 1]?.id,
     placeholderData: keepPreviousData,
   });
 
