@@ -12,6 +12,8 @@ import Madeby from "./routes/madeby";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import ServiceLayout from "./shared/layouts/service-layout";
 
+import "./shared/lib/i18n";
+
 const router = createBrowserRouter([
   {
     Component: RootLayout,
@@ -22,7 +24,7 @@ const router = createBrowserRouter([
         Component: ServiceLayout,
         children: [
           { path: "tabling", Component: Tabling },
-          { path: "tabling/admin/:boothName/:boothId", Component: TablingAdmin },
+          { path: "tabling/admin/:boothId", Component: TablingAdmin },
           { path: "booth", Component: BoothInfo },
           { path: "booth/:boothId", Component: BoothDetail },
           { path: "lostandfound", Component: LostArticle },

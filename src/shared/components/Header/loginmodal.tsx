@@ -43,7 +43,7 @@ const LoginModal = () => {
 
       if (response.data.success) {
         onClose();
-        navigate(`/tabling/admin/${response.data?.data?.name}/${response.data?.data?.id}`);
+        navigate(`/tabling/admin/${response.data?.data?.id}`);
       }
     } catch (err) {
       await controls.start(shakingAnimation);

@@ -4,13 +4,17 @@ import Swiper from "swiper";
 import { Autoplay } from "swiper/modules";
 import "swiper/swiper-bundle.css";
 import LineUpCard from "./LineUpCard";
-import artistList from "./ArtistList";
 import leftArrow from "@icon/arrow_left.svg?react";
 import rightArrow from "@icon/arrow_right.svg?react";
+import { useArtistList } from "./useArtistList";
+import { useTranslation } from "react-i18next";
 
 export default function LineUp() {
   const swiperContainerRef = useRef<HTMLDivElement | null>(null);
   const swiperInstanceRef = useRef<Swiper | null>(null);
+
+  const artistList = useArtistList();
+  const { t } = useTranslation("main");
 
   useEffect(() => {
     if (swiperContainerRef.current) {
@@ -45,7 +49,7 @@ export default function LineUp() {
       <SwiperWrapper className="swiper" ref={swiperContainerRef}>
         <div className="swiper-wrapper">
           {artistList
-            .filter((artist) => artist.description === "아티스트 축하공연")
+            .filter((artist) => artist.description === t("artist"))
             .map((artist, i) => (
               <div className="swiper-slide" key={`${artist.name}-${i}`}>
                 <LineUpCard {...artist} />
