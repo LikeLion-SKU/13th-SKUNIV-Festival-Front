@@ -33,12 +33,10 @@ export default function BoothMap({
     { belongTo: "대일관", top: 251, left: 63, boothFaculty: "전자컴퓨터공학과", id: 8 },
     { belongTo: "대일관", top: 268, left: 63, boothFaculty: "금융정보학과", id: 2 },
     { belongTo: "대일관", top: 285, left: 63, boothFaculty: "물류시스템공학과", id: 13 },
-    { belongTo: "혜인관", top: 80, left: 63, boothFaculty: "총학생회", id: 30 },
-    { belongTo: "혜인관", top: 80, left: 80, boothFaculty: "총학생회", id: 30 },
-    // { belongTo: "혜인관", top: 80, left: 97, boothFaculty: "투엠", id: },
-    { belongTo: "혜인관", top: 80, left: 229, boothFaculty: "신문사", id: 25 },
-    { belongTo: "혜인관", top: 80, left: 246, boothFaculty: "총동아리연합회", id: 14 },
-    // { belongTo: "혜인관", top: 80, left: 263, boothFaculty: "예교원", id: },
+    { belongTo: "혜인관", top: 80, left: 75, boothFaculty: "총학생회", id: 30 },
+    { belongTo: "혜인관", top: 80, left: 92, boothFaculty: "총학생회", id: 30 },
+    { belongTo: "혜인관", top: 80, left: 234, boothFaculty: "신문사", id: 25 },
+    { belongTo: "혜인관", top: 80, left: 251, boothFaculty: "총동아리연합회", id: 14 },
     { belongTo: "은주2관", top: 110, left: 263, boothFaculty: "예술대학", id: 27 },
     { belongTo: "은주2관", top: 127, left: 263, boothFaculty: "미용예술대학", id: 20 },
     { belongTo: "은주2관", top: 144, left: 263, boothFaculty: "디자인학부", id: 12 },
@@ -141,6 +139,7 @@ const Building = styled.div<{ selected: boolean; disabled: boolean }>`
   font-weight: 600;
   letter-spacing: -0.275px;
   padding: 8px;
+  text-align: center;
   cursor: ${({ disabled }) => (disabled ? "not-allowed" : "pointer")};
 
   &.di {
@@ -239,5 +238,5 @@ const SmokeZone = styled.div`
   font-weight: 600;
   letter-spacing: -0.275px;
   text-align: center;
-  padding: 8px;
+  padding: 5px;
 `;
