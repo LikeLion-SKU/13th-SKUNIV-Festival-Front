@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import loc from "@icon/location.svg";
+import loc from "@icon/location.svg?react";
 
 export default function Emergency() {
   const emergencyList = [
@@ -27,7 +27,7 @@ export default function Emergency() {
           <LocationBox>
             {item.location.map((locItem, idx) => (
               <LocationItem key={idx}>
-                <img className="img" src={loc} alt="location" />
+                <Icon />
                 <span className="text">{locItem}</span>
               </LocationItem>
             ))}
@@ -76,13 +76,13 @@ const LocationItem = styled.div`
   align-items: center;
   gap: 4px;
 
-  & > .img {
-    width: 10px;
-    height: auto;
-  }
-
   & > .text {
     font-size: 10px;
     color: #484848;
   }
+`;
+
+const Icon = styled(loc)`
+  width: 10px;
+  height: auto;
 `;
