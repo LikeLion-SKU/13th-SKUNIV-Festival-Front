@@ -4,7 +4,7 @@ import Filter from "./filter";
 import Card from "./card";
 import useHeader from "../../shared/hooks/useHeader";
 import { fetchLostItems } from "./lostArticleAPI";
-import { Container, CardList, Pagination } from "./style.ts";
+import { Container, CardList, Pagination, EmptyMessage } from "./style.ts";
 
 interface LostItem {
   id: number;
@@ -73,9 +73,15 @@ const LostArticlePage = () => {
           setCurrentPage(0);
         }}
       />
-      <CardList>
-        {lostItems.length > 0 ? lostItems.map((item) => <Card key={item.id} {...item} />) : <p></p>}
-      </CardList>
+      {lostItems.length > 0 ? (
+        <CardList>
+          {lostItems.map((item) => (
+            <Card key={item.id} {...item} />
+          ))}
+        </CardList>
+      ) : (
+        <EmptyMessage>분실물이 없습니다.</EmptyMessage>
+      )}
 
       {totalPages > 1 && (
         <Pagination>
