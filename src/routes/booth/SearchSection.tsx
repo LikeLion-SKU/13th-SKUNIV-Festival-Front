@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import Search from "@icon/search.svg?react";
+import { useTranslation } from "react-i18next";
 
 interface Props {
   searchQuery: string;
@@ -7,13 +8,15 @@ interface Props {
 }
 
 export default function SearchSection({ searchQuery, onSearchQueryChange }: Props) {
+  const { t } = useTranslation("booth");
+
   return (
     <Wrapper>
       <SearchBox
         type="search"
         value={searchQuery}
-        onChange={(e) => onSearchQueryChange(e.target.value.trim())}
-        placeholder="학과 부스 검색"
+        onChange={(e) => onSearchQueryChange(e.target.value)}
+        placeholder={t("search")}
       />
       <SearchIcon />
     </Wrapper>

@@ -22,5 +22,5 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true
   },
-  "include": ["src", "svgr.d.ts", "lottie.d.ts"]
+  "include": ["src", "svgr.d.ts", "lottie.d.ts", "i18next.d.ts"]
 }

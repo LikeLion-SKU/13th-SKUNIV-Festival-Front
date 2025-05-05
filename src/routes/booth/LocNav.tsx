@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { useTranslation } from "react-i18next";
 
 interface Props {
   selectedLocation: string;
@@ -6,7 +7,15 @@ interface Props {
 }
 
 export default function LocNav({ selectedLocation, setSelectedLocation }: Props) {
-  const locations = ["혜인관", "은주1관", "은주2관", "청운관", "대일관"];
+  const { t } = useTranslation("main");
+
+  const locations = [
+    t("hyein_hall"),
+    t("eunju_hall_1"),
+    t("eunju_hall_2"),
+    t("cheongun_hall"),
+    t("daeil_hall"),
+  ];
 
   return (
     <NavWrapper>

@@ -1,21 +1,24 @@
 import styled from "@emotion/styled";
 import loc from "@icon/location.svg?react";
+import { useTranslation } from "react-i18next";
 
 export default function Emergency() {
+  const { t } = useTranslation("main");
+
   const emergencyList = [
     {
-      subtitle: "AED 위치 안내",
+      subtitle: t("aed_info"),
       location: [
-        "북악관 로비 내",
-        "유담관 스포렉스",
-        "유담관 9층 출입문 옆",
-        "청운관 2층 세이프원 상황실",
-        "혜인관 1층 로비",
+        t("bukak_lobby"),
+        t("yudam_sports"),
+        t("yudam_9f_entrance"),
+        t("cheongun_safeone"),
+        t("hyein_lobby"),
       ],
     },
     {
-      subtitle: "대피로 안내",
-      location: ["폭풍의 언덕", "혜청사 (혜인관 청운관 사이)", "혜인관, 은주관 사이 대일외고 방향"],
+      subtitle: t("evacuation_guide"),
+      location: [t("hill_of_storms"), t("hyecheongsa"), t("direction_daeil")],
     },
   ];
 

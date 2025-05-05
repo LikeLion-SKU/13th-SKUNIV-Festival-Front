@@ -1,10 +1,10 @@
 import styled from "@emotion/styled";
 import { useState } from "react";
-import artistList from "./ArtistList";
 import CloseIcon from "@icon/close.svg?react";
 import StarIcon from "@icon/star_blue.svg?react";
 import ArrowLeft from "@icon/arrow_left_thin.svg?react";
 import ArrowRight from "@icon/arrow_right_thin.svg?react";
+import { useArtistList } from "./useArtistList";
 
 interface ModalProps {
   artist: {
@@ -18,6 +18,8 @@ interface ModalProps {
 }
 
 export default function TimeTableModal({ artist, onClose }: ModalProps) {
+  const artistList = useArtistList();
+
   const [currentIndex, setCurrentIndex] = useState(
     artistList.findIndex((a) => a.name === artist.name)
   );

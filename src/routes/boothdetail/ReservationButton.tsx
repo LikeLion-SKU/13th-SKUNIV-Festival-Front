@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import useReservationStore from "../../shared/stores/useReservationStore";
+import { useTranslation } from "react-i18next";
 
 interface ReservationButtonProps {
   disabled?: boolean;
@@ -7,6 +8,8 @@ interface ReservationButtonProps {
 
 const ReservationButton = ({ disabled }: ReservationButtonProps) => {
   const { setModalStep } = useReservationStore();
+
+  const { t } = useTranslation("booth");
 
   return (
     <Footer>
