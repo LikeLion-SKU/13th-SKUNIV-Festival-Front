@@ -65,9 +65,9 @@ export default function BoothDetail() {
   });
 
   useHeader({
-    title: response?.data ? response.data.boothFaculty! : null,
+    title: response?.data?.boothFaculty ? response.data.boothFaculty : null,
     showBack: true,
-    showHome: true,
+    showHamburger: true,
     canAccessAdmin: true,
   });
 
