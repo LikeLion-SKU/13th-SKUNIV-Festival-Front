@@ -144,6 +144,9 @@ export const Menu = styled.div`
     line-height: 24px;
     letter-spacing: -0.3px;
   }
+  & > span {
+    word-break: break-word;
+  }
 `;
 
 export const MenuPrice = styled.span`

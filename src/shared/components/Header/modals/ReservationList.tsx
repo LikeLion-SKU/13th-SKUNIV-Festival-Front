@@ -60,6 +60,10 @@ const ReservationList = () => {
     >
       <Layout>
         <Title>예약 확인</Title>
+        <Warning>
+          밤 부스 준비를 위해 16:35 이후에는
+          <br />낮 부스 예약이 모두 사라집니다.
+        </Warning>
         <Reservations>
           {response?.data?.map((reservation) => (
             <ReservationRow
@@ -80,7 +84,6 @@ const Layout = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 32px;
 `;
 
 const Title = styled.span`
@@ -91,7 +94,18 @@ const Title = styled.span`
   letter-spacing: -0.5px;
 `;
 
+const Warning = styled.span`
+  margin-top: 4px;
+  color: #f00;
+  text-align: center;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+`;
+
 const Reservations = styled.div`
+  margin-top: 32px;
   display: flex;
   flex-direction: column;
 `;
