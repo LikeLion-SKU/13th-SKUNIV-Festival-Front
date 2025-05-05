@@ -7,7 +7,7 @@ interface Props {
 }
 
 export default function LocNav({ selectedLocation, setSelectedLocation }: Props) {
-  const { t } = useTranslation("main");
+  const { t } = useTranslation("booth");
 
   const locations = [
     t("hyein_hall"),
@@ -17,6 +17,7 @@ export default function LocNav({ selectedLocation, setSelectedLocation }: Props)
     t("daeil_hall"),
   ];
 
+  console.log(selectedLocation);
   return (
     <NavWrapper>
       {locations.map((loc) => (
