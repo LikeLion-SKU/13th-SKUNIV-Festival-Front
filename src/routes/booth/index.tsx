@@ -100,15 +100,17 @@ export default function BoothInfo() {
         isSearching={!!isSearching}
       />
       <BoothWrapper>
-        {filteredList.map((booth) => (
-          <BoothCard
-            id={booth.id}
-            key={booth.id}
-            department={booth.boothFaculty}
-            location={booth.boothLocation}
-            image={booth.boothThumbnailUrl}
-          />
-        ))}
+        {filteredList.length > 0
+          ? filteredList.map((booth) => (
+              <BoothCard
+                id={booth.id}
+                key={booth.id}
+                department={booth.boothFaculty}
+                location={booth.boothLocation}
+                image={booth.boothThumbnailUrl}
+              />
+            ))
+          : isSearching && <NoResultMessage>존재하지 않는 부스입니다</NoResultMessage>}
       </BoothWrapper>
     </Wrapper>
   );
@@ -124,4 +126,12 @@ const BoothWrapper = styled.div`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-gap: 12px;
+`;
+
+const NoResultMessage = styled.div`
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 20px 0;
+  color: #888;
+  font-size: 16px;
 `;
