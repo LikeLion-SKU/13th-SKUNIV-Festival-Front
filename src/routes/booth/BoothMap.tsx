@@ -26,7 +26,7 @@ const dots = [
   { belongTo: "은주2관", top: 195, left: 263, boothFaculty: "광고홍보영상학과" },
   { belongTo: "은주2관", top: 212, left: 263, boothFaculty: "실용음악학부" },
   { belongTo: "은주2관", top: 229, left: 263, boothFaculty: "공공인재학부" },
-  { belongTo: "은주1관", top: 243, left: 140, boothFaculty: "나노화학생명" },
+  { belongTo: "은주1관", top: 243, left: 140, boothFaculty: "나노화학생명공학과" },
   { belongTo: "은주1관", top: 243, left: 157, boothFaculty: "도시공학과" },
   { belongTo: "은주1관", top: 243, left: 174, boothFaculty: "소프트웨어학과" },
   { belongTo: "은주1관", top: 243, left: 191, boothFaculty: "군사학과" },

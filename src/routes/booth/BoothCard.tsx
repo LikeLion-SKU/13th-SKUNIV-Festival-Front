@@ -16,7 +16,7 @@ export default function BoothCard({ image, location, department, id }: CardProps
       <TextBox>
         <p className="location">{location}</p>
         <p className="department">
-          {department.split("<br/>").map((line, index) => (
+          {department.split("<br>").map((line, index) => (
             <span key={index}>
               {line}
               <br />
