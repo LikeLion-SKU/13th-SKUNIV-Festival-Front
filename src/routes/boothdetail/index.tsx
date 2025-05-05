@@ -24,6 +24,7 @@ type BoothInfoResponse = {
   boothInstagram: string;
   imageUrls: string[];
   openingHours: string;
+  serviceAgreement: boolean;
   boothMenus: {
     menu: string;
     menuKR: string;
@@ -187,7 +188,7 @@ export default function BoothDetail() {
           )}
         </S.MenuSection>
       </S.Layout>
-      <ReservationButton disabled={false} />
+      <ReservationButton disabled={!response?.data?.serviceAgreement} />
       <ModalTransition>
         <Modals />
       </ModalTransition>
