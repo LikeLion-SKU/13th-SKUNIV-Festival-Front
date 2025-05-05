@@ -2,23 +2,28 @@ import { useState } from "react";
 import styled from "@emotion/styled";
 import TimeTableCard from "./TimeTableCard";
 import TimeTableModal from "./TimeTableModal";
-import artistList, { Artist } from "./ArtistList";
+import { Artist, useArtistList } from "./useArtistList";
+import { useTranslation } from "react-i18next";
 
 export default function TimeTable() {
+  const artistList = useArtistList();
+
   const [selectedDay, setSelectedDay] = useState<"DAY 2" | "DAY 3">("DAY 2");
   const [selectedArtist, setSelectedArtist] = useState<null | Artist>(null);
   const filteredList = artistList.filter((artist) => artist.date === selectedDay);
+
+  const { t } = useTranslation("main");
 
   return (
     <TimeTableWrapper>
       <NavWrapper>
         <NavBtn selected={selectedDay === "DAY 2"} onClick={() => setSelectedDay("DAY 2")}>
           <p className="en">DAY 2</p>
-          <p className="ko">5월 8일 (목)</p>
+          <p className="ko">{t("may_8")}</p>
         </NavBtn>
         <NavBtn selected={selectedDay === "DAY 3"} onClick={() => setSelectedDay("DAY 3")}>
           <p className="en">DAY 3</p>
-          <p className="ko">5월 9일 (금)</p>
+          <p className="ko">{t("may_9")}</p>
         </NavBtn>
       </NavWrapper>
 

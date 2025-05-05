@@ -7,6 +7,7 @@ import Ko from "@icon/ko.svg?react";
 import En from "@icon/en.svg?react";
 import Ch from "@icon/ch.svg?react";
 import Jp from "@icon/jp.svg?react";
+import { useTranslation } from "react-i18next";
 
 interface MainSectionProps {
   onSelectLang: (lang: string) => void;
@@ -28,12 +29,14 @@ export default function MainSection({ onSelectLang, langSelected }: MainSectionP
     }
   }, []);
 
+  const { t } = useTranslation("main");
+
   return (
     <>
       {langSelected ? (
         <AfterWrapper>
           <MainTitle />
-          <p className="text">2025 서경대학교 대동제</p>
+          <p className="text">{t("festival_title")}</p>
           <p className="text">05.07 ~ 05.09</p>
         </AfterWrapper>
       ) : (
@@ -51,7 +54,7 @@ export default function MainSection({ onSelectLang, langSelected }: MainSectionP
           {animationDone && (
             <LanguageWrapper>
               <TextBox>
-                <p className="text_16">Please select language.</p>
+                <p className="text_16">Please select your language.</p>
                 <p className="text_14">언어를 선택해주세요.</p>
               </TextBox>
 
@@ -63,7 +66,7 @@ export default function MainSection({ onSelectLang, langSelected }: MainSectionP
                 <En className="icon" />
                 English
               </LangButton>
-              <LangButton onClick={() => onSelectLang("ch")}>
+              <LangButton onClick={() => onSelectLang("cn")}>
                 <Ch className="icon" />
                 中文
               </LangButton>

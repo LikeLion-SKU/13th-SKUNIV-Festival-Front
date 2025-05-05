@@ -12,9 +12,19 @@ import Modals from "./modals";
 import { AnimatePresence } from "framer-motion";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { IoChevronBack } from "react-icons/io5";
+import useLanguage from "../../hooks/useLanguage";
 
 const Header = () => {
-  const { title, showBack, showHamburger, showMenu, transparent, update } = useHeaderStore();
+  const {
+    title,
+    showBack,
+    showHamburger,
+    showMenu,
+    transparent,
+    update,
+    canAccessLost,
+    canAccessAdmin,
+  } = useHeaderStore();
   const { modalStep, setModalStep } = useAdminStore();
   const { login } = useAdminLostStore();
 
@@ -23,15 +33,18 @@ const Header = () => {
   const navigate = useNavigate();
 
   const handleClick = useClicks(3, 1000, () => {
-    const header = useHeaderStore.getState();
     const lost = useAdminLostStore.getState();
 
-    if (header.canAccessAdmin) {
+    if (canAccessAdmin) {
       setModalStep(1);
-    } else if (header.canAccessLost && !lost.isLoggedIn) {
+    } else if (canAccessLost && !lost.isLoggedIn) {
       setShowLostModal(true);
     }
   });
+
+  const [lang] = useLanguage();
+
+  if (!lang) return null;
 
   return (
     <>

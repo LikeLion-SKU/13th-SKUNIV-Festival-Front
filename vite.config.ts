@@ -44,6 +44,7 @@ export default defineConfig({
       workbox: {
         navigateFallback: "/index.html", // SPA fallback
         navigateFallbackDenylist: [/^\/api/], // API는 제외
+        maximumFileSizeToCacheInBytes: 5000000, // 5MB
       },
       devOptions: {
         enabled: true, // 개발 중에도 SW 작동
