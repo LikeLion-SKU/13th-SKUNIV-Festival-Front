@@ -66,7 +66,7 @@ export default function MainSection({ onSelectLang, langSelected }: MainSectionP
                 <En className="icon" />
                 English
               </LangButton>
-              <LangButton onClick={() => onSelectLang("cn")}>
+              <LangButton onClick={() => onSelectLang("ch")}>
                 <Ch className="icon" />
                 中文
               </LangButton>

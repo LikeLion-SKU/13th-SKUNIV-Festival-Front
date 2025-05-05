@@ -27,7 +27,7 @@ i18n.use(initReactI18next).init({
       main: main_jp,
       booth: booth_jp,
     },
-    cn: {
+    ch: {
       main: main_cn,
       booth: booth_cn,
     },
