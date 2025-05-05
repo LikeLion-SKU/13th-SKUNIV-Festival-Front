@@ -9,7 +9,6 @@ import Emergency from "./Emergency";
 import Intro from "./Intro";
 import useLanguage from "../../shared/hooks/useLanguage";
 import { ScrollRestoration } from "react-router";
-import Header from "../../shared/components/Header";
 import useHeader from "../../shared/hooks/useHeader";
 
 export default function Home() {
