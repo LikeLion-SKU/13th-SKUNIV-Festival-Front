@@ -11,12 +11,13 @@ import useLanguage from "../../shared/hooks/useLanguage";
 import BaseResponse from "../../shared/interfaces/BaseResponse";
 import DayChip from "./DayChip";
 import NightChip from "./NightChip";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Br from "../../shared/components/Br";
 import ArrowDown from "@icon/arrow-down.svg?react";
+import { useTranslation } from "react-i18next";
 
 type BoothInfoResponse = {
   id: number;
@@ -36,24 +37,25 @@ type BoothInfoResponse = {
 
 type BoothTimeResponse = string;
 
-const DROPDOWN_TIMES = [
-  {
-    value: "DAY",
-    label: "낮",
-  },
-  {
-    value: "NIGHT",
-    label: "밤",
-  },
-  {
-    value: "ALL",
-    label: "전체",
-  },
-];
-
 export default function BoothDetail() {
   const { boothId } = useParams();
   const [lang] = useLanguage();
+  const { t } = useTranslation("booth");
+
+  const DROPDOWN_TIMES = [
+    {
+      value: "day_menu",
+      label: t("day_menu"),
+    },
+    {
+      value: "night_menu",
+      label: t("night_menu"),
+    },
+    {
+      value: "all_menu",
+      label: t("all_menu"),
+    },
+  ];
 
   const { data: response } = useQuery<BaseResponse<BoothInfoResponse>>({
     queryKey: ["boothDetail", boothId],
@@ -80,16 +82,20 @@ export default function BoothDetail() {
   const [isZoomed, setIsZoomed] = useState(true);
 
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [selectedTime, setSelectedTime] = useState<(typeof DROPDOWN_TIMES)[number]>({
-    value: "DAY",
-    label: "낮",
-  });
+  const [selectedTime, setSelectedTime] = useState<(typeof DROPDOWN_TIMES)[number]>();
+  useEffect(() => {
+    setSelectedTime({
+      value: "day_menu",
+      label: t("day_menu"),
+    });
+  }, [lang]);
 
   const filteredMenus = response?.data?.boothMenus
     ?.filter((menu) =>
-      selectedTime.value === "ALL"
+      selectedTime?.value === "all_menu"
         ? true
-        : menu.menuOpeningHours === selectedTime.value || menu.menuOpeningHours === "FULL"
+        : menu.menuOpeningHours === selectedTime?.value.replace("_menu", "").toUpperCase() ||
+          menu.menuOpeningHours === "FULL"
     )
     .sort((a, b) => a.menuPrice - b.menuPrice); //오름차순
 
@@ -141,19 +147,19 @@ export default function BoothDetail() {
         {/* 메뉴 */}
         <S.MenuSection>
           <S.MenuHeader>
-            <S.MenuTitle>메뉴</S.MenuTitle>
+            <S.MenuTitle>{t("menu")}</S.MenuTitle>
             <S.SelectWrapper>
               <S.Select onClick={() => setIsDropdownOpen((prev) => !prev)} opened={isDropdownOpen}>
-                {selectedTime.label} 메뉴
+                {selectedTime?.label}
                 <ArrowDown style={{ transform: isDropdownOpen ? "rotate(180deg)" : undefined }} />
               </S.Select>
               {isDropdownOpen && (
                 <S.Options>
-                  {DROPDOWN_TIMES.filter((t) => t.value !== selectedTime.value).map((t, idx) => (
+                  {DROPDOWN_TIMES.filter((t) => t.value !== selectedTime?.value).map((t, idx) => (
                     <S.Option
                       key={t.value}
                       value={t.value}
-                      last={idx === DROPDOWN_TIMES.length - 1}
+                      last={idx <= DROPDOWN_TIMES.length - 1}
                       onClick={() => {
                         setSelectedTime({
                           label: t.label,
@@ -162,7 +168,7 @@ export default function BoothDetail() {
                         setIsDropdownOpen(false);
                       }}
                     >
-                      {t.label} 메뉴
+                      {t.label}
                     </S.Option>
                   ))}
                 </S.Options>
@@ -174,12 +180,15 @@ export default function BoothDetail() {
               {filteredMenus.map((menu) => (
                 <S.Menu key={menu.menu}>
                   <span>
-                    {menu.menu}
-                    <br />
-                    {menu?.menuKR && <span className="menu-kr">({menu?.menuKR})</span>}
+                    <Br content={menu.menu} />
+                    {menu?.menuKR && (
+                      <span className="menu-kr">
+                        <Br content={menu?.menuKR} />
+                      </span>
+                    )}
                   </span>
                   <S.MenuPrice style={{ fontWeight: 600 }}>
-                    {menu.menuPrice.toLocaleString()}원
+                    {menu.menuPrice.toLocaleString(lang!)}
                   </S.MenuPrice>
                 </S.Menu>
               ))}

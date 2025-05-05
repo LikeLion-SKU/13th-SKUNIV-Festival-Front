@@ -1,11 +1,14 @@
 import styled from "@emotion/styled";
 import Sun from "@icon/sun.svg?react";
+import { useTranslation } from "react-i18next";
 
 const DayChip = () => {
+  const { t } = useTranslation("booth");
+
   return (
     <Chip>
       <Sun />
-      <ChipText>낮 부스</ChipText>
+      <ChipText>{t("day_booth")}</ChipText>
       <Time>~ 17:00</Time>
     </Chip>
   );

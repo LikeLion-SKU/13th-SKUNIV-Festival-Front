@@ -6,5 +6,12 @@
   "eunju_hall_1": "恩珠一馆",
   "eunju_hall_2": "恩珠二馆",
   "cheongun_hall": "青云馆",
-  "daeil_hall": "大一馆"
+  "daeil_hall": "大一馆",
+  "day_booth": "白天展位",
+  "night_booth": "夜のブース",
+  "menu": "菜单",
+  "day_menu": "午餐菜单",
+  "night_menu": "夜间展位",
+  "all_menu": "所有菜单",
+  "reserve": "预订"
 }

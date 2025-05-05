@@ -1,11 +1,14 @@
 import styled from "@emotion/styled";
 import Moon from "@icon/moon.svg?react";
+import { useTranslation } from "react-i18next";
 
 const NightChip = () => {
+  const { t } = useTranslation("booth");
+
   return (
     <Chip>
       <Moon />
-      <ChipText>밤 부스</ChipText>
+      <ChipText>{t("night_booth")}</ChipText>
       <Time>17:00 ~ 23:00</Time>
     </Chip>
   );
