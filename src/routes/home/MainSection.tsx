@@ -2,11 +2,11 @@ import styled from "@emotion/styled";
 import { DotLottiePlayer, type DotLottieCommonPlayer } from "@dotlottie/react-player";
 import { useEffect, useRef, useState } from "react";
 import blooming from "../../shared/assets/lottie/blooming.json";
-import maintitle from "@image/main_title.svg";
-import ko from "@icon/ko.svg";
-import en from "@icon/en.svg";
-import ch from "@icon/ch.svg";
-import jp from "@icon/jp.svg";
+import Title from "@icon/main_title.svg?react";
+import Ko from "@icon/ko.svg?react";
+import En from "@icon/en.svg?react";
+import Ch from "@icon/ch.svg?react";
+import Jp from "@icon/jp.svg?react";
 
 interface MainSectionProps {
   onSelectLang: (lang: string) => void;
@@ -19,12 +19,9 @@ export default function MainSection({ onSelectLang, langSelected }: MainSectionP
 
   useEffect(() => {
     const player = playerRef.current;
-
     if (player) {
       const handleComplete = () => setAnimationDone(true);
-
       player.addEventListener("complete", handleComplete);
-
       return () => {
         player.removeEventListener("complete", handleComplete);
       };
@@ -35,9 +32,9 @@ export default function MainSection({ onSelectLang, langSelected }: MainSectionP
     <>
       {langSelected ? (
         <AfterWrapper>
-          <img className="img" src={maintitle} alt="maintitle" />
+          <MainTitle />
           <p className="text">2025 서경대학교 대동제</p>
-          <p className="text"> 05.07 ~ 05.09</p>
+          <p className="text">05.07 ~ 05.09</p>
         </AfterWrapper>
       ) : (
         <BeforeWrapper>
@@ -47,9 +44,7 @@ export default function MainSection({ onSelectLang, langSelected }: MainSectionP
               src={blooming}
               autoplay
               loop={false}
-              style={{
-                objectFit: "cover",
-              }}
+              style={{ objectFit: "cover" }}
             />
           </LottieWrapper>
 
@@ -61,19 +56,19 @@ export default function MainSection({ onSelectLang, langSelected }: MainSectionP
               </TextBox>
 
               <LangButton onClick={() => onSelectLang("ko")}>
-                <img className="img" src={ko} alt="ko" />
+                <Ko className="icon" />
                 한국어
               </LangButton>
               <LangButton onClick={() => onSelectLang("en")}>
-                <img className="img" src={en} alt="en" />
+                <En className="icon" />
                 English
               </LangButton>
               <LangButton onClick={() => onSelectLang("ch")}>
-                <img className="img" src={ch} alt="ch" />
+                <Ch className="icon" />
                 中文
               </LangButton>
               <LangButton onClick={() => onSelectLang("jp")}>
-                <img className="img" src={jp} alt="jp" />
+                <Jp className="icon" />
                 にほんご
               </LangButton>
             </LanguageWrapper>
@@ -96,17 +91,15 @@ const AfterWrapper = styled.div`
   flex-direction: column;
   margin-bottom: 130px;
 
-  & > .img {
-    width: auto;
-    height: auto;
-    padding-top: 100px;
-  }
-
-  & > .text {
+  .text {
     color: white;
     font-size: 12px;
     font-family: "HSSanTokki20-Regular";
   }
+`;
+
+const MainTitle = styled(Title)`
+  margin-top: 100px;
 `;
 
 const LottieWrapper = styled.div`
@@ -123,7 +116,6 @@ const LanguageWrapper = styled.div`
   left: 50%;
   transform: translate(-50%, -5%);
   z-index: 2;
-
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -147,14 +139,14 @@ const TextBox = styled.div`
   text-align: center;
   color: white;
 
-  & > .text_16 {
+  .text_16 {
     font-size: 16px;
     font-weight: 600;
     letter-spacing: -0.2px;
     margin-bottom: 2px;
   }
 
-  & > .text_14 {
+  .text_14 {
     font-size: 14px;
     font-weight: 600;
     letter-spacing: -0.2px;
@@ -174,10 +166,9 @@ const LangButton = styled.div`
   font-size: 16px;
   font-weight: 600;
   display: flex;
-  flex-direction: row;
   align-items: center;
 
-  & > .img {
+  .icon {
     margin-right: 30px;
   }
 `;
