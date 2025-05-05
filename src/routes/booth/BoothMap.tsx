@@ -37,20 +37,20 @@ export default function BoothMap({
     { belongTo: "혜인관", top: 80, left: 92, boothFaculty: "총학생회", id: 30 },
     { belongTo: "혜인관", top: 80, left: 234, boothFaculty: "신문사", id: 25 },
     { belongTo: "혜인관", top: 80, left: 251, boothFaculty: "총동아리연합회", id: 14 },
-    { belongTo: "은주2관", top: 110, left: 263, boothFaculty: "예술대학", id: 27 },
-    { belongTo: "은주2관", top: 127, left: 263, boothFaculty: "미용예술대학", id: 20 },
-    { belongTo: "은주2관", top: 144, left: 263, boothFaculty: "디자인학부", id: 12 },
+    { belongTo: "은주2관", top: 110, left: 264, boothFaculty: "예술대학", id: 27 },
+    { belongTo: "은주2관", top: 127, left: 264, boothFaculty: "미용예술대학", id: 20 },
+    { belongTo: "은주2관", top: 144, left: 264, boothFaculty: "디자인학부", id: 12 },
     {
       belongTo: "은주2관",
       top: 161,
-      left: 263,
+      left: 264,
       boothFaculty: "스포츠앤<br>테크놀로지학과",
       id: 21,
     },
-    { belongTo: "은주2관", top: 178, left: 263, boothFaculty: "아트앤<br>테크놀로지학과", id: 24 },
-    { belongTo: "은주2관", top: 195, left: 263, boothFaculty: "광고홍보영상학과", id: 19 },
-    { belongTo: "은주2관", top: 212, left: 263, boothFaculty: "실용음악학부", id: 22 },
-    { belongTo: "은주2관", top: 229, left: 263, boothFaculty: "공공인재학부", id: 9 },
+    { belongTo: "은주2관", top: 178, left: 264, boothFaculty: "아트앤<br>테크놀로지학과", id: 24 },
+    { belongTo: "은주2관", top: 195, left: 264, boothFaculty: "광고홍보영상학과", id: 19 },
+    { belongTo: "은주2관", top: 212, left: 264, boothFaculty: "실용음악학부", id: 22 },
+    { belongTo: "은주2관", top: 229, left: 264, boothFaculty: "공공인재학부", id: 9 },
     { belongTo: "은주1관", top: 243, left: 140, boothFaculty: "나노화학<br>생명공학과", id: 5 },
     { belongTo: "은주1관", top: 243, left: 157, boothFaculty: "도시공학과", id: 15 },
     { belongTo: "은주1관", top: 243, left: 174, boothFaculty: "소프트웨어학과", id: 11 },
@@ -114,6 +114,7 @@ export default function BoothMap({
       <Stage>{t("stage")}</Stage>
       <StudentZone>{t("student_zone")}</StudentZone>
       <SmokeZone>{t("smoking_booth")}</SmokeZone>
+      <XZone>X</XZone>
     </MapWrapper>
   );
 }
@@ -165,14 +166,14 @@ const Building = styled.div<{ selected: boolean; disabled: boolean }>`
 
   &.ej1 {
     top: 263px;
-    left: 115px;
+    left: 117px;
     width: 165px;
     height: 43px;
   }
 
   &.ej2 {
     top: 70px;
-    left: 285px;
+    left: 286px;
     width: 52px;
     height: 236px;
   }
@@ -226,6 +227,25 @@ const SmokeZone = styled.div`
   position: absolute;
   top: 18px;
   left: 2px;
+  width: 52px;
+  height: 48px;
+  background-color: #b9b9b9;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: -0.275px;
+  text-align: center;
+  padding: 5px;
+`;
+
+const XZone = styled.div`
+  position: absolute;
+  top: 18px;
+  left: 286px;
   width: 52px;
   height: 48px;
   background-color: #b9b9b9;
