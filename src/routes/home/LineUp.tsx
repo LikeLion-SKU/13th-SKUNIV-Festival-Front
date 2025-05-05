@@ -19,11 +19,7 @@ export default function LineUp() {
         loop: true,
         centeredSlides: true,
         slideToClickedSlide: true,
-        effect: "coverflow",
-        coverflowEffect: {
-          rotate: -30,
-          slideShadows: true,
-        },
+        effect: "slide",
         spaceBetween: 20,
         autoplay: {
           delay: 3000,
