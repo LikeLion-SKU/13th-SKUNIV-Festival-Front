@@ -12,6 +12,8 @@ import Madeby from "./routes/madeby";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import ServiceLayout from "./shared/layouts/service-layout";
 
+import "./shared/lib/i18n";
+
 const router = createBrowserRouter([
   {
     Component: RootLayout,
