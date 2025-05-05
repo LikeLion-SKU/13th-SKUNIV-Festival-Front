@@ -35,7 +35,7 @@ export const useArtistList = () => {
     {
       date: "DAY 2",
       time: "20:00 - 20:30",
-      description: "동아리 공연",
+      description: t("club", { ns: "main" }),
       name: t("sdr", { ns: "main" }),
       image: "https://minio.2025skufestival.site/skufestival/booth/1e64.webp",
     },

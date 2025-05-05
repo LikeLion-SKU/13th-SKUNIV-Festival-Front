@@ -1,5 +1,4 @@
 import styled from "@emotion/styled";
-import Smoke from "@icon/smoke.svg?react";
 import { useTranslation } from "react-i18next";
 
 interface BoothMapProps {
@@ -115,10 +114,8 @@ export default function BoothMap({
       })}
 
       <Stage>{t("stage")}</Stage>
-      <StudentZone>재학생존</StudentZone>
-      <SmokeZone>
-        <Smoke />
-      </SmokeZone>
+      <StudentZone>{t("student_zone")}</StudentZone>
+      <SmokeZone>{t("smoking_booth")}</SmokeZone>
     </MapWrapper>
   );
 }
@@ -143,6 +140,7 @@ const Building = styled.div<{ selected: boolean; disabled: boolean }>`
   font-size: 11px;
   font-weight: 600;
   letter-spacing: -0.275px;
+  padding: 8px;
   cursor: ${({ disabled }) => (disabled ? "not-allowed" : "pointer")};
 
   &.di {
@@ -204,6 +202,7 @@ const Stage = styled.div`
   font-size: 11px;
   font-weight: 600;
   letter-spacing: -0.275px;
+  padding: 8px;
 `;
 
 const StudentZone = styled.div`
@@ -221,13 +220,14 @@ const StudentZone = styled.div`
   font-size: 11px;
   font-weight: 600;
   letter-spacing: -0.275px;
+  padding: 8px;
 `;
 
 const SmokeZone = styled.div`
   position: absolute;
   top: 18px;
-  left: 29px;
-  width: 24px;
+  left: 2px;
+  width: 52px;
   height: 48px;
   background-color: #b9b9b9;
   color: white;
@@ -238,4 +238,6 @@ const SmokeZone = styled.div`
   font-size: 11px;
   font-weight: 600;
   letter-spacing: -0.275px;
+  text-align: center;
+  padding: 8px;
 `;

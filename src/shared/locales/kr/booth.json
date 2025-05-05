@@ -7,11 +7,14 @@
   "eunju_hall_2": "은주2관",
   "cheongun_hall": "청운관",
   "daeil_hall": "대일관",
+  "student_zone": "재학생존",
+  "smoking_booth": "흡연부스",
   "day_booth": "낮 부스",
   "night_booth": "밤 부스",
   "menu": "메뉴",
   "day_menu": "낮 메뉴",
   "night_menu": "밤 메뉴",
   "all_menu": "모든 메뉴",
-  "reserve": "예약하기"
+  "reserve": "예약하기",
+  "message": "존재하지 않는 부스입니다"
 }
