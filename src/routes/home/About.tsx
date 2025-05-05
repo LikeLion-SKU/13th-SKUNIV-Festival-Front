@@ -21,7 +21,7 @@ export default function About() {
         여러분들께 도움이 되는 페이지가 되길 바라며, <br />
         즐거운 축제 즐기시길 바랍니다 !
       </p>
-      <AboutButton onClick={() => navigate("madeby")}>제작자 보러가기</AboutButton>
+      <AboutButton onClick={() => navigate("credit")}>제작자 보러가기</AboutButton>
       <AboutButton onClick={() => window.open("https://skulikelion.com/")}>
         멋사 홈페이지 보러가기
       </AboutButton>

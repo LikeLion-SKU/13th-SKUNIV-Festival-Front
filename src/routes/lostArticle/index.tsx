@@ -24,8 +24,7 @@ const LostArticlePage = () => {
 
   useHeader({
     title: "분실물",
-    showBack: false,
-    showHome: true,
+    showHamburger: true,
     canAccessAdmin: false,
     canAccessLost: true,
   });

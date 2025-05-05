@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import { DotLottiePlayer, type DotLottieCommonPlayer } from "@dotlottie/react-player";
 import { useEffect, useRef, useState } from "react";
 import blooming from "../../shared/assets/lottie/blooming.json";
-import maintitle from "@icon/main_title.svg";
+import maintitle from "@image/main_title.svg";
 import ko from "@icon/ko.svg";
 import en from "@icon/en.svg";
 import ch from "@icon/ch.svg";
