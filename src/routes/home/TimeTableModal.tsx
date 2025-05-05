@@ -48,7 +48,14 @@ export default function TimeTableModal({ artist, onClose }: ModalProps) {
             </ArrowButton>
             <InfoWrapper>
               <p className="time">{currentArtist.time}</p>
-              <p className="name">{currentArtist.name}</p>
+              <p className="name">
+                {currentArtist.name.split("<br/>").map((line, index) => (
+                  <span key={index}>
+                    {line}
+                    <br />
+                  </span>
+                ))}
+              </p>
             </InfoWrapper>
             <ArrowButton direction="right" onClick={goRight}>
               <ArrowRight style={{ width: 10 }} />
