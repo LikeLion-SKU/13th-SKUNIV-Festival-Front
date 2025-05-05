@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import styled from "@emotion/styled";
 import Swiper from "swiper";
-import { Autoplay, EffectCoverflow } from "swiper/modules";
+import { Autoplay } from "swiper/modules";
 import "swiper/swiper-bundle.css";
 import LineUpCard from "./LineUpCard";
 import leftArrow from "@icon/arrow_left.svg?react";
@@ -19,26 +19,17 @@ export default function LineUp() {
   useEffect(() => {
     if (swiperContainerRef.current) {
       const swiperInstance = new Swiper(swiperContainerRef.current, {
-        modules: [Autoplay, EffectCoverflow],
+        modules: [Autoplay],
         loop: true,
         centeredSlides: true,
         slideToClickedSlide: true,
-        loopAdditionalSlides: 2,
-        watchSlidesProgress: true,
-        effect: "coverflow",
-        coverflowEffect: {
-          rotate: 0,
-          stretch: 0,
-          depth: 400,
-          modifier: 2.5,
-          slideShadows: false,
-        },
-        spaceBetween: -200,
+        effect: "slide",
+        spaceBetween: 20,
         autoplay: {
           delay: 3000,
           disableOnInteraction: false,
         },
-        speed: 600,
+        speed: 500,
       });
 
       swiperInstanceRef.current = swiperInstance;
@@ -78,6 +69,7 @@ const LineupWrapper = styled.div`
   position: relative;
   width: 375px;
   height: 283px;
+  overflow: hidden;
   margin: 0 auto;
 `;
 
@@ -103,31 +95,13 @@ const RightArrow = styled(rightArrow)`
 `;
 
 const SwiperWrapper = styled.div`
+  width: 100%;
+  height: 100%;
   overflow: visible;
-  display: flex;
 
   .swiper-wrapper {
     display: flex;
-    align-items: center;
-  }
-
-  .swiper-slide {
-    transition: transform 0.5s ease-in-out, filter 0.5s ease-in-out;
-    will-change: transform, filter;
-    transform-style: preserve-3d;
-    z-index: 1;
     padding-left: 75px;
-  }
-
-  .swiper-slide:not(.swiper-slide-active) {
-    filter: blur(4px);
-    transform: scale(0.5);
-    z-index: 1;
-  }
-
-  .swiper-slide-active {
-    filter: none;
-    transform: scale(1);
-    z-index: 3;
+    align-items: center;
   }
 `;

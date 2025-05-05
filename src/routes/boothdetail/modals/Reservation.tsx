@@ -31,7 +31,10 @@ interface ReservationResponse {
   createdAt: string;
 }
 
-type ReservationWaitingsResponse = string;
+interface ReservationWaitingsResponse {
+  boothName: string;
+  waitingOrder: number;
+}
 
 const Reservation = () => {
   const { setModalStep, onClose, setReservation } = useReservationStore();
@@ -39,10 +42,10 @@ const Reservation = () => {
   const { title } = useHeaderStore();
 
   const { data: waitings } = useQuery<BaseResponse<ReservationWaitingsResponse>>({
-    queryKey: ["reservationWaitings", title],
+    queryKey: ["reservationWaitings", boothId],
     queryFn: () =>
       publicAPI.get(`/reservations/waiting/${boothId}`).then((response) => response.data),
-    enabled: !!title,
+    enabled: !!boothId,
   });
 
   const {
@@ -70,7 +73,7 @@ const Reservation = () => {
       try {
         // 예약
         const response = await publicAPI.post<BaseResponse<ReservationResponse>>("/reservations", {
-          boothName: title,
+          boothId,
           name: data.name,
           phoneNum: data.phoneNum,
           headCount: data.headCount,
@@ -150,7 +153,7 @@ const Reservation = () => {
             />
           </Form>
           <WaitingText>
-            현재 대기팀 : <Waitings>{waitings?.data ?? "?"}팀</Waitings>
+            현재 대기팀 : <Waitings>{waitings?.data?.waitingOrder ?? "?"}팀</Waitings>
           </WaitingText>
           <Subtitle>
             수집된 개인정보는 당일 파기를 원칙으로 합니다.
