@@ -13,7 +13,7 @@ const ReservationCancel = () => {
     const isFulfilled = await axios
       .all(
         idsToDelete.map((r) =>
-          publicAPI.delete(`/reservations/${r.boothName}`, { data: { name, phoneNum } })
+          publicAPI.delete(`/reservations/${r.boothId}`, { data: { name, phoneNum } })
         )
       )
       .then(

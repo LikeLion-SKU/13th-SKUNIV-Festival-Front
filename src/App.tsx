@@ -24,7 +24,7 @@ const router = createBrowserRouter([
     children: [
       { path: "about", Component: About },
       { path: "tabling", Component: Tabling },
-      { path: "tabling/admin/:boothName", Component: TablingAdmin },
+      { path: "tabling/admin/:boothName/:boothId", Component: TablingAdmin },
       { path: "booth", Component: BoothInfo },
       { path: "booth/:boothId", Component: BoothDetail },
       { path: "lost", Component: LostArticle },

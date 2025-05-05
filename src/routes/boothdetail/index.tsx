@@ -57,10 +57,9 @@ export default function BoothDetail() {
   });
 
   const { data: times } = useQuery<BaseResponse<BoothTimeResponse>>({
-    queryKey: ["boothTimes", response?.data.boothFaculty],
-    queryFn: () =>
-      publicAPI.get(`/booths/${response?.data.boothFaculty}`).then((response) => response.data),
-    enabled: !!response?.data.boothFaculty,
+    queryKey: ["boothTimes", boothId],
+    queryFn: () => publicAPI.get(`/booths/${boothId}`).then((response) => response.data),
+    enabled: !!boothId,
   });
 
   const [isZoomed, setIsZoomed] = useState(true);

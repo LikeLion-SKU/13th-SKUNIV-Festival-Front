@@ -5,11 +5,13 @@ import { DotLottiePlayer } from "@dotlottie/react-player";
 import Paper from "../../../shared/assets/lottie/paper.lottie";
 import useHeaderStore from "../../../shared/stores/useHeaderStore";
 import { useQueryClient } from "@tanstack/react-query";
+import { useParams } from "react-router";
 
 const CallComplete = () => {
   const { onClose } = useAdminStore();
-  const { title } = useHeaderStore();
+  const { boothId } = useParams();
   const queryClient = useQueryClient();
+  const { title } = useHeaderStore();
 
   return (
     <Modal
@@ -19,10 +21,10 @@ const CallComplete = () => {
           variant: "confirm",
           action: () => {
             queryClient.invalidateQueries({
-              queryKey: ["adminReservations", title],
+              queryKey: ["adminReservations", boothId],
             });
             queryClient.invalidateQueries({
-              queryKey: ["adminBoothWaitings", title],
+              queryKey: ["adminBoothWaitings", boothId],
             });
             onClose();
           },

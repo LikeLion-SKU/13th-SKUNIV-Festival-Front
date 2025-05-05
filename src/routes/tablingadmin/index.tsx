@@ -17,7 +17,13 @@ interface ReservationsResponse {
 }
 
 export default function TablingAdmin() {
-  const { boothName } = useParams();
+  const { boothName, boothId } = useParams();
+
+  const { data: response } = useQuery<BaseResponse<ReservationsResponse[]>>({
+    queryKey: ["adminReservations", boothId],
+    queryFn: () => adminAPI.get(`/reservations/admin/${boothId}`).then((response) => response.data),
+    enabled: !!boothId,
+  });
 
   useHeader({
     title: boothName!,
@@ -25,17 +31,10 @@ export default function TablingAdmin() {
     showHome: true,
   });
 
-  const { data: response } = useQuery<BaseResponse<ReservationsResponse[]>>({
-    queryKey: ["adminReservations", boothName],
-    queryFn: () =>
-      adminAPI.get(`/reservations/admin/${boothName}`).then((response) => response.data),
-    enabled: !!boothName,
-  });
-
   const { data: waitings } = useQuery<number>({
-    queryKey: ["adminBoothWaitings", boothName],
-    queryFn: () => adminAPI.get(`/booths/admin/${boothName}`).then((response) => response.data),
-    enabled: !!boothName,
+    queryKey: ["adminBoothWaitings", boothId],
+    queryFn: () => adminAPI.get(`/booths/admin/${boothId}`).then((response) => response.data),
+    enabled: !!boothId,
   });
 
   return (
