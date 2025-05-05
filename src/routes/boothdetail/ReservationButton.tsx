@@ -1,5 +1,7 @@
 import styled from "@emotion/styled";
 import useReservationStore from "../../shared/stores/useReservationStore";
+import { useTranslation } from "react-i18next";
+import { useBreakTime } from "../../shared/hooks/useBreakTime";
 
 interface ReservationButtonProps {
   disabled?: boolean;
@@ -8,10 +10,25 @@ interface ReservationButtonProps {
 const ReservationButton = ({ disabled }: ReservationButtonProps) => {
   const { setModalStep } = useReservationStore();
 
+  const { t } = useTranslation("booth");
+
+  const isDayBreakTime = useBreakTime("16:30", "16:59");
+
+  const isNotAvailableTime = useBreakTime("23:00", "9:59");
+
   return (
     <Footer>
-      <Button disabled={disabled} onClick={() => !disabled && setModalStep(1)}>
-        {disabled ? "해당 부스는 예약 서비스를 운영하지 않습니다." : "예약하기"}
+      <Button
+        disabled={disabled || isDayBreakTime || isNotAvailableTime}
+        onClick={() => !disabled && setModalStep(1)}
+      >
+        {disabled
+          ? t("no_reservation")
+          : isDayBreakTime
+          ? t("day_break_time")
+          : isNotAvailableTime
+          ? t("reservation_unavailable")
+          : t("reserve")}
       </Button>
     </Footer>
   );
