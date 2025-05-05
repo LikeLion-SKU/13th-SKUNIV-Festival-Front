@@ -84,7 +84,6 @@ const Layout = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 32px;
 `;
 
 const Title = styled.span`
@@ -106,6 +105,7 @@ const Warning = styled.span`
 `;
 
 const Reservations = styled.div`
+  margin-top: 32px;
   display: flex;
   flex-direction: column;
 `;
