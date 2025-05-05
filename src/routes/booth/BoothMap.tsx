@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import Smoke from "@icon/smoke.svg?react";
 
 const dots = [
   { belongTo: "청운관", top: 106, left: 63, boothFaculty: "미래융합대학" },
@@ -105,6 +106,10 @@ export default function BoothMap({
       })}
 
       <Stage>무대</Stage>
+      <StudentZone>재학생존</StudentZone>
+      <SmokeZone>
+        <Smoke />
+      </SmokeZone>
     </MapWrapper>
   );
 }
@@ -146,7 +151,7 @@ const Building = styled.div<{ selected: boolean; disabled: boolean }>`
   }
 
   &.he {
-    top: 20px;
+    top: 18px;
     left: 58px;
     width: 224px;
     height: 48px;
@@ -177,11 +182,45 @@ const Dot = styled.div<{ active: boolean }>`
 
 const Stage = styled.div`
   position: absolute;
-  top: 75px;
+  top: 72px;
   left: 116px;
   width: 108px;
   height: 27px;
   background-color: #686868;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: -0.275px;
+`;
+
+const StudentZone = styled.div`
+  position: absolute;
+  top: 104px;
+  left: 116px;
+  width: 108px;
+  height: 70px;
+  background-color: #b9b9b9;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: -0.275px;
+`;
+
+const SmokeZone = styled.div`
+  position: absolute;
+  top: 18px;
+  left: 29px;
+  width: 24px;
+  height: 48px;
+  background-color: #b9b9b9;
   color: white;
   display: flex;
   align-items: center;
