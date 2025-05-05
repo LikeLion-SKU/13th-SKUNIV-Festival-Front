@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
 import styled from "@emotion/styled";
 import { publicAPI } from "../../shared/lib/api";
 import useHeader from "../../shared/hooks/useHeader";
@@ -20,14 +21,20 @@ interface Booth {
 export default function BoothInfo() {
   useHeader({
     title: "부스 안내",
-    showBack: true,
-    showHome: true,
+    showBack: false,
+    showHamburger: true,
   });
+
+  const [searchParams, setSearchParams] = useSearchParams();
+
   const [searchQuery, setSearchQuery] = useState("");
   const debouncedSearchQuery = useDebounce(searchQuery);
 
   const [lang] = useLanguage();
-  const [selectedLocation, setSelectedLocation] = useState("혜인관");
+
+  const initialLocation = searchParams.get("location") ?? "혜인관";
+  const [selectedLocation, setSelectedLocation] = useState(initialLocation);
+
   const [boothList, setBoothList] = useState<Booth[]>([]);
 
   useEffect(() => {
@@ -61,6 +68,14 @@ export default function BoothInfo() {
     };
   }, [lang]);
 
+  useEffect(() => {
+    setSearchParams((prev) => {
+      const params = new URLSearchParams(prev);
+      params.set("location", selectedLocation);
+      return params;
+    });
+  }, [selectedLocation, setSearchParams]);
+
   const isSearching = debouncedSearchQuery.length > 0;
 
   const filteredList = boothList.filter((booth) => {
@@ -73,13 +88,10 @@ export default function BoothInfo() {
   });
 
   return (
-    <>
+    <Wrapper>
       <SearchSection searchQuery={searchQuery} onSearchQueryChange={setSearchQuery} />
       {!isSearching && (
-        <>
-          <LocNav selectedLocation={selectedLocation} setSelectedLocation={setSelectedLocation} />
-          {/* <BoothMap selectedLocation={selectedLocation} setSelectedLocation={setSelectedLocation} /> */}
-        </>
+        <LocNav selectedLocation={selectedLocation} setSelectedLocation={setSelectedLocation} />
       )}
       <BoothMap
         selectedLocation={selectedLocation}
@@ -98,9 +110,15 @@ export default function BoothInfo() {
           />
         ))}
       </BoothWrapper>
-    </>
+    </Wrapper>
   );
 }
+
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
 
 const BoothWrapper = styled.div`
   display: grid;

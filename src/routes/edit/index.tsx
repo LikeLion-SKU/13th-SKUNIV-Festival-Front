@@ -7,6 +7,7 @@ import LocationInput from "./locationInput";
 import SubmitButton from "./submitButton";
 import { Container } from "./style";
 import { postLostItem, putLostItem, getLostItem } from "./editAPI";
+import useHeader from "../../shared/hooks/useHeader";
 
 const EditPage = () => {
   const [name, setName] = useState("");
@@ -15,6 +16,12 @@ const EditPage = () => {
   const [foundDate, setFoundDate] = useState("");
   const location = useLocation();
   const navigate = useNavigate();
+
+  useHeader({
+    title: "분실물",
+    showBack: true,
+    showHome: true,
+  });
 
   // URL에서 id 추출
   const itemId = new URLSearchParams(location.search).get("id");
@@ -56,7 +63,7 @@ const EditPage = () => {
         // 새로 등록할 때는 POST 요청
         await postLostItem(formData);
       }
-      navigate("/lost");
+      navigate("/lostandfound");
     } catch (e) {
       console.error("아이템 등록/수정 실패:", e);
     }

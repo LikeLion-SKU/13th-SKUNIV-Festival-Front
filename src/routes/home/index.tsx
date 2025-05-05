@@ -8,7 +8,9 @@ import About from "./About";
 import Emergency from "./Emergency";
 import Intro from "./Intro";
 import useLanguage from "../../shared/hooks/useLanguage";
-import FloatingButton from "../../shared/components/FloatingButton";
+import { ScrollRestoration } from "react-router";
+import Header from "../../shared/components/Header";
+import useHeader from "../../shared/hooks/useHeader";
 
 export default function Home() {
   const [lang, setLang] = useLanguage();
@@ -16,6 +18,12 @@ export default function Home() {
   const handleLangSelect = (selectedLang: string) => {
     setLang(selectedLang);
   };
+
+  useHeader({
+    title: null,
+    showHamburger: true,
+    transparent: true,
+  });
 
   return (
     <HomeWrapper langSelected={!!lang}>
@@ -28,9 +36,9 @@ export default function Home() {
           <Section title="부스 보러가기" content={<Booth />} />
           <Section title="대피로 & AED 위치" content={<Emergency />} />
           <Section title="about" content={<About />} />
-          <FloatingButton />
         </>
       )}
+      <ScrollRestoration />
     </HomeWrapper>
   );
 }

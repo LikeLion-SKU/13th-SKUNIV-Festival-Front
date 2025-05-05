@@ -15,7 +15,14 @@ export default function BoothCard({ image, location, department, id }: CardProps
     <Card onClick={() => navigate(`/booth/${id}`)} image={image}>
       <TextBox>
         <p className="location">{location}</p>
-        <p className="department">{department}</p>
+        <p className="department">
+          {department.split("<br>").map((line, index) => (
+            <span key={index}>
+              {line}
+              <br />
+            </span>
+          ))}
+        </p>
       </TextBox>
     </Card>
   );
@@ -49,7 +56,7 @@ const TextBox = styled.div`
 
   & > .department {
     color: #fff;
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 700;
     line-height: normal;
     letter-spacing: -0.5px;

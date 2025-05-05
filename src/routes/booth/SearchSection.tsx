@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import searchIcon from "@icon/search.svg";
+import Search from "@icon/search.svg?react";
 
 interface Props {
   searchQuery: string;
@@ -15,15 +15,15 @@ export default function SearchSection({ searchQuery, onSearchQueryChange }: Prop
         onChange={(e) => onSearchQueryChange(e.target.value.trim())}
         placeholder="학과 부스 검색"
       />
-      <SearchIcon src={searchIcon} alt="search" />
+      <SearchIcon />
     </Wrapper>
   );
 }
 
 const Wrapper = styled.div`
   position: relative;
-  width: 354px;
-  margin-bottom: 16px;
+  width: 90vw;
+  max-width: 768px;
 `;
 
 const SearchBox = styled.input`
@@ -33,13 +33,13 @@ const SearchBox = styled.input`
   background-color: #f5f5f5;
   padding: 0 40px 0 15px;
   font-size: 15px;
-  color: #a3a3a3;
+  color: #1a1a1a;
   font-weight: 500;
   border: none;
   outline: none;
 `;
 
-const SearchIcon = styled.img`
+const SearchIcon = styled(Search)`
   position: absolute;
   right: 15px;
   top: 50%;

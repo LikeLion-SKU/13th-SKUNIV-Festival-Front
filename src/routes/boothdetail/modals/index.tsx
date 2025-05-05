@@ -1,4 +1,4 @@
-import ReservationList from "../../../shared/components/FloatingButton/modals/ReservationList";
+import ReservationList from "../../../shared/components/Header/modals/ReservationList";
 import useReservationStore from "../../../shared/stores/useReservationStore";
 import AlreadyReserved from "./AlreadyReserved";
 import Reservation from "./Reservation";

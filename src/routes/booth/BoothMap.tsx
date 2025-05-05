@@ -1,37 +1,37 @@
 import styled from "@emotion/styled";
 
 const dots = [
-  { belongTo: "청운관", top: 106, left: 68, boothFaculty: "미래융합대학" },
-  { belongTo: "청운관", top: 123, left: 68, boothFaculty: "인문과학대학" },
-  { belongTo: "청운관", top: 140, left: 68, boothFaculty: "사회과학대학" },
-  { belongTo: "청운관", top: 157, left: 68, boothFaculty: "이공대학" },
-  { belongTo: "청운관", top: 174, left: 68, boothFaculty: "일어전공" },
-  { belongTo: "대일관", top: 200, left: 68, boothFaculty: "불어전공" },
-  { belongTo: "대일관", top: 217, left: 68, boothFaculty: "중어전공" },
-  { belongTo: "대일관", top: 234, left: 68, boothFaculty: "토목건축공학과" },
-  { belongTo: "대일관", top: 251, left: 68, boothFaculty: "전자컴퓨터공학과" },
-  { belongTo: "대일관", top: 268, left: 68, boothFaculty: "금융정보학과" },
-  { belongTo: "대일관", top: 285, left: 68, boothFaculty: "물류시스템공학과" },
-  { belongTo: "혜인관", top: 80, left: 68, boothFaculty: "총학생회" },
-  { belongTo: "혜인관", top: 80, left: 85, boothFaculty: "총학생회" },
-  { belongTo: "혜인관", top: 80, left: 102, boothFaculty: "투엠" },
-  { belongTo: "혜인관", top: 80, left: 234, boothFaculty: "신문사" },
-  { belongTo: "혜인관", top: 80, left: 251, boothFaculty: "총동아리연합회" },
-  { belongTo: "혜인관", top: 80, left: 268, boothFaculty: "예교원" },
-  { belongTo: "은주2관", top: 110, left: 268, boothFaculty: "예술대학" },
-  { belongTo: "은주2관", top: 127, left: 268, boothFaculty: "미용예술대학" },
-  { belongTo: "은주2관", top: 144, left: 268, boothFaculty: "디자인학부" },
-  { belongTo: "은주2관", top: 161, left: 268, boothFaculty: "스포츠앤테크놀로지학과" },
-  { belongTo: "은주2관", top: 178, left: 268, boothFaculty: "아트앤테크놀로지학과" },
-  { belongTo: "은주2관", top: 195, left: 268, boothFaculty: "광고홍보영상학과" },
-  { belongTo: "은주2관", top: 212, left: 268, boothFaculty: "실용음악학부" },
-  { belongTo: "은주2관", top: 229, left: 268, boothFaculty: "공공인재학부" },
-  { belongTo: "은주1관", top: 243, left: 145, boothFaculty: "나노화학생명" },
-  { belongTo: "은주1관", top: 243, left: 162, boothFaculty: "도시공학과" },
-  { belongTo: "은주1관", top: 243, left: 179, boothFaculty: "소프트웨어학과" },
-  { belongTo: "은주1관", top: 243, left: 196, boothFaculty: "군사학과" },
-  { belongTo: "은주1관", top: 243, left: 213, boothFaculty: "아동청소년학과" },
-  { belongTo: "은주1관", top: 243, left: 230, boothFaculty: "경영학부" },
+  { belongTo: "청운관", top: 106, left: 63, boothFaculty: "미래융합대학" },
+  { belongTo: "청운관", top: 123, left: 63, boothFaculty: "인문과학대학" },
+  { belongTo: "청운관", top: 140, left: 63, boothFaculty: "사회과학대학" },
+  { belongTo: "청운관", top: 157, left: 63, boothFaculty: "이공대학" },
+  { belongTo: "청운관", top: 174, left: 63, boothFaculty: "일어전공" },
+  { belongTo: "대일관", top: 200, left: 63, boothFaculty: "불어전공" },
+  { belongTo: "대일관", top: 217, left: 63, boothFaculty: "중어전공" },
+  { belongTo: "대일관", top: 234, left: 63, boothFaculty: "토목건축공학과" },
+  { belongTo: "대일관", top: 251, left: 63, boothFaculty: "전자컴퓨터공학과" },
+  { belongTo: "대일관", top: 268, left: 63, boothFaculty: "금융정보학과" },
+  { belongTo: "대일관", top: 285, left: 63, boothFaculty: "물류시스템공학과" },
+  { belongTo: "혜인관", top: 80, left: 63, boothFaculty: "총학생회" },
+  { belongTo: "혜인관", top: 80, left: 80, boothFaculty: "총학생회" },
+  { belongTo: "혜인관", top: 80, left: 97, boothFaculty: "투엠" },
+  { belongTo: "혜인관", top: 80, left: 229, boothFaculty: "신문사" },
+  { belongTo: "혜인관", top: 80, left: 246, boothFaculty: "총동아리연합회" },
+  { belongTo: "혜인관", top: 80, left: 263, boothFaculty: "예교원" },
+  { belongTo: "은주2관", top: 110, left: 263, boothFaculty: "예술대학" },
+  { belongTo: "은주2관", top: 127, left: 263, boothFaculty: "미용예술대학" },
+  { belongTo: "은주2관", top: 144, left: 263, boothFaculty: "디자인학부" },
+  { belongTo: "은주2관", top: 161, left: 263, boothFaculty: "스포츠앤<br>테크놀로지학과" },
+  { belongTo: "은주2관", top: 178, left: 263, boothFaculty: "아트앤<br>테크놀로지학과" },
+  { belongTo: "은주2관", top: 195, left: 263, boothFaculty: "광고홍보영상학과" },
+  { belongTo: "은주2관", top: 212, left: 263, boothFaculty: "실용음악학부" },
+  { belongTo: "은주2관", top: 229, left: 263, boothFaculty: "공공인재학부" },
+  { belongTo: "은주1관", top: 243, left: 140, boothFaculty: "나노화학<br>생명공학과" },
+  { belongTo: "은주1관", top: 243, left: 157, boothFaculty: "도시공학과" },
+  { belongTo: "은주1관", top: 243, left: 174, boothFaculty: "소프트웨어학과" },
+  { belongTo: "은주1관", top: 243, left: 191, boothFaculty: "군사학과" },
+  { belongTo: "은주1관", top: 243, left: 208, boothFaculty: "아동청소년학과" },
+  { belongTo: "은주1관", top: 243, left: 225, boothFaculty: "경영학부" },
 ];
 
 interface BoothMapProps {
@@ -111,6 +111,7 @@ export default function BoothMap({
 
 const MapWrapper = styled.div`
   position: relative;
+  width: 340px;
   height: 330px;
   border-bottom: 2px solid #ebeaea;
   margin-bottom: 28px;
@@ -132,35 +133,35 @@ const Building = styled.div<{ selected: boolean; disabled: boolean }>`
 
   &.di {
     top: 190px;
-    left: 7px;
+    left: 2px;
     width: 52px;
     height: 116px;
   }
 
   &.cw {
     top: 70px;
-    left: 7px;
+    left: 2px;
     width: 52px;
     height: 116px;
   }
 
   &.he {
     top: 20px;
-    left: 63px;
+    left: 58px;
     width: 224px;
     height: 48px;
   }
 
   &.ej1 {
     top: 263px;
-    left: 120px;
+    left: 115px;
     width: 165px;
     height: 43px;
   }
 
   &.ej2 {
     top: 70px;
-    left: 290px;
+    left: 285px;
     width: 52px;
     height: 236px;
   }
@@ -177,7 +178,7 @@ const Dot = styled.div<{ active: boolean }>`
 const Stage = styled.div`
   position: absolute;
   top: 75px;
-  left: 121px;
+  left: 116px;
   width: 108px;
   height: 27px;
   background-color: #686868;

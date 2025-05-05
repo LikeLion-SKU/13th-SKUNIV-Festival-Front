@@ -6,7 +6,7 @@ interface AdminState {
   logout: () => void;
 }
 
-export const useAdminStore = create<AdminState>((set) => ({
+export const useAdminLostStore = create<AdminState>((set) => ({
   isLoggedIn: localStorage.getItem('isLoggedIn') === 'true',  // 로컬스토리지에서 로그인 상태 불러오기
   login: () => {
     localStorage.setItem('isLoggedIn', 'true');  // 로그인 시 로컬스토리지에 상태 저장

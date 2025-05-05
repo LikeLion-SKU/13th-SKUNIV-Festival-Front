@@ -19,7 +19,7 @@ const artistList: Artist[] = [
     time: "19:00 - 19:30",
     description: "동아리 공연",
     name: "유드림",
-    image: "https://minio.2025skufestival.site/skufestival/booth/1635.webp",
+    image: "https://minio.2025skufestival.site/skufestival/booth/9854.png",
   },
   {
     date: "DAY 2",
@@ -60,7 +60,7 @@ const artistList: Artist[] = [
     date: "DAY 3",
     time: "15:30 - 16:00",
     description: "학과 공연",
-    name: "실용음악 공연 (1)",
+    name: "실용음악<br/>공연 (1)",
     image: "https://minio.2025skufestival.site/skufestival/booth/cb79.webp",
   },
   {
@@ -88,7 +88,7 @@ const artistList: Artist[] = [
     date: "DAY 3",
     time: "17:30 - 19:30",
     description: "학과 공연",
-    name: "실용음악 공연 (2)",
+    name: "실용음악<br/>공연 (2)",
     image: "https://minio.2025skufestival.site/skufestival/booth/04a7.webp",
   },
   {
@@ -114,7 +114,7 @@ const artistList: Artist[] = [
   },
   {
     date: "DAY 3",
-    time: "21:30 - 22:00",
+    time: "22:00 - 23:00",
     description: "아티스트 축하공연",
     name: "Pastello",
     image: "https://minio.2025skufestival.site/skufestival/booth/2b98.webp",

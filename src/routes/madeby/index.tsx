@@ -1,14 +1,16 @@
 import styled from "@emotion/styled";
-import { useEffect } from "react";
 import Section from "../home/Section";
 import Daum from "./Daum";
 import Hanbit from "./Hanbit";
 import LikeLion from "./LikeLion";
+import useHeader from "../../shared/hooks/useHeader";
 
 export default function Madeby() {
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+  useHeader({
+    title: null,
+    showHamburger: true,
+    transparent: true,
+  });
 
   return (
     <HomeWrapper>
