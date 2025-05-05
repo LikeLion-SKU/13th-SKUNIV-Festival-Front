@@ -17,7 +17,6 @@ export default function LocNav({ selectedLocation, setSelectedLocation }: Props)
     t("daeil_hall"),
   ];
 
-  console.log(selectedLocation);
   return (
     <NavWrapper>
       {locations.map((loc) => (

@@ -10,8 +10,8 @@ import booth_en from "../locales/en/booth.json";
 import main_jp from "../locales/jp/main.json";
 import booth_jp from "../locales/jp/booth.json";
 
-import main_cn from "../locales/cn/main.json";
-import booth_cn from "../locales/cn/booth.json";
+import main_ch from "../locales/ch/main.json";
+import booth_ch from "../locales/ch/booth.json";
 
 i18n.use(initReactI18next).init({
   resources: {
@@ -28,8 +28,8 @@ i18n.use(initReactI18next).init({
       booth: booth_jp,
     },
     ch: {
-      main: main_cn,
-      booth: booth_cn,
+      main: main_ch,
+      booth: booth_ch,
     },
   },
   lng: "kr",
