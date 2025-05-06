@@ -59,7 +59,7 @@ export default function BoothDetail() {
   ];
 
   const { data: response } = useQuery<BaseResponse<BoothInfoResponse>>({
-    queryKey: ["boothDetail", boothId],
+    queryKey: ["boothDetail", boothId, lang],
     queryFn: () =>
       publicAPI
         .get(`/boothInfo/${boothId}`, { params: { lang } })
@@ -75,7 +75,7 @@ export default function BoothDetail() {
   });
 
   const { data: times } = useQuery<BaseResponse<BoothTimeResponse>>({
-    queryKey: ["boothTimes", boothId],
+    queryKey: ["boothTimes", boothId, lang],
     queryFn: () => publicAPI.get(`/booths/${boothId}`).then((response) => response.data),
     enabled: !!boothId,
   });
@@ -104,16 +104,18 @@ export default function BoothDetail() {
     <>
       <S.Layout>
         {/* 부스 이미지 */}
-        <Slider dots={true} infinite={false} speed={500} slidesToShow={1} slidesToScroll={1}>
-          {response?.data?.imageUrls?.map((imageUrl) => (
-            <S.BoothImage
-              key={imageUrl}
-              imgUrl={imageUrl}
-              zoom={isZoomed}
-              onClick={() => setIsZoomed((prev) => !prev)}
-            />
-          ))}
-        </Slider>
+        {response?.data?.imageUrls ? (
+          <Slider dots={true} infinite={false} speed={500} slidesToShow={1} slidesToScroll={1}>
+            {response?.data?.imageUrls?.map((imageUrl) => (
+              <S.BoothImage
+                key={imageUrl}
+                imgUrl={imageUrl}
+                zoom={isZoomed}
+                onClick={() => setIsZoomed((prev) => !prev)}
+              />
+            ))}
+          </Slider>
+        ) : null}
 
         {/* 설명 */}
         <S.InfoSection>

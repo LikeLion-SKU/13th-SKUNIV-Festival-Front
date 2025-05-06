@@ -6,6 +6,7 @@ import useHeader from "../../shared/hooks/useHeader";
 import { fetchLostItems } from "./lostArticleAPI";
 import { Container, CardList, Pagination, EmptyMessage } from "./style.ts";
 import { useTranslation } from "react-i18next";
+import useLanguage from "../../shared/hooks/useLanguage.ts";
 
 interface LostItem {
   id: number;
@@ -23,6 +24,7 @@ const LostArticlePage = () => {
   const [lostItems, setLostItems] = useState<LostItem[]>([]);
   const [totalPages, setTotalPages] = useState(1);
 
+  const [lang] = useLanguage();
   const { t } = useTranslation(["ui", "lostandfound"]);
 
   useHeader({
@@ -54,7 +56,7 @@ const LostArticlePage = () => {
     };
 
     getLostItems();
-  }, [name, sort, currentPage]);
+  }, [name, sort, currentPage, lang]);
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
