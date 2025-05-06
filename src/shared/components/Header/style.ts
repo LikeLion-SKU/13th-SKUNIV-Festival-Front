@@ -5,6 +5,8 @@ export const Header = styled.header<{ transparent: boolean }>`
   top: 0;
   left: ${(props) => (props.transparent ? 0 : undefined)};
   right: ${(props) => (props.transparent ? 0 : undefined)};
+  max-width: ${(props) => (props.transparent ? "768px" : undefined)};
+  margin: ${(props) => (props.transparent ? "0 auto" : undefined)};
   padding: 12px;
   display: flex;
   align-items: center;

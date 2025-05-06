@@ -98,7 +98,7 @@ const Drawer = () => {
           <CloseButton onClick={onClose}>
             <IoCloseOutline size={24} color="#fff" />
           </CloseButton>
-          <Blooming height={150} />
+          <Blooming height={120} />
           <Menus>
             {MENUS.map((menu) => (
               <Menu
@@ -257,6 +257,7 @@ const Credit = styled.button`
 `;
 
 const Languages = styled.div`
+  margin-top: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -269,7 +270,6 @@ const LanguageButton = styled.button`
 `;
 
 const Copyright = styled.small`
-  margin-top: 16px;
   display: block;
   color: #ccc;
   text-align: center;
