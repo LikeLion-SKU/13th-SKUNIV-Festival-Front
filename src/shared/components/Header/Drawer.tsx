@@ -205,6 +205,7 @@ const Menu = styled.button<{ active: boolean }>`
   gap: 8px;
   background: ${(props) => (props.active ? "rgba(255,255,255,0.05)" : undefined)};
   border-radius: 10px;
+  text-align: right;
   color: #fff;
   font-size: 17px;
   font-style: normal;
