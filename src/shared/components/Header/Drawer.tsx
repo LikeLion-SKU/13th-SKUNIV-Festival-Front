@@ -13,6 +13,7 @@ import { IoCloseOutline } from "react-icons/io5";
 import Flower1 from "@icon/flower_1.svg?react";
 import Flower2 from "@icon/flower_2.svg?react";
 import Flower3 from "@icon/flower_3.svg?react";
+import Flower4 from "@icon/flower_4.svg?react";
 import Ko from "@icon/ko.svg?react";
 import En from "@icon/en.svg?react";
 import Jp from "@icon/jp.svg?react";
@@ -60,7 +61,7 @@ const Drawer = () => {
     {
       name: t("lostandfound"),
       path: "/lostandfound",
-      icon: <Flower1 />,
+      icon: <Flower4 />,
     },
   ];
 
@@ -220,7 +221,7 @@ const Menu = styled.button<{ active: boolean }>`
 const Footer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 12px;
 `;
 
 const CheckReservation = styled.button`
