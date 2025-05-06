@@ -3,12 +3,12 @@ import styled from "@emotion/styled";
 
 export default function ServiceLayout() {
   return (
-    <main>
+    <>
       <Container>
         <Outlet />
       </Container>
       <ScrollRestoration />
-    </main>
+    </>
   );
 }
 

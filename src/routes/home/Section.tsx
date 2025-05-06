@@ -15,7 +15,13 @@ export default function Section({ title, content }: SectionProps) {
     triggerOnce: false,
   });
   return (
-    <SectionWrapper ref={ref}>
+    <SectionWrapper
+      ref={ref}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ ease: "easeIn", duration: 0.25, delay: 0.25 }}
+    >
       <StarIcon src={inView ? starYellow : starWhite} alt="star" />
       <SectionTitle>{title}</SectionTitle>
       <SectionContent>{content}</SectionContent>
@@ -23,7 +29,7 @@ export default function Section({ title, content }: SectionProps) {
   );
 }
 
-export const SectionWrapper = styled.div`
+export const SectionWrapper = styled(motion.div)`
   display: flex;
   flex-direction: column;
   align-items: center;
