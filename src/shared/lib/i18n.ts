@@ -1,11 +1,11 @@
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
 
-import main_kr from "../locales/kr/main.json";
-import booth_kr from "../locales/kr/booth.json";
-import ui_kr from "../locales/kr/ui.json";
-import lostandfound_kr from "../locales/kr/lostandfound.json";
-import credit_kr from "../locales/kr/credit.json";
+import main_ko from "../locales/ko/main.json";
+import booth_ko from "../locales/ko/booth.json";
+import ui_ko from "../locales/ko/ui.json";
+import lostandfound_ko from "../locales/ko/lostandfound.json";
+import credit_ko from "../locales/ko/credit.json";
 
 import main_en from "../locales/en/main.json";
 import booth_en from "../locales/en/booth.json";
@@ -27,12 +27,12 @@ import credit_ch from "../locales/ch/credit.json";
 
 i18n.use(initReactI18next).init({
   resources: {
-    kr: {
-      main: main_kr,
-      booth: booth_kr,
-      ui: ui_kr,
-      lostandfound: lostandfound_kr,
-      credit: credit_kr,
+    ko: {
+      main: main_ko,
+      booth: booth_ko,
+      ui: ui_ko,
+      lostandfound: lostandfound_ko,
+      credit: credit_ko,
     },
     en: {
       main: main_en,
@@ -56,8 +56,8 @@ i18n.use(initReactI18next).init({
       credit: credit_ch,
     },
   },
-  lng: "kr",
-  fallbackLng: "kr",
+  lng: "ko",
+  fallbackLng: "ko",
   interpolation: {
     escapeValue: false,
   },
