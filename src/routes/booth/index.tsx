@@ -41,6 +41,7 @@ export default function BoothInfo() {
     setSelectedLocation(t("booth:hyein_hall"));
   }, []);
 
+
   const [boothList, setBoothList] = useState<Booth[]>([]);
 
   useEffect(() => {

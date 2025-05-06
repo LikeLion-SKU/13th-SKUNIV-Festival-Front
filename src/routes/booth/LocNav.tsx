@@ -44,8 +44,8 @@ const NavWrapper = styled.div`
 const NavBtn = styled.button<{ selected: boolean }>`
   display: flex;
   justify-content: center;
-  align-items: center;
   min-width: 57px;
+  align-items: center;
   padding: 5px 10px;
   border: 1.3px solid #4aa4ff;
   background-color: ${(props) => (props.selected ? "#4AA4FF" : "transparent")};
