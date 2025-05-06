@@ -10,6 +10,7 @@ import Intro from "./Intro";
 import useLanguage from "../../shared/hooks/useLanguage";
 import useHeader from "../../shared/hooks/useHeader";
 import { useTranslation } from "react-i18next";
+import { AnimatePresence } from "framer-motion";
 
 export default function Home() {
   const [lang, setLang] = useLanguage();
@@ -29,16 +30,18 @@ export default function Home() {
   return (
     <HomeWrapper langSelected={!!lang}>
       <MainSection onSelectLang={handleLangSelect} langSelected={!!lang} />
-      {lang && (
-        <>
-          <Section title={t("introduction_title")} content={<Intro />} />
-          <Section title={t("schedule_title")} content={<TimeTable />} />
-          <Section title={t("line_up")} content={<LineUp />} />
-          <Section title={t("booth_guide")} content={<Booth />} />
-          <Section title={t("evacuation_aed")} content={<Emergency />} />
-          <Section title="About" content={<About />} />
-        </>
-      )}
+      <AnimatePresence>
+        {lang && (
+          <>
+            <Section key="0" title={t("introduction_title")} content={<Intro />} />
+            <Section key="1" title={t("schedule_title")} content={<TimeTable />} />
+            <Section key="2" title={t("line_up")} content={<LineUp />} />
+            <Section key="3" title={t("booth_guide")} content={<Booth />} />
+            <Section key="4" title={t("evacuation_aed")} content={<Emergency />} />
+            <Section key="5" title="About" content={<About />} />
+          </>
+        )}
+      </AnimatePresence>
     </HomeWrapper>
   );
 }

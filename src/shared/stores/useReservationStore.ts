@@ -21,8 +21,8 @@ const useReservationStore = create<ReservationState>()(
     (set) => ({
       modalStep: 0, // default hidden,
       waitingOrder: undefined,
-      name: undefined,
-      phoneNum: undefined,
+      name: "",
+      phoneNum: "",
       idsToDelete: [],
       onClose: () => set(() => ({ modalStep: 0 })),
       setModalStep: (modalStep) => set(() => ({ modalStep })),

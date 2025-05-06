@@ -8,6 +8,7 @@ import En from "@icon/en.svg?react";
 import Ch from "@icon/ch.svg?react";
 import Jp from "@icon/jp.svg?react";
 import { useTranslation } from "react-i18next";
+import { AnimatePresence, motion } from "framer-motion";
 
 interface MainSectionProps {
   onSelectLang: (lang: string) => void;
@@ -32,22 +33,34 @@ export default function MainSection({ onSelectLang, langSelected }: MainSectionP
   const { t } = useTranslation("main");
 
   return (
-    <>
+    <AnimatePresence mode="wait">
       {langSelected ? (
-        <AfterWrapper>
+        <AfterWrapper
+          key="after"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ ease: "easeInOut", duration: 0.5 }}
+        >
           <MainTitle />
           <p className="text">{t("festival_title")}</p>
           <p className="text">05.07 ~ 05.09</p>
         </AfterWrapper>
       ) : (
-        <BeforeWrapper>
+        <BeforeWrapper
+          key="before"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ ease: "easeInOut", duration: 0.5, delay: 0.25 }}
+        >
           <LottieWrapper>
             <DotLottiePlayer
               ref={playerRef}
               src={blooming}
               autoplay
               loop={false}
-              style={{ objectFit: "cover" }}
+              style={{ objectFit: "cover", maxWidth: "375px", margin: "0 auto" }}
             />
           </LottieWrapper>
 
@@ -78,17 +91,17 @@ export default function MainSection({ onSelectLang, langSelected }: MainSectionP
           )}
         </BeforeWrapper>
       )}
-    </>
+    </AnimatePresence>
   );
 }
 
-const BeforeWrapper = styled.div`
+const BeforeWrapper = styled(motion.div)`
   display: flex;
   align-items: center;
   flex-direction: column;
 `;
 
-const AfterWrapper = styled.div`
+const AfterWrapper = styled(motion.div)`
   display: flex;
   align-items: center;
   flex-direction: column;
