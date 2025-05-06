@@ -18,7 +18,7 @@ const AdminModal = ({ onClose, onSuccess }: Props) => {
   const [password, setPassword] = useState("");
 
   const handleLogin = () => {
-    if (password === "1234") {
+    if (password === "0730") {
       onSuccess();
     } else {
       alert("비밀번호가 틀렸습니다.");
@@ -40,8 +40,12 @@ const AdminModal = ({ onClose, onSuccess }: Props) => {
           />
         </InputWrapper>
         <ButtonGroup>
-          <button className="cancel" onClick={onClose}>닫기</button>
-          <button className="login" onClick={handleLogin}>로그인</button>
+          <button className="cancel" onClick={onClose}>
+            닫기
+          </button>
+          <button className="login" onClick={handleLogin}>
+            로그인
+          </button>
         </ButtonGroup>
       </ModalContainer>
     </Backdrop>
