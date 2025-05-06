@@ -6,12 +6,17 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router";
 import useReservationStore from "../../stores/useReservationStore";
 import useHeaderStore from "../../stores/useHeaderStore";
+import { useTranslation } from "react-i18next";
+import useLanguage from "../../hooks/useLanguage";
 
 import { IoCloseOutline } from "react-icons/io5";
 import Flower1 from "@icon/flower_1.svg?react";
 import Flower2 from "@icon/flower_2.svg?react";
 import Flower3 from "@icon/flower_3.svg?react";
-import { useTranslation } from "react-i18next";
+import Kr from "@icon/ko.svg?react";
+import En from "@icon/en.svg?react";
+import Jp from "@icon/jp.svg?react";
+import Ch from "@icon/ch.svg?react";
 
 const DRAWER_WIDTH = 200;
 
@@ -29,7 +34,12 @@ const Drawer = () => {
   const { setModalStep } = useReservationStore();
   const navigate = useNavigate();
 
+  const [, setLang] = useLanguage();
   const { t } = useTranslation("ui");
+  const changeLanguage = (lang: "kr" | "en" | "jp" | "ch") => {
+    setLang(lang);
+    onClose();
+  };
 
   const MENUS = [
     {
@@ -121,6 +131,20 @@ const Drawer = () => {
           >
             {t("credit")}
           </Credit>
+          <Languages>
+            <LanguageButton onClick={() => changeLanguage("kr")}>
+              <Kr />
+            </LanguageButton>
+            <LanguageButton onClick={() => changeLanguage("en")}>
+              <En />
+            </LanguageButton>
+            <LanguageButton onClick={() => changeLanguage("ch")}>
+              <Ch />
+            </LanguageButton>
+            <LanguageButton onClick={() => changeLanguage("jp")}>
+              <Jp />
+            </LanguageButton>
+          </Languages>
           <Copyright>© 2025 SKU LIKELION. All rights reserved.</Copyright>
         </Footer>
       </Wrapper>
@@ -227,6 +251,18 @@ const Credit = styled.button`
   font-style: normal;
   font-weight: 600;
   line-height: normal;
+  cursor: pointer;
+`;
+
+const Languages = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+`;
+
+const LanguageButton = styled.button`
+  all: unset;
   cursor: pointer;
 `;
 
