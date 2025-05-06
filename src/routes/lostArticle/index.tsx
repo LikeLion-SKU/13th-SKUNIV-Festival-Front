@@ -5,6 +5,7 @@ import Card from "./card";
 import useHeader from "../../shared/hooks/useHeader";
 import { fetchLostItems } from "./lostArticleAPI";
 import { Container, CardList, Pagination, EmptyMessage } from "./style.ts";
+import { useTranslation } from "react-i18next";
 
 interface LostItem {
   id: number;
@@ -22,8 +23,10 @@ const LostArticlePage = () => {
   const [lostItems, setLostItems] = useState<LostItem[]>([]);
   const [totalPages, setTotalPages] = useState(1);
 
+  const { t } = useTranslation(["ui", "lostandfound"]);
+
   useHeader({
-    title: "분실물",
+    title: t("ui:lostandfound"),
     showHamburger: true,
     canAccessAdmin: false,
     canAccessLost: true,
@@ -79,7 +82,7 @@ const LostArticlePage = () => {
           ))}
         </CardList>
       ) : (
-        <EmptyMessage>분실물이 없습니다.</EmptyMessage>
+        <EmptyMessage>{t("lostandfound:no_lost")}</EmptyMessage>
       )}
 
       {totalPages > 1 && (

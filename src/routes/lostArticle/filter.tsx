@@ -1,6 +1,7 @@
 import { useAdminLostStore } from "../../stores/useAdminLostStore";
 import { useNavigate } from "react-router-dom";
 import { AddButton, SaveText, FilterContainer, SubText, FilterWrapper } from "./filter.style";
+import { useTranslation } from "react-i18next";
 
 interface FilterProps {
   sort: "LATEST" | "OLDEST";
@@ -27,6 +28,8 @@ const Filter = ({ sort, onSortChange }: FilterProps) => {
     navigate("/lostandfound");
   };
 
+  const { t } = useTranslation("lostandfound");
+
   return (
     <FilterContainer>
       {isAdmin ? (
@@ -38,12 +41,12 @@ const Filter = ({ sort, onSortChange }: FilterProps) => {
         </>
       ) : (
         <SubText>
-          <p>모든 분실물은 총학생회 부스에서 관리합니다.</p>
-          <p>좌측 상단에 기입된 위치는 습득위치입니다.</p>
+          <p>{t("info1")}</p>
+          <p>{t("info2")}</p>
         </SubText>
       )}
       <FilterWrapper>
-        <button onClick={handleSortClick}>{sort === "LATEST" ? "최신순" : "오래된순"}</button>
+        <button onClick={handleSortClick}>{sort === "LATEST" ? t("latest") : t("oldest")}</button>
       </FilterWrapper>
     </FilterContainer>
   );

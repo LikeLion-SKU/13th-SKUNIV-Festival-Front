@@ -6,6 +6,7 @@ import { publicAPI } from "../../../lib/api";
 import BaseResponse from "../../../interfaces/BaseResponse";
 import ReservationRow from "./ReservationRow";
 import ReservationNotFound from "./ReservationNotFound";
+import { Trans, useTranslation } from "react-i18next";
 
 interface ReservationListResponse {
   id: number;
@@ -17,6 +18,8 @@ interface ReservationListResponse {
 
 const ReservationList = () => {
   const { onClose, name, phoneNum, idsToDelete, setModalStep } = useReservationStore();
+
+  const { t } = useTranslation("ui");
 
   const {
     isLoading,
@@ -45,12 +48,12 @@ const ReservationList = () => {
     <Modal
       actions={[
         {
-          title: "닫기",
+          title: t("close"),
           variant: "outline",
           action: onClose,
         },
         {
-          title: "예약 취소",
+          title: t("cancel_reservation"),
           variant: "destructive",
           action: () => setModalStep(6),
           disabled: idsToDelete.length === 0,
@@ -59,10 +62,9 @@ const ReservationList = () => {
       onClose={onClose}
     >
       <Layout>
-        <Title>예약 확인</Title>
+        <Title>{t("check_reservation")}</Title>
         <Warning>
-          밤 부스 준비를 위해 16:35 이후에는
-          <br />낮 부스 예약이 모두 사라집니다.
+          <Trans i18nKey="reservation_breaktime_alert">{t("reservation_breaktime_alert")}</Trans>
         </Warning>
         <Reservations>
           {response?.data?.map((reservation) => (

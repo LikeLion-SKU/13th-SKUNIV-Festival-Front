@@ -20,10 +20,10 @@ interface Booth {
 }
 
 export default function BoothInfo() {
-  const { t } = useTranslation("booth");
+  const { t } = useTranslation(["booth", "ui"]);
 
   useHeader({
-    title: t("booth_info"),
+    title: t("ui:booth_information"),
     showBack: false,
     showHamburger: true,
   });
@@ -38,8 +38,9 @@ export default function BoothInfo() {
   const initialLocation = searchParams.get("location");
   const [selectedLocation, setSelectedLocation] = useState(initialLocation);
   useEffect(() => {
-    setSelectedLocation(t("hyein_hall"));
-  }, [t]);
+    setSelectedLocation(t("booth:hyein_hall"));
+  }, []);
+
 
   const [boothList, setBoothList] = useState<Booth[]>([]);
 
@@ -96,6 +97,7 @@ export default function BoothInfo() {
       return locationPrefix === selectedLocation;
     })
     .sort((a, b) => b.id - a.id);
+
   return (
     <Wrapper>
       <SearchSection searchQuery={searchQuery} onSearchQueryChange={setSearchQuery} />
@@ -119,7 +121,7 @@ export default function BoothInfo() {
                 image={booth.boothThumbnailUrl}
               />
             ))
-          : isSearching && <NoResultMessage>{t("message")}</NoResultMessage>}
+          : isSearching && <NoResultMessage>{t("booth:message")}</NoResultMessage>}
       </BoothWrapper>
     </Wrapper>
   );

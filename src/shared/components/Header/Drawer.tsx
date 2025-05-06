@@ -11,6 +11,7 @@ import { IoCloseOutline } from "react-icons/io5";
 import Flower1 from "@icon/flower_1.svg?react";
 import Flower2 from "@icon/flower_2.svg?react";
 import Flower3 from "@icon/flower_3.svg?react";
+import { useTranslation } from "react-i18next";
 
 const DRAWER_WIDTH = 200;
 
@@ -28,24 +29,26 @@ const Drawer = () => {
   const { setModalStep } = useReservationStore();
   const navigate = useNavigate();
 
+  const { t } = useTranslation("ui");
+
   const MENUS = [
     {
-      name: "메인 화면",
+      name: t("main"),
       path: "/",
       icon: <Flower1 />,
     },
     {
-      name: "부스 안내",
+      name: t("booth_information"),
       path: "/booth",
       icon: <Flower2 />,
     },
     {
-      name: "부스 테이블링",
+      name: t("booth_tabling"),
       path: "/tabling",
       icon: <Flower3 />,
     },
     {
-      name: "분실물",
+      name: t("lostandfound"),
       path: "/lostandfound",
       icon: <Flower1 />,
     },
@@ -108,7 +111,7 @@ const Drawer = () => {
               setModalStep(4);
             }}
           >
-            예약 확인
+            {t("check_reservation")}
           </CheckReservation>
           <Credit
             onClick={() => {
@@ -116,7 +119,7 @@ const Drawer = () => {
               onClose();
             }}
           >
-            제작자 보러가기
+            {t("credit")}
           </Credit>
           <Copyright>© 2025 SKU LIKELION. All rights reserved.</Copyright>
         </Footer>

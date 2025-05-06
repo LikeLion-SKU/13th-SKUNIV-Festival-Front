@@ -20,5 +20,6 @@
   "night_menu": "밤 메뉴",
   "all_menu": "모든 메뉴",
   "reserve": "예약하기",
-  "message": "존재하지 않는 부스입니다"
+  "message": "존재하지 않는 부스입니다",
+  "no_menu": "메뉴가 없습니다."
 }

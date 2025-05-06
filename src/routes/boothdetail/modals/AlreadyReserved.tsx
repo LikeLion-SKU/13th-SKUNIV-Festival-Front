@@ -3,15 +3,18 @@ import useReservationStore from "../../../shared/stores/useReservationStore";
 import styled from "@emotion/styled";
 import Error from "../../../shared/assets/lottie/error.lottie";
 import { DotLottiePlayer } from "@dotlottie/react-player";
+import { useTranslation } from "react-i18next";
 
 const AlreadyReserved = () => {
   const { onClose } = useReservationStore();
+
+  const { t } = useTranslation("ui");
 
   return (
     <Modal
       actions={[
         {
-          title: "닫기",
+          title: t("close"),
           variant: "outline",
           action: onClose,
         },
@@ -20,7 +23,7 @@ const AlreadyReserved = () => {
     >
       <AlreadyLayout>
         <DotLottiePlayer src={Error} autoplay loop style={{ width: "100px", height: "100px" }} />
-        <Message>이미 예약한 부스입니다.</Message>
+        <Message>{t("reservation_already")}</Message>
       </AlreadyLayout>
     </Modal>
   );

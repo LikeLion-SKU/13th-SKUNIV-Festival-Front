@@ -195,7 +195,7 @@ export default function BoothDetail() {
               ))}
             </S.Menus>
           ) : (
-            <div>메뉴가 없습니다.</div>
+            <div>{t("no_menu")}</div>
           )}
         </S.MenuSection>
       </S.Layout>
