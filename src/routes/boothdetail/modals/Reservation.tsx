@@ -4,7 +4,7 @@ import useReservationStore from "../../../shared/stores/useReservationStore";
 import Input from "../Input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { SubmitHandler, useForm } from "react-hook-form";
-import reservationSchema from "./reservationSchema";
+import reservationSchema from "../reservationSchema";
 import { z } from "zod";
 import { DotLottiePlayer } from "@dotlottie/react-player";
 import { useState } from "react";
@@ -19,6 +19,7 @@ import BaseResponse from "../../../shared/interfaces/BaseResponse";
 import { AxiosError } from "axios";
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router";
+import { Trans, useTranslation } from "react-i18next";
 
 interface ReservationResponse {
   id: number;
@@ -40,6 +41,7 @@ const Reservation = () => {
   const { setModalStep, onClose, setReservation } = useReservationStore();
   const { boothId } = useParams();
   const { title } = useHeaderStore();
+  const { t } = useTranslation("ui");
 
   const { data: waitings } = useQuery<BaseResponse<ReservationWaitingsResponse>>({
     queryKey: ["reservationWaitings", boothId],
@@ -102,9 +104,9 @@ const Reservation = () => {
     <>
       <Modal
         actions={[
-          { title: "닫기", variant: "outline", action: () => onClose() },
+          { title: t("close"), variant: "outline", action: () => onClose() },
           {
-            title: "예약하기",
+            title: t("reservation_confirm"),
             variant: "confirm",
             action: handleSubmit(onSubmit),
           },
@@ -112,23 +114,33 @@ const Reservation = () => {
         onClose={onClose}
       >
         <Layout>
-          <Title>{title} 부스 예약</Title>
+          <Title>{t("reservation_title", { title: title?.replace("<br>", "") })}</Title>
 
           <Form onSubmit={handleSubmit(onSubmit)}>
             <Input
-              label="예약자 명 :"
+              label={`${t("reservation_username")} :`}
               type="text"
               autoComplete="off"
-              errorMessage={errors.name?.message}
+              errorMessage={
+                errors.name ? t(errors.name.message as "reservation_enter_username") : undefined
+              }
               {...register("name")}
             />
             <Input
-              label="전화번호 :"
+              label={`${t("reservation_phone_number")} :`}
               type="tel"
               pattern="010-[0-9]{3,4}-[0-9]{4}"
               maxLength={13}
               autoComplete="off"
-              errorMessage={errors.phoneNum?.message}
+              errorMessage={
+                errors.phoneNum
+                  ? t(
+                      errors.phoneNum.message as
+                        | "reservation_enter_phone_number"
+                        | "reservation_enter_valid_phone_number"
+                    )
+                  : undefined
+              }
               {...register("phoneNum", {
                 onChange: (e) => {
                   const input = e.target.value.trim() as string;
@@ -144,28 +156,30 @@ const Reservation = () => {
               })}
             />
             <Input
-              label="인원 수 :"
-              trailing="명"
+              label={`${t("reservation_haedCount")} :`}
+              trailing={t("headCount_trailing")}
               type="tel"
               autoComplete="off"
-              errorMessage={errors.headCount?.message}
+              errorMessage={
+                errors.headCount
+                  ? t(errors.headCount.message as "reservation_headCount_only_number")
+                  : undefined
+              }
               {...register("headCount")}
             />
           </Form>
           <WaitingText>
-            현재 대기팀 : <Waitings>{waitings?.data?.waitingOrder ?? "?"}팀</Waitings>
+            {t("reservation_current_waiting")} :{" "}
+            <Waitings>
+              {waitings?.data?.waitingOrder ?? "?"} {t("team_trailing")}
+            </Waitings>
           </WaitingText>
           <Subtitle>
-            수집된 개인정보는 당일 파기를 원칙으로 합니다.
-            <br />
-            <br />
-            5분 내 미도착 시 자동 취소
-            <br />
-            <br />* 대표자 1명만 예약 가능 (중복 시 불이익)
+            <Trans i18nKey="reservation_disclaimer">{t("reservation_disclaimer")}</Trans>
           </Subtitle>
           <Agreement onClick={() => setAgreed((prev) => !prev)}>
             {agreed === true ? <Checked /> : <Unchecked />}
-            <AgreementText>위 안내사항을 모두 숙지하였습니다.</AgreementText>
+            <AgreementText>{t("reservation_agree")}</AgreementText>
           </Agreement>
         </Layout>
       </Modal>
@@ -173,7 +187,7 @@ const Reservation = () => {
         <Modal
           actions={[
             {
-              title: "닫기",
+              title: t("close"),
               variant: "outline",
               action: () => setShowNowAgreed(false),
             },
@@ -188,7 +202,7 @@ const Reservation = () => {
               loop
               style={{ width: "100px", height: "100px" }}
             />
-            <AgreePlease>개인정보 수집에 동의해주세요.</AgreePlease>
+            <AgreePlease>{t("reservation_please_agree")}</AgreePlease>
           </AgreeLayout>
         </Modal>
       )}
@@ -209,6 +223,7 @@ const Title = styled.span`
   font-weight: 700;
   line-height: 32.665px;
   letter-spacing: -0.5px;
+  white-space: nowrap;
 `;
 
 const Subtitle = styled.p`

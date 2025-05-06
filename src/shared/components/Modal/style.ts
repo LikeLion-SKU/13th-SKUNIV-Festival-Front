@@ -26,7 +26,7 @@ export const Wrapper = styled.div<{ padding?: string }>`
 export const Actions = styled.div`
   padding-top: 30px;
   display: flex;
-  align-items: center;
+  align-items: stretch;
   justify-content: center;
   gap: 12px;
 `;

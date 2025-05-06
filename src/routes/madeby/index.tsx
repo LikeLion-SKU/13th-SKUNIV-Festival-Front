@@ -4,6 +4,7 @@ import Daum from "./Daum";
 import Hanbit from "./Hanbit";
 import LikeLion from "./LikeLion";
 import useHeader from "../../shared/hooks/useHeader";
+import { useTranslation } from "react-i18next";
 
 export default function Madeby() {
   useHeader({
@@ -12,11 +13,13 @@ export default function Madeby() {
     transparent: true,
   });
 
+  const { t } = useTranslation("credit");
+
   return (
     <HomeWrapper>
       <LikeLion />
-      <Section title="다움" content={<Daum />} />
-      <Section title="한빛" content={<Hanbit />} />
+      <Section title={t("daum")} content={<Daum />} />
+      <Section title={t("hanbit")} content={<Hanbit />} />
     </HomeWrapper>
   );
 }

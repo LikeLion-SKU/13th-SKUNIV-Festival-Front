@@ -13,6 +13,7 @@ import yhj from "@image/lions/yhj.webp";
 import mdm from "@image/lions/mdm.webp";
 import lyj from "@image/lions/lyj.webp";
 import ljd from "@image/lions/ljd.webp";
+import { useTranslation } from "react-i18next";
 
 const LionList: Member[] = [
   { role: "PM", name: "서현은", department: "컴퓨터공학과 22", img: she },
@@ -29,15 +30,14 @@ const LionList: Member[] = [
 ];
 
 export default function LikeLion() {
+  const { t } = useTranslation("credit");
+
   return (
     <Wrapper>
       <Madeby />
       <IntroWrapper>
-        <p className="title">서경대학교 멋쟁이사자처럼 13기</p>
-        <p className="content">
-          귀한 시간 내어 이번 축제페이지에 많은 관심 주셔서 감사합니다. 앞으로도 많은 관심과 사랑
-          부탁드립니ㄷr...(하트)
-        </p>
+        <p className="title">{t("seokyeong")}</p>
+        <p className="content">{t("thankyou")}</p>
       </IntroWrapper>
 
       <Section>

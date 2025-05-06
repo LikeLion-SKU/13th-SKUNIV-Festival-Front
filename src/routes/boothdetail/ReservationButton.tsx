@@ -14,7 +14,9 @@ const ReservationButton = ({ disabled }: ReservationButtonProps) => {
 
   const isDayBreakTime = useBreakTime("16:30", "16:59");
 
-  const isNotAvailableTime = useBreakTime("23:00", "9:59");
+  let isNotAvailableTime = useBreakTime("23:00", "9:59");
+
+  isNotAvailableTime = true; // ! 5월 6일만
 
   return (
     <Footer>

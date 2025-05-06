@@ -23,7 +23,9 @@ export interface BoothResponse {
 }
 
 export default function Tabling() {
-  useHeader({ title: "부스 테이블링", showHamburger: true });
+  const { t } = useTranslation(["booth", "ui"]);
+
+  useHeader({ title: t("ui:booth_tabling"), showHamburger: true });
 
   const { ref, inView } = useInView();
 
@@ -57,15 +59,13 @@ export default function Tabling() {
     }
   }, [fetchNextPage, inView]);
 
-  const { t } = useTranslation("booth");
-
   return (
     <S.Layout>
       {/* 학과 부스 검색 */}
       <S.Search>
         <S.SearchInput
           type="search"
-          placeholder={t("search")}
+          placeholder={t("booth:search")}
           onChange={(e) => setSearchQuery(e.target.value.trim())}
         />
         <SearchIcon />

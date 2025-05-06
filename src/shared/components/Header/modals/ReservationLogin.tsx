@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import useReservationStore from "../../../stores/useReservationStore";
 import Modal from "../../Modal";
 import styled from "@emotion/styled";
@@ -5,16 +6,18 @@ import styled from "@emotion/styled";
 const ReservationLogin = () => {
   const { onClose, setModalStep, name, phoneNum, setReservation } = useReservationStore();
 
+  const { t } = useTranslation("ui");
+
   return (
     <Modal
       actions={[
         {
-          title: "닫기",
+          title: t("close"),
           variant: "outline",
           action: onClose,
         },
         {
-          title: "확인",
+          title: t("confirm"),
           variant: "confirm",
           action: () => {
             setReservation({ name, phoneNum });
@@ -26,10 +29,10 @@ const ReservationLogin = () => {
       onClose={onClose}
     >
       <Layout>
-        <Title>예약 확인</Title>
+        <Title>{t("check_reservation")}</Title>
         <Inputs>
           <InputWrapper>
-            <InputLabel>예약자 이름</InputLabel>
+            <InputLabel>{t("reservation_username")}</InputLabel>
             <Input
               type="text"
               value={name}
@@ -37,7 +40,7 @@ const ReservationLogin = () => {
             />
           </InputWrapper>
           <InputWrapper>
-            <InputLabel>전화번호</InputLabel>
+            <InputLabel>{t("reservation_phone_number")}</InputLabel>
             <Input
               type="tel"
               pattern="010-[0-9]{3,4}-[0-9]{4}"

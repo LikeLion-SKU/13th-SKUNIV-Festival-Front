@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { useTranslation } from "react-i18next";
 
 const DaumList = [
   { name: "이현택", department: "글로벌비즈니스 23" },
@@ -11,9 +12,11 @@ const DaumList = [
 ];
 
 export default function Daum() {
+  const { t } = useTranslation("credit");
+
   return (
     <Wrapper>
-      <p className="text">번역에 도움을 주신 글로벌 동아리 '다움' 구성원</p>
+      <p className="text">{t("daum_thanks")}</p>
       <CardGrid>
         {DaumList.map((member, index) => (
           <DaumCard key={index} name={member.name} department={member.department} />
