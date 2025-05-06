@@ -23,7 +23,7 @@ const Action = (props: ActionProps) => {
 
 const Button = styled.button<{ variant: ActionProps["actionData"]["variant"]; disabled?: boolean }>`
   all: unset;
-  padding-block: 10px;
+  padding: 10px;
   flex: 1;
   display: flex;
   align-items: center;

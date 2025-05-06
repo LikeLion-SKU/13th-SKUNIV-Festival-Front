@@ -3,29 +3,32 @@ import useReservationStore from "../../../stores/useReservationStore";
 
 import Checked from "@icon/checked.svg?react";
 import Unchecked from "@icon/unchecked.svg?react";
+import { useTranslation } from "react-i18next";
 
 interface WaitingRowProps {
-  id: number;
+  boothId: number;
   boothName: string;
   headCount: number;
   waitingTeam: number;
 }
 
-const ReservationRow = ({ id, boothName, headCount, waitingTeam }: WaitingRowProps) => {
+const ReservationRow = ({ boothId, boothName, headCount, waitingTeam }: WaitingRowProps) => {
   const { idsToDelete, addIdToDelete, cancelIdToDelete } = useReservationStore();
+
+  const { t } = useTranslation("ui");
 
   return (
     <Wrapper>
-      <Name>{boothName}</Name>
+      <Name>{boothName.replace("<br>", "")}</Name>
       <Divider />
-      <HeadCount>{headCount}명</HeadCount>
+      <HeadCount>{t("reservation_count", { headCount })}</HeadCount>
       <Divider />
-      <WaitingTeam>대기팀 {waitingTeam}팀</WaitingTeam>
+      <WaitingTeam>{t("reservation_waitings", { waitingTeam })}</WaitingTeam>
       <CheckButton>
-        {idsToDelete?.some((c) => id === c.id) ? (
-          <Checked width={16} height={16} onClick={() => cancelIdToDelete(id)} />
+        {idsToDelete?.some((c) => boothId === c.boothId) ? (
+          <Checked width={16} height={16} onClick={() => cancelIdToDelete(boothId)} />
         ) : (
-          <Unchecked width={16} height={16} onClick={() => addIdToDelete(id, boothName)} />
+          <Unchecked width={16} height={16} onClick={() => addIdToDelete(boothId, boothName)} />
         )}
       </CheckButton>
     </Wrapper>

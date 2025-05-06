@@ -104,10 +104,12 @@ export const MenuTitle = styled.span`
   letter-spacing: -0.45px;
 `;
 
-export const Menus = styled.div`
+export const Menus = styled.div<{ rows: number }>`
   position: relative;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-rows: repeat(${(props) => props.rows}, auto);
+  grid-template-columns: repeat(2, 1fr);
+  grid-auto-flow: column;
   column-gap: 41px;
   row-gap: 12px;
   &::after {
@@ -142,6 +144,9 @@ export const Menu = styled.div`
     line-height: 24px;
     letter-spacing: -0.3px;
   }
+  & > span {
+    word-break: break-word;
+  }
 `;
 
 export const MenuPrice = styled.span`
@@ -152,4 +157,55 @@ export const MenuPrice = styled.span`
   line-height: 24px;
   letter-spacing: -0.325px;
   white-space: nowrap;
+`;
+
+export const SelectWrapper = styled.div`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+`;
+
+export const Select = styled.div<{ opened: boolean }>`
+  padding: 5px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: #fff;
+  border: 1px solid #bbdcff;
+  border-radius: ${(props) => (props.opened ? "10px 10px 0 0" : "10px")};
+  color: #1a1a1a;
+  text-align: center;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 600;
+  letter-spacing: -0.25px;
+  cursor: pointer;
+`;
+
+export const Options = styled.div`
+  position: absolute;
+  top: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border: 1px solid #bbdcff;
+  border-top: none;
+  border-radius: 0 0 10px 10px;
+  z-index: 50;
+`;
+
+export const Option = styled.div<{ last?: boolean; value: string }>`
+  padding: 5px 10px;
+  display: flex;
+  align-items: center;
+  color: #1a1a1a;
+  text-align: center;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 600;
+  letter-spacing: -0.25px;
+  cursor: pointer;
+  border-top: ${(props) => (props.last ? "1px solid #bbdcff" : undefined)};
 `;

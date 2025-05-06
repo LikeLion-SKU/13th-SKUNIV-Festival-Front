@@ -1,0 +1,11 @@
+{
+  "lostandfound": "Lost and Found",
+  "search": "Search lost items",
+  "no_lost": "No lost items found.",
+  "pickup_complete": "Picked Up",
+  "location": "Found Location",
+  "info1": "All lost items are managed at the Student Council booth.",
+  "info2": "The location written at the top left is where the item was found.",
+  "latest": "Newest First",
+  "oldest": "Oldest First"
+}

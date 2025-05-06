@@ -3,6 +3,7 @@ import styled from "@emotion/styled";
 import { publicAPI } from "../../shared/lib/api";
 import useLanguage from "../../shared/hooks/useLanguage";
 import BoothCard from "../booth/BoothCard";
+import { useTranslation } from "react-i18next";
 
 interface Booth {
   id: number;
@@ -13,8 +14,10 @@ interface Booth {
 }
 
 export default function Booth() {
+  const { t } = useTranslation("main");
+
   const [lang] = useLanguage();
-  const [selectedLocation, setSelectedLocation] = useState("혜인관");
+  const [selectedLocation, setSelectedLocation] = useState<string>();
   const [boothList, setBoothList] = useState<Booth[]>([]);
 
   useEffect(() => {
@@ -41,6 +44,7 @@ export default function Booth() {
 
     if (lang) {
       fetchAllBooths();
+      setSelectedLocation(t("hyein_hall"));
     }
 
     return () => {
@@ -57,35 +61,35 @@ export default function Booth() {
     <Wrapper>
       <NavWrapper>
         <NavBtn
-          selected={selectedLocation === "혜인관"}
-          onClick={() => setSelectedLocation("혜인관")}
+          selected={selectedLocation === t("hyein_hall")}
+          onClick={() => setSelectedLocation(t("hyein_hall"))}
         >
-          혜인관
+          {t("hyein_hall")}
         </NavBtn>
 
         <NavBtn
-          selected={selectedLocation === "은주1관"}
-          onClick={() => setSelectedLocation("은주1관")}
+          selected={selectedLocation === t("eunju_hall_1")}
+          onClick={() => setSelectedLocation(t("eunju_hall_1"))}
         >
-          은주1관
+          {t("eunju_hall_1")}
         </NavBtn>
         <NavBtn
-          selected={selectedLocation === "은주2관"}
-          onClick={() => setSelectedLocation("은주2관")}
+          selected={selectedLocation === t("eunju_hall_2")}
+          onClick={() => setSelectedLocation(t("eunju_hall_2"))}
         >
-          은주2관
+          {t("eunju_hall_2")}
         </NavBtn>
         <NavBtn
-          selected={selectedLocation === "청운관"}
-          onClick={() => setSelectedLocation("청운관")}
+          selected={selectedLocation === t("cheongun_hall")}
+          onClick={() => setSelectedLocation(t("cheongun_hall"))}
         >
-          청운관
+          {t("cheongun_hall")}
         </NavBtn>
         <NavBtn
-          selected={selectedLocation === "대일관"}
-          onClick={() => setSelectedLocation("대일관")}
+          selected={selectedLocation === t("daeil_hall")}
+          onClick={() => setSelectedLocation(t("daeil_hall"))}
         >
-          대일관
+          {t("daeil_hall")}
         </NavBtn>
       </NavWrapper>
       <BoothWrapper>
@@ -119,7 +123,7 @@ const NavWrapper = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
-  gap: 8px;
+  gap: 10px;
   margin-bottom: 16px;
 `;
 
@@ -129,7 +133,7 @@ const NavBtn = styled.button<{ selected: boolean }>`
   justify-content: center;
   align-items: center;
   min-width: 57px;
-  height: 32px;
+  padding: 5px 10px;
   border-radius: 10px;
   border: 1.3px solid #fff;
   background-color: ${(props) => (props.selected ? "#fff" : "transparent")};

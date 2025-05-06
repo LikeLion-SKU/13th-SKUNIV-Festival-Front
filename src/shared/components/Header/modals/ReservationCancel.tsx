@@ -4,16 +4,19 @@ import useReservationStore from "../../../stores/useReservationStore";
 import Modal from "../../Modal";
 import styled from "@emotion/styled";
 import Trash from "@icon/trash.svg?react";
+import { useTranslation } from "react-i18next";
 
 const ReservationCancel = () => {
   const { onClose, idsToDelete, setReservation, name, phoneNum, setModalStep } =
     useReservationStore();
 
+  const { t } = useTranslation("ui");
+
   async function cancel() {
     const isFulfilled = await axios
       .all(
         idsToDelete.map((r) =>
-          publicAPI.delete(`/reservations/${r.boothName}`, { data: { name, phoneNum } })
+          publicAPI.delete(`/reservations/${r.boothId}`, { data: { name, phoneNum } })
         )
       )
       .then(
@@ -35,12 +38,12 @@ const ReservationCancel = () => {
     <Modal
       actions={[
         {
-          title: "닫기",
+          title: t("close"),
           variant: "outline",
           action: onClose,
         },
         {
-          title: "예약 취소",
+          title: t("cancel_reservation"),
           variant: "destructive",
           action: cancel,
         },
@@ -49,9 +52,7 @@ const ReservationCancel = () => {
     >
       <Layout>
         <Trash />
-        <Title>
-          {idsToDelete.length > 1 ? "예약을 모두 취소하시겠습니까?" : "예약을 취소하시겠습니까?"}
-        </Title>
+        <Title>{t("reservation_cancel_confirm", { count: idsToDelete.length })}</Title>
       </Layout>
     </Modal>
   );

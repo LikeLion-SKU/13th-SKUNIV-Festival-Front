@@ -16,6 +16,7 @@ import CardActionModal from "./cardActionModal";
 import ConfirmDeleteModal from "./deleteConfirmModal";
 import SuccessModal from "./deleteSuccessModal";
 import PickupModal from "./pickupModal";
+import { useTranslation } from "react-i18next";
 
 interface CardProps {
   location: string;
@@ -57,13 +58,15 @@ const Card = ({ location, date, title, imageUrl, returned, id }: CardProps) => {
     setIsPickedUp(isPicked); // 주인이 찾았다고 상태 변경
   };
 
+  const { t } = useTranslation("lostandfound");
+
   return (
     <>
       <CardWrapper onClick={handleCardClick}>
         <StyledImage src={imageUrl} alt={title} />
         <Overlay />
 
-        {!isLoggedIn && isPickedUp && <PickupOverlay>픽업 완료</PickupOverlay>}
+        {!isLoggedIn && isPickedUp && <PickupOverlay>{t("pickup_complete")}</PickupOverlay>}
 
         {isLoggedIn && (
           <CheckIcon onClick={handleCheckClick}>
@@ -75,7 +78,7 @@ const Card = ({ location, date, title, imageUrl, returned, id }: CardProps) => {
           </CheckIcon>
         )}
         <Location>
-          <SubText>습득위치</SubText>
+          <SubText>{t("location")}</SubText>
           <DateText>{location}</DateText>
         </Location>
         <Location>

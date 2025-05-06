@@ -8,7 +8,8 @@ import About from "./About";
 import Emergency from "./Emergency";
 import Intro from "./Intro";
 import useLanguage from "../../shared/hooks/useLanguage";
-import FloatingButton from "../../shared/components/FloatingButton";
+import useHeader from "../../shared/hooks/useHeader";
+import { useTranslation } from "react-i18next";
 
 export default function Home() {
   const [lang, setLang] = useLanguage();
@@ -17,18 +18,25 @@ export default function Home() {
     setLang(selectedLang);
   };
 
+  useHeader({
+    title: null,
+    showHamburger: true,
+    transparent: true,
+  });
+
+  const { t } = useTranslation("main");
+
   return (
     <HomeWrapper langSelected={!!lang}>
       <MainSection onSelectLang={handleLangSelect} langSelected={!!lang} />
       {lang && (
         <>
-          <Section title="축제 소개" content={<Intro />} />
-          <Section title="공연 시간표" content={<TimeTable />} />
-          <Section title="라인업" content={<LineUp />} />
-          <Section title="부스 보러가기" content={<Booth />} />
-          <Section title="대피로 & AED 위치" content={<Emergency />} />
-          <Section title="about" content={<About />} />
-          <FloatingButton />
+          <Section title={t("introduction_title")} content={<Intro />} />
+          <Section title={t("schedule_title")} content={<TimeTable />} />
+          <Section title={t("line_up")} content={<LineUp />} />
+          <Section title={t("booth_guide")} content={<Booth />} />
+          <Section title={t("evacuation_aed")} content={<Emergency />} />
+          <Section title="About" content={<About />} />
         </>
       )}
     </HomeWrapper>

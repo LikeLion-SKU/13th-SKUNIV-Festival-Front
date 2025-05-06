@@ -10,6 +10,7 @@ import BaseResponse from "../../shared/interfaces/BaseResponse";
 import { useInView } from "react-intersection-observer";
 import { useEffect, useState } from "react";
 import useDebounce from "../../shared/hooks/useDebounce";
+import { useTranslation } from "react-i18next";
 
 export interface BoothResponse {
   id: number;
@@ -22,7 +23,9 @@ export interface BoothResponse {
 }
 
 export default function Tabling() {
-  useHeader({ title: "부스 테이블링", showHome: true });
+  const { t } = useTranslation(["booth", "ui"]);
+
+  useHeader({ title: t("ui:booth_tabling"), showHamburger: true });
 
   const { ref, inView } = useInView();
 
@@ -45,7 +48,8 @@ export default function Tabling() {
         .then((response) => response.data),
     enabled: !!lang,
     initialPageParam: null,
-    getNextPageParam: (lastPage) => lastPage.data[lastPage.data.length - 1]?.id ?? null,
+    getNextPageParam: (lastPage) =>
+      lastPage.data.length < 8 ? undefined : lastPage.data[lastPage.data.length - 1]?.id,
     placeholderData: keepPreviousData,
   });
 
@@ -61,7 +65,7 @@ export default function Tabling() {
       <S.Search>
         <S.SearchInput
           type="search"
-          placeholder="학과 부스 검색"
+          placeholder={t("booth:search")}
           onChange={(e) => setSearchQuery(e.target.value.trim())}
         />
         <SearchIcon />

@@ -1,23 +1,42 @@
 import styled from "@emotion/styled";
 
-export const Header = styled.header`
+export const Header = styled.header<{ transparent: boolean }>`
+  position: ${(props) => (props.transparent ? "fixed" : "sticky")};
   top: 0;
-  position: sticky;
-  padding: 20px;
+  left: ${(props) => (props.transparent ? 0 : undefined)};
+  right: ${(props) => (props.transparent ? 0 : undefined)};
+  padding: 12px;
   display: flex;
   align-items: center;
-  background: #fff;
-  border-bottom: 1px solid #d7d7d7;
+  justify-content: center;
+  background: ${(props) => (props.transparent ? "transparent" : "#fff")};
+  border-bottom: ${(props) => (props.transparent ? undefined : "1px solid #d7d7d7")};
   z-index: 99;
 `;
 
+export const Back = styled.button`
+  all: unset;
+  margin-right: auto;
+  padding: 8px;
+  cursor: pointer;
+`;
+
 export const Title = styled.h1`
-  margin: 0 auto;
+  position: absolute;
+  padding-inline: 64px;
   color: #121212;
+  text-align: center;
   font-size: 20px;
   font-weight: 500;
   line-height: normal;
   letter-spacing: -0.5px;
   cursor: default;
   user-select: none;
+`;
+
+export const Hamburger = styled.button<{ transparent: boolean }>`
+  all: unset;
+  margin-left: auto;
+  padding: 8px;
+  cursor: pointer;
 `;

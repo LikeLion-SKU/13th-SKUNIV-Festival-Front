@@ -1,43 +1,10 @@
 import styled from "@emotion/styled";
-
-const dots = [
-  { belongTo: "청운관", top: 106, left: 68, boothFaculty: "미래융합대학" },
-  { belongTo: "청운관", top: 123, left: 68, boothFaculty: "인문과학대학" },
-  { belongTo: "청운관", top: 140, left: 68, boothFaculty: "사회과학대학" },
-  { belongTo: "청운관", top: 157, left: 68, boothFaculty: "이공대학" },
-  { belongTo: "청운관", top: 174, left: 68, boothFaculty: "일어전공" },
-  { belongTo: "대일관", top: 200, left: 68, boothFaculty: "불어전공" },
-  { belongTo: "대일관", top: 217, left: 68, boothFaculty: "중어전공" },
-  { belongTo: "대일관", top: 234, left: 68, boothFaculty: "토목건축공학과" },
-  { belongTo: "대일관", top: 251, left: 68, boothFaculty: "전자컴퓨터공학과" },
-  { belongTo: "대일관", top: 268, left: 68, boothFaculty: "금융정보학과" },
-  { belongTo: "대일관", top: 285, left: 68, boothFaculty: "물류시스템공학과" },
-  { belongTo: "혜인관", top: 80, left: 68, boothFaculty: "총학생회" },
-  { belongTo: "혜인관", top: 80, left: 85, boothFaculty: "총학생회" },
-  { belongTo: "혜인관", top: 80, left: 102, boothFaculty: "투엠" },
-  { belongTo: "혜인관", top: 80, left: 234, boothFaculty: "신문사" },
-  { belongTo: "혜인관", top: 80, left: 251, boothFaculty: "총동아리연합회" },
-  { belongTo: "혜인관", top: 80, left: 268, boothFaculty: "예교원" },
-  { belongTo: "은주2관", top: 110, left: 268, boothFaculty: "예술대학" },
-  { belongTo: "은주2관", top: 127, left: 268, boothFaculty: "미용예술대학" },
-  { belongTo: "은주2관", top: 144, left: 268, boothFaculty: "디자인학부" },
-  { belongTo: "은주2관", top: 161, left: 268, boothFaculty: "스포츠앤테크놀로지학과" },
-  { belongTo: "은주2관", top: 178, left: 268, boothFaculty: "아트앤테크놀로지학과" },
-  { belongTo: "은주2관", top: 195, left: 268, boothFaculty: "광고홍보영상학과" },
-  { belongTo: "은주2관", top: 212, left: 268, boothFaculty: "실용음악학부" },
-  { belongTo: "은주2관", top: 229, left: 268, boothFaculty: "공공인재학부" },
-  { belongTo: "은주1관", top: 243, left: 145, boothFaculty: "나노화학생명" },
-  { belongTo: "은주1관", top: 243, left: 162, boothFaculty: "도시공학과" },
-  { belongTo: "은주1관", top: 243, left: 179, boothFaculty: "소프트웨어학과" },
-  { belongTo: "은주1관", top: 243, left: 196, boothFaculty: "군사학과" },
-  { belongTo: "은주1관", top: 243, left: 213, boothFaculty: "아동청소년학과" },
-  { belongTo: "은주1관", top: 243, left: 230, boothFaculty: "경영학부" },
-];
+import { useTranslation } from "react-i18next";
 
 interface BoothMapProps {
   selectedLocation: string | null;
   setSelectedLocation: (building: string) => void;
-  filteredBooths: { boothFaculty: string }[];
+  filteredBooths: { id: number; boothFaculty: string }[];
   isSearching: boolean;
 }
 
@@ -52,65 +19,109 @@ export default function BoothMap({
     setSelectedLocation(building);
   };
 
+  const { t } = useTranslation("booth");
+
+  const dots = [
+    { belongTo: "청운관", top: 104, left: 63, boothFaculty: "미래융합대학", id: 26 },
+    { belongTo: "청운관", top: 121, left: 63, boothFaculty: "인문과학대학", id: 4 },
+    { belongTo: "청운관", top: 138, left: 63, boothFaculty: "사회과학대학", id: 16 },
+    { belongTo: "청운관", top: 155, left: 63, boothFaculty: "이공대학", id: 29 },
+    { belongTo: "청운관", top: 172, left: 63, boothFaculty: "일어전공", id: 6 },
+    { belongTo: "대일관", top: 200, left: 63, boothFaculty: "불어전공", id: 3 },
+    { belongTo: "대일관", top: 217, left: 63, boothFaculty: "중어전공", id: 1 },
+    { belongTo: "대일관", top: 234, left: 63, boothFaculty: "토목건축공학과", id: 23 },
+    { belongTo: "대일관", top: 251, left: 63, boothFaculty: "전자컴퓨터공학과", id: 8 },
+    { belongTo: "대일관", top: 268, left: 63, boothFaculty: "금융정보학과", id: 2 },
+    { belongTo: "대일관", top: 285, left: 63, boothFaculty: "물류시스템공학과", id: 13 },
+    { belongTo: "혜인관", top: 80, left: 76, boothFaculty: "총학생회", id: 30 },
+    { belongTo: "혜인관", top: 80, left: 93, boothFaculty: "총학생회", id: 30 },
+    { belongTo: "혜인관", top: 80, left: 234, boothFaculty: "신문사", id: 25 },
+    { belongTo: "혜인관", top: 80, left: 251, boothFaculty: "총동아리연합회", id: 14 },
+    { belongTo: "은주2관", top: 104, left: 264, boothFaculty: "예술대학", id: 27 },
+    { belongTo: "은주2관", top: 121, left: 264, boothFaculty: "미용예술대학", id: 20 },
+    { belongTo: "은주2관", top: 138, left: 264, boothFaculty: "디자인학부", id: 12 },
+    {
+      belongTo: "은주2관",
+      top: 155,
+      left: 264,
+      boothFaculty: "스포츠앤<br>테크놀로지학과",
+      id: 21,
+    },
+    { belongTo: "은주2관", top: 172, left: 264, boothFaculty: "아트앤<br>테크놀로지학과", id: 24 },
+    { belongTo: "은주2관", top: 189, left: 264, boothFaculty: "광고홍보영상학과", id: 19 },
+    { belongTo: "은주2관", top: 206, left: 264, boothFaculty: "실용음악학부", id: 22 },
+    { belongTo: "은주2관", top: 223, left: 264, boothFaculty: "공공인재학부", id: 9 },
+    { belongTo: "은주1관", top: 243, left: 150, boothFaculty: "나노화학<br>생명공학과", id: 5 },
+    { belongTo: "은주1관", top: 243, left: 167, boothFaculty: "도시공학과", id: 15 },
+    { belongTo: "은주1관", top: 243, left: 184, boothFaculty: "소프트웨어학과", id: 11 },
+    { belongTo: "은주1관", top: 243, left: 201, boothFaculty: "군사학과", id: 7 },
+    { belongTo: "은주1관", top: 243, left: 218, boothFaculty: "아동청소년학과", id: 10 },
+    { belongTo: "은주1관", top: 243, left: 235, boothFaculty: "경영학부", id: 28 },
+  ];
+
   return (
     <MapWrapper>
       <Building
         className="di"
-        selected={selectedLocation === "대일관"}
+        selected={selectedLocation === t("daeil_hall")}
         disabled={isSearching}
-        onClick={() => handleBuildingClick("대일관")}
+        onClick={() => handleBuildingClick(t("daeil_hall"))}
       >
-        대일관
+        {t("daeil_hall")}
       </Building>
 
       <Building
         className="cw"
-        selected={selectedLocation === "청운관"}
+        selected={selectedLocation === t("cheongun_hall")}
         disabled={isSearching}
-        onClick={() => handleBuildingClick("청운관")}
+        onClick={() => handleBuildingClick(t("cheongun_hall"))}
       >
-        청운관
+        {t("cheongun_hall")}
       </Building>
 
       <Building
         className="he"
-        selected={selectedLocation === "혜인관"}
+        selected={selectedLocation === t("hyein_hall")}
         disabled={isSearching}
-        onClick={() => handleBuildingClick("혜인관")}
+        onClick={() => handleBuildingClick(t("hyein_hall"))}
       >
-        혜인관
+        {t("hyein_hall")}
       </Building>
 
       <Building
         className="ej1"
-        selected={selectedLocation === "은주1관"}
+        selected={selectedLocation === t("eunju_hall_1")}
         disabled={isSearching}
-        onClick={() => handleBuildingClick("은주1관")}
+        onClick={() => handleBuildingClick(t("eunju_hall_1"))}
       >
-        은주1관
+        {t("eunju_hall_1")}
       </Building>
 
       <Building
         className="ej2"
-        selected={selectedLocation === "은주2관"}
+        selected={selectedLocation === t("eunju_hall_2")}
         disabled={isSearching}
-        onClick={() => handleBuildingClick("은주2관")}
+        onClick={() => handleBuildingClick(t("eunju_hall_2"))}
       >
-        은주2관
+        {t("eunju_hall_2")}
       </Building>
 
       {dots.map((d, index) => {
-        const isActive = filteredBooths.some((booth) => booth.boothFaculty === d.boothFaculty);
+        const isActive = filteredBooths.some((booth) => booth.id === d.id);
         return <Dot key={index} style={{ top: d.top, left: d.left }} active={isActive} />;
       })}
 
-      <Stage>무대</Stage>
+      <Stage>{t("stage")}</Stage>
+      <StudentZone>{t("student_zone")}</StudentZone>
+      <SmokeZone>{t("smoking_booth")}</SmokeZone>
+      <XZone>X</XZone>
     </MapWrapper>
   );
 }
 
 const MapWrapper = styled.div`
   position: relative;
+  width: 340px;
   height: 330px;
   border-bottom: 2px solid #ebeaea;
   margin-bottom: 28px;
@@ -128,39 +139,41 @@ const Building = styled.div<{ selected: boolean; disabled: boolean }>`
   font-size: 11px;
   font-weight: 600;
   letter-spacing: -0.275px;
+  padding: 8px;
+  text-align: center;
   cursor: ${({ disabled }) => (disabled ? "not-allowed" : "pointer")};
 
   &.di {
     top: 190px;
-    left: 7px;
+    left: 2px;
     width: 52px;
     height: 116px;
   }
 
   &.cw {
     top: 70px;
-    left: 7px;
+    left: 2px;
     width: 52px;
     height: 116px;
   }
 
   &.he {
-    top: 20px;
-    left: 63px;
+    top: 18px;
+    left: 58px;
     width: 224px;
     height: 48px;
   }
 
   &.ej1 {
     top: 263px;
-    left: 120px;
+    left: 117px;
     width: 165px;
     height: 43px;
   }
 
   &.ej2 {
     top: 70px;
-    left: 290px;
+    left: 286px;
     width: 52px;
     height: 236px;
   }
@@ -176,8 +189,8 @@ const Dot = styled.div<{ active: boolean }>`
 
 const Stage = styled.div`
   position: absolute;
-  top: 75px;
-  left: 121px;
+  top: 72px;
+  left: 116px;
   width: 108px;
   height: 27px;
   background-color: #686868;
@@ -189,4 +202,61 @@ const Stage = styled.div`
   font-size: 11px;
   font-weight: 600;
   letter-spacing: -0.275px;
+  padding: 8px;
+`;
+
+const StudentZone = styled.div`
+  position: absolute;
+  top: 104px;
+  left: 116px;
+  width: 108px;
+  height: 70px;
+  background-color: #b9b9b9;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: -0.275px;
+  padding: 8px;
+`;
+
+const SmokeZone = styled.div`
+  position: absolute;
+  top: 18px;
+  left: 2px;
+  width: 52px;
+  height: 48px;
+  background-color: #b9b9b9;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: -0.275px;
+  text-align: center;
+  padding: 5px;
+`;
+
+const XZone = styled.div`
+  position: absolute;
+  top: 18px;
+  left: 286px;
+  width: 52px;
+  height: 48px;
+  background-color: #b9b9b9;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: -0.275px;
+  text-align: center;
+  padding: 5px;
 `;

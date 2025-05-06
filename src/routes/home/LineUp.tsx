@@ -4,51 +4,59 @@ import Swiper from "swiper";
 import { Autoplay } from "swiper/modules";
 import "swiper/swiper-bundle.css";
 import LineUpCard from "./LineUpCard";
-import artistList from "./ArtistList";
-import leftArrow from "@icon/arrow_left.svg";
-import rightArrow from "@icon/arrow_right.svg";
+import leftArrow from "@icon/arrow_left.svg?react";
+import rightArrow from "@icon/arrow_right.svg?react";
+import { useArtistList } from "./useArtistList";
+import { useTranslation } from "react-i18next";
 
 export default function LineUp() {
   const swiperContainerRef = useRef<HTMLDivElement | null>(null);
   const swiperInstanceRef = useRef<Swiper | null>(null);
 
+  const artistList = useArtistList();
+  const { t } = useTranslation("main");
+
   useEffect(() => {
-    if (swiperContainerRef.current) {
+    if (!swiperContainerRef.current) return;
+
+    swiperInstanceRef.current?.destroy();
+
+    const timeout = setTimeout(() => {
+      if (!swiperContainerRef.current) return;
+
       const swiperInstance = new Swiper(swiperContainerRef.current, {
         modules: [Autoplay],
         loop: true,
         centeredSlides: true,
         slideToClickedSlide: true,
-        effect: "coverflow",
-        coverflowEffect: {
-          rotate: -30,
-          slideShadows: true,
-        },
+        effect: "slide",
         spaceBetween: 20,
         autoplay: {
-          delay: 2500,
+          delay: 3000,
           disableOnInteraction: false,
         },
+        speed: 500,
       });
 
       swiperInstanceRef.current = swiperInstance;
+    }, 0);
 
-      return () => {
-        swiperInstance.destroy();
-      };
-    }
-  }, []);
+    return () => {
+      clearTimeout(timeout);
+      swiperInstanceRef.current?.destroy();
+    };
+  }, [artistList, t]);
 
   return (
     <LineupWrapper>
       <ArrowButton $left onClick={() => swiperInstanceRef.current?.slidePrev()}>
-        <img src={leftArrow} alt="이전" />
+        <LeftArrow />
       </ArrowButton>
 
       <SwiperWrapper className="swiper" ref={swiperContainerRef}>
         <div className="swiper-wrapper">
           {artistList
-            .filter((artist) => artist.description === "아티스트 축하공연")
+            .filter((artist) => artist.description === t("artist"))
             .map((artist, i) => (
               <div className="swiper-slide" key={`${artist.name}-${i}`}>
                 <LineUpCard {...artist} />
@@ -58,7 +66,7 @@ export default function LineUp() {
       </SwiperWrapper>
 
       <ArrowButton onClick={() => swiperInstanceRef.current?.slideNext()}>
-        <img src={rightArrow} alt="다음" />
+        <RightArrow />
       </ArrowButton>
     </LineupWrapper>
   );
@@ -66,7 +74,7 @@ export default function LineUp() {
 
 const LineupWrapper = styled.div`
   position: relative;
-  width: 390px;
+  width: 375px;
   height: 283px;
   overflow: hidden;
   margin: 0 auto;
@@ -75,17 +83,22 @@ const LineupWrapper = styled.div`
 const ArrowButton = styled.button<{ $left?: boolean }>`
   position: absolute;
   top: 50%;
-  ${(props) => (props.$left ? "left: 35px" : "right: 35px")};
+  ${(props) => (props.$left ? "left: 30px" : "right: 30px")};
   transform: translateY(-50%);
   background: none;
   border: none;
   cursor: pointer;
   z-index: 10;
+`;
 
-  img {
-    width: 24px;
-    height: 24px;
-  }
+const LeftArrow = styled(leftArrow)`
+  width: 24px;
+  height: 24px;
+`;
+
+const RightArrow = styled(rightArrow)`
+  width: 24px;
+  height: 24px;
 `;
 
 const SwiperWrapper = styled.div`
@@ -95,7 +108,7 @@ const SwiperWrapper = styled.div`
 
   .swiper-wrapper {
     display: flex;
-    padding-left: 82px;
+    padding-left: 75px;
     align-items: center;
   }
 `;

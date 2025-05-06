@@ -21,8 +21,8 @@ export default defineConfig({
       injectRegister: "auto", // 서비스워커 자동 등록
       includeAssets: ["favicon.ico"], // 기타 정적 자산
       manifest: {
-        name: "blooming",
-        short_name: "blooming",
+        name: "Blooming!",
+        short_name: "Blooming!",
         description: "축제 페이지",
         theme_color: "#ffffff",
         background_color: "#ffffff",
@@ -44,6 +44,7 @@ export default defineConfig({
       workbox: {
         navigateFallback: "/index.html", // SPA fallback
         navigateFallbackDenylist: [/^\/api/], // API는 제외
+        maximumFileSizeToCacheInBytes: 5000000, // 5MB
       },
       devOptions: {
         enabled: true, // 개발 중에도 SW 작동

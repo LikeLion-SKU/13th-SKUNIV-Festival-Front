@@ -1,9 +1,12 @@
 import styled from "@emotion/styled";
 import { useNavigate } from "react-router-dom";
 import logo from "@icon/likelion_logo.svg";
+import { Trans, useTranslation } from "react-i18next";
 
 export default function About() {
   const navigate = useNavigate();
+
+  const { t } = useTranslation("main");
 
   return (
     <AboutWrapper>
@@ -13,17 +16,14 @@ export default function About() {
       <img className="img" src={logo} alt="logo" />
       <p className="title">SKU LIKELION 13TH</p>
       <p className="subtitle">
-        안녕하세요, <strong>멋쟁이사자처럼 서경대</strong>입니다.
+        <Trans i18nKey={"introduction_paragraph1"}>{t("introduction_paragraph1")}</Trans>
       </p>
       <p className="content">
-        학우분들께서 축제를 더욱 즐겁고 <br />
-        편리하게 즐길 수 있도록 축제 페이지를 제작하였습니다. <br />
-        여러분들께 도움이 되는 페이지가 되길 바라며, <br />
-        즐거운 축제 즐기시길 바랍니다 !
+        <Trans i18nKey={"introduction_paragraph2"}>{t("introduction_paragraph2")}</Trans>
       </p>
-      <AboutButton onClick={() => navigate("madeby")}>제작자 보러가기</AboutButton>
+      <AboutButton onClick={() => navigate("credit")}>{t("creator")}</AboutButton>
       <AboutButton onClick={() => window.open("https://skulikelion.com/")}>
-        멋사 홈페이지 보러가기
+        {t("visit_likelion")}
       </AboutButton>
     </AboutWrapper>
   );

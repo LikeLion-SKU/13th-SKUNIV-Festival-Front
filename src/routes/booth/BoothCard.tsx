@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import { useNavigate } from "react-router-dom";
+import Br from "../../shared/components/Br";
 
 interface CardProps {
   location: string;
@@ -15,7 +16,9 @@ export default function BoothCard({ image, location, department, id }: CardProps
     <Card onClick={() => navigate(`/booth/${id}`)} image={image}>
       <TextBox>
         <p className="location">{location}</p>
-        <p className="department">{department}</p>
+        <p className="department">
+          <Br content={department} />
+        </p>
       </TextBox>
     </Card>
   );
@@ -49,7 +52,7 @@ const TextBox = styled.div`
 
   & > .department {
     color: #fff;
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 700;
     line-height: normal;
     letter-spacing: -0.5px;

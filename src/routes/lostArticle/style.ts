@@ -53,3 +53,11 @@ export const Pagination = styled.div`
     border: 1px solid #e3e3e3;
   }
 `;
+
+export const EmptyMessage = styled.p`
+  font-size: 18px;
+  color: #666;
+  text-align: center;
+  margin-top: 40px;
+`;
+

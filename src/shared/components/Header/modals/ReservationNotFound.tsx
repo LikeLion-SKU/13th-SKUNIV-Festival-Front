@@ -3,15 +3,18 @@ import useReservationStore from "../../../stores/useReservationStore";
 import Modal from "../../Modal";
 import styled from "@emotion/styled";
 import CrossX from "../../../assets/lottie/cross-x.lottie";
+import { useTranslation } from "react-i18next";
 
 const ReservationNotFound = () => {
   const { onClose } = useReservationStore();
+
+  const { t } = useTranslation("ui");
 
   return (
     <Modal
       actions={[
         {
-          title: "닫기",
+          title: t("close"),
           variant: "outline",
           action: onClose,
         },
@@ -20,7 +23,7 @@ const ReservationNotFound = () => {
     >
       <Layout>
         <DotLottiePlayer src={CrossX} autoplay style={{ width: "80px", height: "80px" }} />
-        <Message>예약 정보가 없습니다.</Message>
+        <Message>{t("reservation_not_found")}</Message>
       </Layout>
     </Modal>
   );

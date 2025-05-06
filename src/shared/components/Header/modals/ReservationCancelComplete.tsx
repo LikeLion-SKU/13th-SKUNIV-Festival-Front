@@ -3,15 +3,18 @@ import Modal from "../../Modal";
 import styled from "@emotion/styled";
 import { DotLottiePlayer } from "@dotlottie/react-player";
 import Done from ".././../../assets/lottie/done.lottie";
+import { useTranslation } from "react-i18next";
 
 const ReservationCancelComplete = () => {
   const { onClose } = useReservationStore();
+
+  const { t } = useTranslation("ui");
 
   return (
     <Modal
       actions={[
         {
-          title: "닫기",
+          title: t("close"),
           variant: "outline",
           action: onClose,
         },
@@ -20,7 +23,7 @@ const ReservationCancelComplete = () => {
     >
       <Layout>
         <DotLottiePlayer src={Done} autoplay style={{ width: "40px", height: "40px" }} />
-        <Message>예약이 취소되었습니다.</Message>
+        <Message>{t("reservation_cancel_complete")}</Message>
       </Layout>
     </Modal>
   );

@@ -1,20 +1,23 @@
 import styled from "@emotion/styled";
 import Modal from "../../../shared/components/Modal";
 import useReservationStore from "../../../shared/stores/useReservationStore";
+import { useTranslation } from "react-i18next";
 
 const ReservationComplete = () => {
   const { onClose, waitingOrder, setModalStep } = useReservationStore();
+
+  const { t } = useTranslation("ui");
 
   return (
     <Modal
       actions={[
         {
-          title: "닫기",
+          title: t("close"),
           variant: "outline",
           action: onClose,
         },
         {
-          title: "예약 확인",
+          title: t("check_reservation"),
           variant: "confirm",
           action: () => {
             setModalStep(4);
@@ -24,9 +27,9 @@ const ReservationComplete = () => {
       onClose={onClose}
     >
       <Layout>
-        <Title>예약이 완료되었습니다.</Title>
-        <Waiting>내 대기 순서</Waiting>
-        <WaitingNumber>{waitingOrder}번째</WaitingNumber>
+        <Title>{t("reservation_complete")}</Title>
+        <Waiting>{t("reservation_my_waiting")}</Waiting>
+        <WaitingNumber>{waitingOrder}</WaitingNumber>
       </Layout>
     </Modal>
   );

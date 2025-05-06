@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import madeby from "@image/lions/madeby.svg";
+import Madeby from "@image/lions/madeby.svg?react";
 import RoleBlock, { Member } from "./RoleBlock";
 
 import she from "@image/lions/she.webp";
@@ -13,12 +13,13 @@ import yhj from "@image/lions/yhj.webp";
 import mdm from "@image/lions/mdm.webp";
 import lyj from "@image/lions/lyj.webp";
 import ljd from "@image/lions/ljd.webp";
+import { useTranslation } from "react-i18next";
 
 const LionList: Member[] = [
   { role: "PM", name: "서현은", department: "컴퓨터공학과 22", img: she },
   { role: "PM", name: "임다현", department: "소프트웨어학과 23", img: idh },
-  { role: "Design", name: "정영진", department: "비주얼디자인학부 20", img: jyj },
-  { role: "Design", name: "나윤주", department: "비주얼디자인학부 21", img: nyj },
+  { role: "Design", name: "정영진", department: "비주얼디자인전공 20", img: jyj },
+  { role: "Design", name: "나윤주", department: "비주얼디자인전공 21", img: nyj },
   { role: "Frontend", name: "허윤호", department: "전자컴퓨터공학과 24", img: hyh },
   { role: "Frontend", name: "박성연", department: "소프트웨어학과 22", img: psy },
   { role: "Frontend", name: "박태경", department: "컴퓨터공학과 22", img: ptk },
@@ -29,15 +30,14 @@ const LionList: Member[] = [
 ];
 
 export default function LikeLion() {
+  const { t } = useTranslation("credit");
+
   return (
     <Wrapper>
-      <img src={madeby} />
+      <Madeby />
       <IntroWrapper>
-        <p className="title">서경대학교 멋쟁이사자처럼 13기</p>
-        <p className="content">
-          귀한 시간 내어 이번 축제페이지에 많은 관심 주셔서 감사합니다. 앞으로도 많은 관심과 사랑
-          부탁드립니ㄷr...(하트)
-        </p>
+        <p className="title">{t("seokyeong")}</p>
+        <p className="content">{t("thankyou")}</p>
       </IntroWrapper>
 
       <Section>

@@ -6,9 +6,11 @@ import { publicAPI } from "../../../lib/api";
 import BaseResponse from "../../../interfaces/BaseResponse";
 import ReservationRow from "./ReservationRow";
 import ReservationNotFound from "./ReservationNotFound";
+import { Trans, useTranslation } from "react-i18next";
 
 interface ReservationListResponse {
   id: number;
+  boothId: number;
   boothName: string;
   headCount: number;
   waitingTeam: number;
@@ -16,6 +18,8 @@ interface ReservationListResponse {
 
 const ReservationList = () => {
   const { onClose, name, phoneNum, idsToDelete, setModalStep } = useReservationStore();
+
+  const { t } = useTranslation("ui");
 
   const {
     isLoading,
@@ -44,12 +48,12 @@ const ReservationList = () => {
     <Modal
       actions={[
         {
-          title: "닫기",
+          title: t("close"),
           variant: "outline",
           action: onClose,
         },
         {
-          title: "예약 취소",
+          title: t("cancel_reservation"),
           variant: "destructive",
           action: () => setModalStep(6),
           disabled: idsToDelete.length === 0,
@@ -58,12 +62,15 @@ const ReservationList = () => {
       onClose={onClose}
     >
       <Layout>
-        <Title>예약 확인</Title>
+        <Title>{t("check_reservation")}</Title>
+        <Warning>
+          <Trans i18nKey="reservation_breaktime_alert">{t("reservation_breaktime_alert")}</Trans>
+        </Warning>
         <Reservations>
           {response?.data?.map((reservation) => (
             <ReservationRow
               key={reservation.id}
-              id={reservation.id}
+              boothId={reservation.boothId}
               boothName={reservation.boothName}
               headCount={reservation.headCount}
               waitingTeam={reservation.waitingTeam}
@@ -79,7 +86,6 @@ const Layout = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 32px;
 `;
 
 const Title = styled.span`
@@ -90,7 +96,18 @@ const Title = styled.span`
   letter-spacing: -0.5px;
 `;
 
+const Warning = styled.span`
+  margin-top: 4px;
+  color: #f00;
+  text-align: center;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+`;
+
 const Reservations = styled.div`
+  margin-top: 32px;
   display: flex;
   flex-direction: column;
 `;

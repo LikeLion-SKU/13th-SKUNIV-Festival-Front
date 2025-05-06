@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { useTranslation } from "react-i18next";
 
 interface Props {
   selectedLocation: string;
@@ -6,7 +7,15 @@ interface Props {
 }
 
 export default function LocNav({ selectedLocation, setSelectedLocation }: Props) {
-  const locations = ["혜인관", "은주1관", "은주2관", "청운관", "대일관"];
+  const { t } = useTranslation("booth");
+
+  const locations = [
+    t("hyein_hall"),
+    t("eunju_hall_1"),
+    t("eunju_hall_2"),
+    t("cheongun_hall"),
+    t("daeil_hall"),
+  ];
 
   return (
     <NavWrapper>
@@ -27,7 +36,7 @@ const NavWrapper = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
-  gap: 12px;
+  gap: 10px;
   margin-bottom: 8px;
   margin-top: 24px;
 `;
@@ -35,9 +44,9 @@ const NavWrapper = styled.div`
 const NavBtn = styled.button<{ selected: boolean }>`
   display: flex;
   justify-content: center;
+  min-width: 57px;
   align-items: center;
-  min-width: 60px;
-  height: 32px;
+  padding: 5px 10px;
   border: 1.3px solid #4aa4ff;
   background-color: ${(props) => (props.selected ? "#4AA4FF" : "transparent")};
   color: ${(props) => (props.selected ? "#fff" : "#4AA4FF")};

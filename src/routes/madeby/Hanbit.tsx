@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { useTranslation } from "react-i18next";
 
 const HanbitList = [
   { name: "최창조", department: "총학생회장 글비 20" },
@@ -22,9 +23,11 @@ const HanbitList = [
 ];
 
 export default function Hanbit() {
+  const { t } = useTranslation("credit");
+
   return (
     <Wrapper>
-      <p className="text">축제를 기획해주신 총학생회 ‘한빛' 구성원</p>
+      <p className="text">{t("hanbit_thanks")}</p>
       <CardGrid>
         {HanbitList.map((member, index) => (
           <HanbitCard key={index} name={member.name} department={member.department} />

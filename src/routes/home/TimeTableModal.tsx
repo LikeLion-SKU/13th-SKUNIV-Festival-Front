@@ -1,10 +1,10 @@
 import styled from "@emotion/styled";
 import { useState } from "react";
-import artistList from "./ArtistList";
-import close from "@icon/close.svg";
-import star from "@icon/star_blue.svg";
-import arrowLeft from "@icon/arrow_left_thin.svg";
-import arrowRight from "@icon/arrow_right_thin.svg";
+import CloseIcon from "@icon/close.svg?react";
+import StarIcon from "@icon/star_blue.svg?react";
+import ArrowLeft from "@icon/arrow_left_thin.svg?react";
+import ArrowRight from "@icon/arrow_right_thin.svg?react";
+import { useArtistList } from "./useArtistList";
 
 interface ModalProps {
   artist: {
@@ -18,6 +18,8 @@ interface ModalProps {
 }
 
 export default function TimeTableModal({ artist, onClose }: ModalProps) {
+  const artistList = useArtistList();
+
   const [currentIndex, setCurrentIndex] = useState(
     artistList.findIndex((a) => a.name === artist.name)
   );
@@ -36,24 +38,33 @@ export default function TimeTableModal({ artist, onClose }: ModalProps) {
     <ModalOverlay onClick={onClose}>
       <ModalWrapper onClick={(e) => e.stopPropagation()}>
         <ModalContent>
-          <img className="star" src={star} alt="star" />
+          <div style={{ marginTop: 5, marginBottom: 5 }}>
+            <StarIcon style={{ width: 26, height: 26 }} />
+          </div>
           <p className="date">{currentArtist.date}</p>
           <ModalImgDiv image={currentArtist.image}>
             <ArrowButton direction="left" onClick={goLeft}>
-              <img src={arrowLeft} alt="left" />
+              <ArrowLeft style={{ width: 10 }} />
             </ArrowButton>
             <InfoWrapper>
               <p className="time">{currentArtist.time}</p>
-              <p className="name">{currentArtist.name}</p>
+              <p className="name">
+                {currentArtist.name.split("<br>").map((line, index) => (
+                  <span key={index}>
+                    {line}
+                    <br />
+                  </span>
+                ))}
+              </p>
             </InfoWrapper>
             <ArrowButton direction="right" onClick={goRight}>
-              <img src={arrowRight} alt="right" />
+              <ArrowRight style={{ width: 10 }} />
             </ArrowButton>
           </ModalImgDiv>
         </ModalContent>
         <CloseButtonWrapper>
           <CloseButton onClick={onClose}>
-            <img src={close} alt="close" />
+            <CloseIcon style={{ width: 20, height: 20 }} />
           </CloseButton>
         </CloseButtonWrapper>
       </ModalWrapper>
@@ -79,6 +90,16 @@ const ModalWrapper = styled.div`
   justify-content: center;
   text-align: center;
   color: #4aa3ff;
+  animation: fadeInUp 0.3s ease-out forwards;
+
+  @keyframes fadeInUp {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
 `;
 
 const ModalContent = styled.div`

@@ -5,7 +5,7 @@ import Modals from "./modals";
 import * as S from "./style";
 import WaitingRow from "./WaitingRow";
 import BaseResponse from "../../shared/interfaces/BaseResponse";
-import { adminAPI } from "../../shared/lib/api";
+import { adminAPI, publicAPI } from "../../shared/lib/api";
 import { useParams } from "react-router";
 
 interface ReservationsResponse {
@@ -17,25 +17,33 @@ interface ReservationsResponse {
 }
 
 export default function TablingAdmin() {
-  const { boothName } = useParams();
-
-  useHeader({
-    title: boothName!,
-    showBack: true,
-    showHome: true,
-  });
+  const { boothId } = useParams();
 
   const { data: response } = useQuery<BaseResponse<ReservationsResponse[]>>({
-    queryKey: ["adminReservations", boothName],
+    queryKey: ["adminReservations", boothId],
+    queryFn: () => adminAPI.get(`/reservations/admin/${boothId}`).then((response) => response.data),
+    enabled: !!boothId,
+  });
+
+  const { data: userWaitings } = useQuery<
+    BaseResponse<{ boothName: string; waitingOrder: number }>
+  >({
+    queryKey: ["waitings", boothId],
     queryFn: () =>
-      adminAPI.get(`/reservations/admin/${boothName}`).then((response) => response.data),
-    enabled: !!boothName,
+      publicAPI.get(`/reservations/waiting/${boothId}`).then((response) => response.data),
+    enabled: !!boothId,
+  });
+
+  useHeader({
+    title: userWaitings?.data?.boothName ? userWaitings?.data?.boothName : null,
+    showBack: true,
+    showHamburger: false,
   });
 
   const { data: waitings } = useQuery<number>({
-    queryKey: ["adminBoothWaitings", boothName],
-    queryFn: () => adminAPI.get(`/booths/admin/${boothName}`).then((response) => response.data),
-    enabled: !!boothName,
+    queryKey: ["adminBoothWaitings", boothId],
+    queryFn: () => adminAPI.get(`/booths/admin/${boothId}`).then((response) => response.data),
+    enabled: !!boothId,
   });
 
   return (
