@@ -20,5 +20,6 @@
   "night_menu": "Night menu",
   "all_menu": "Show all",
   "reserve": "Make a reservation",
-  "message": "This booth does not exist."
+  "message": "This booth does not exist.",
+  "no_menu": "No menu available."
 }
