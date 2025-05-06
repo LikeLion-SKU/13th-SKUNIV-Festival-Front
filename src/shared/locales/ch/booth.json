@@ -20,5 +20,6 @@
   "night_menu": "夜间展位",
   "all_menu": "所有菜单",
   "reserve": "预订",
-  "message": "您查找的展位不存在。"
+  "message": "您查找的展位不存在。",
+  "no_menu": "没有菜单。"
 }

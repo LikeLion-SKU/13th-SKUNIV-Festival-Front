@@ -191,7 +191,7 @@ export default function BoothDetail() {
                     )}
                   </span>
                   <S.MenuPrice style={{ fontWeight: 600 }}>
-                    {menu.menuPrice.toLocaleString(lang!)}
+                    {menu.menuPrice.toLocaleString("ko")}
                   </S.MenuPrice>
                 </S.Menu>
               ))}
