@@ -1,0 +1,11 @@
+{
+  "lostandfound": "失物招领",
+  "search": "搜索失物",
+  "no_lost": "暂无失物。",
+  "pickup_complete": "领取完成",
+  "location": "拾获地点",
+  "info1": "所有失物由学生会展位统一管理。",
+  "info2": "左上角标注的位置为拾获地点。",
+  "latest": "最新优先",
+  "oldest": "最早优先"
+}

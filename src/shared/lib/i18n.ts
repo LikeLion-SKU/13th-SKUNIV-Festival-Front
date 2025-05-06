@@ -15,9 +15,15 @@ import credit_en from "../locales/en/credit.json";
 
 import main_jp from "../locales/jp/main.json";
 import booth_jp from "../locales/jp/booth.json";
+import ui_jp from "../locales/jp/ui.json";
+import lostandfound_jp from "../locales/jp/lostandfound.json";
+import credit_jp from "../locales/jp/credit.json";
 
 import main_ch from "../locales/ch/main.json";
 import booth_ch from "../locales/ch/booth.json";
+import ui_ch from "../locales/ch/ui.json";
+import lostandfound_ch from "../locales/ch/lostandfound.json";
+import credit_ch from "../locales/ch/credit.json";
 
 i18n.use(initReactI18next).init({
   resources: {
@@ -38,10 +44,16 @@ i18n.use(initReactI18next).init({
     jp: {
       main: main_jp,
       booth: booth_jp,
+      ui: ui_jp,
+      lostandfound: lostandfound_jp,
+      credit: credit_jp,
     },
     ch: {
       main: main_ch,
       booth: booth_ch,
+      ui: ui_ch,
+      lostandfound: lostandfound_ch,
+      credit: credit_ch,
     },
   },
   lng: "kr",
