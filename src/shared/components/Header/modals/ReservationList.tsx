@@ -7,11 +7,13 @@ import BaseResponse from "../../../interfaces/BaseResponse";
 import ReservationRow from "./ReservationRow";
 import ReservationNotFound from "./ReservationNotFound";
 import { Trans, useTranslation } from "react-i18next";
+import useLanguage from "../../../hooks/useLanguage";
 
 interface ReservationListResponse {
   id: number;
   boothId: number;
   boothName: string;
+  boothFaculty: string;
   headCount: number;
   waitingTeam: number;
 }
@@ -19,6 +21,7 @@ interface ReservationListResponse {
 const ReservationList = () => {
   const { onClose, name, phoneNum, idsToDelete, setModalStep } = useReservationStore();
 
+  const [lang] = useLanguage();
   const { t } = useTranslation("ui");
 
   const {
@@ -29,16 +32,31 @@ const ReservationList = () => {
     queryKey: ["reservationList"],
     queryFn: () =>
       publicAPI
-        .post("/reservations/list", {
-          name,
-          phoneNum,
-        })
+        .post(
+          "/reservations/list",
+          {
+            name,
+            phoneNum,
+          },
+          {
+            params: {
+              lang,
+            },
+          }
+        )
         .then((response) => response.data),
+    staleTime: 0,
+    gcTime: 0,
     enabled: !!name && !!phoneNum,
   });
 
   //   TODO
-  if (isLoading) return <h1>로딩중...</h1>;
+  if (isLoading)
+    return (
+      <Modal onClose={onClose} backdropClose={false}>
+        로딩중
+      </Modal>
+    );
 
   if (error) return <ReservationNotFound />;
 
@@ -71,7 +89,7 @@ const ReservationList = () => {
             <ReservationRow
               key={reservation.id}
               boothId={reservation.boothId}
-              boothName={reservation.boothName}
+              boothFaculty={reservation.boothFaculty}
               headCount={reservation.headCount}
               waitingTeam={reservation.waitingTeam}
             />

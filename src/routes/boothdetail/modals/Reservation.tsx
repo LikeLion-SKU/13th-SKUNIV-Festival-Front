@@ -171,7 +171,8 @@ const Reservation = () => {
           <WaitingText>
             {t("reservation_current_waiting")} :{" "}
             <Waitings>
-              {waitings?.data?.waitingOrder ?? "?"} {t("team_trailing")}
+              {waitings?.data?.waitingOrder ? waitings.data.waitingOrder - 1 : "?"}{" "}
+              {t("team_trailing")}
             </Waitings>
           </WaitingText>
           <Subtitle>

@@ -41,7 +41,6 @@ export default function BoothInfo() {
     setSelectedLocation(t("booth:hyein_hall"));
   }, []);
 
-
   const [boothList, setBoothList] = useState<Booth[]>([]);
 
   useEffect(() => {
@@ -63,7 +62,10 @@ export default function BoothInfo() {
         cursor = fetched.at(-1)?.id ?? null;
       }
 
-      if (isMounted) setBoothList(allBooths);
+      if (isMounted) {
+        setBoothList(allBooths);
+        setSelectedLocation(t("booth:hyein_hall"));
+      }
     };
 
     if (lang) {
