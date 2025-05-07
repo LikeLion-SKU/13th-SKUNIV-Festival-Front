@@ -9,7 +9,7 @@ const DayChip = () => {
     <Chip>
       <Sun />
       <ChipText>{t("day_booth")}</ChipText>
-      <Time>~ 17:00</Time>
+      <Time>~ 16:30</Time>
     </Chip>
   );
 };
