@@ -72,11 +72,13 @@ export default function Tabling() {
       </S.Search>
       {/* 그리드 */}
       <S.Grid>
-        {response?.pages
-          .flatMap((page) => page.data)
-          ?.map((data) => (
-            <Card key={data.id} data={data} />
-          ))}
+        {response?.pages && response.pages.flatMap((page) => page.data).length! > 0 ? (
+          response.pages
+            .flatMap((page) => page.data)
+            .map((data) => <Card key={data.id} data={data} />)
+        ) : (
+          <S.NoResultMessage>{t("booth:message")}</S.NoResultMessage>
+        )}
       </S.Grid>
       <div ref={ref}></div>
     </S.Layout>

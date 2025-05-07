@@ -6,6 +6,7 @@ export type ActionProps = {
     variant: "outline" | "confirm" | "destructive";
     action: () => void;
     disabled?: boolean;
+    loading?: boolean;
   };
 };
 
@@ -13,10 +14,10 @@ const Action = (props: ActionProps) => {
   return (
     <Button
       variant={props.actionData.variant}
-      onClick={props.actionData.action}
+      onClick={props.actionData?.loading ? () => {} : props.actionData.action}
       disabled={props.actionData.disabled}
     >
-      {props.actionData.title}
+      {props.actionData?.loading ? "..." : props.actionData.title}
     </Button>
   );
 };

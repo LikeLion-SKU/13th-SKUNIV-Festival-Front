@@ -67,12 +67,14 @@ const Reservation = () => {
 
   const [agreed, setAgreed] = useState(false);
   const [showNotAgreed, setShowNowAgreed] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const onSubmit: SubmitHandler<z.infer<typeof reservationSchema>> = async (data) => {
     if (isValid) {
       if (!agreed) return setShowNowAgreed(true);
 
       try {
+        setIsLoading(true);
         // 예약
         const response = await publicAPI.post<BaseResponse<ReservationResponse>>("/reservations", {
           boothId: Number(boothId),
@@ -96,6 +98,8 @@ const Reservation = () => {
         if ((err as AxiosError).status === 400) {
           setModalStep(3);
         }
+      } finally {
+        setIsLoading(false);
       }
     }
   };
@@ -109,6 +113,7 @@ const Reservation = () => {
             title: t("reservation_confirm"),
             variant: "confirm",
             action: handleSubmit(onSubmit),
+            loading: isLoading,
           },
         ]}
         onClose={onClose}

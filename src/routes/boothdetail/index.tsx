@@ -18,6 +18,7 @@ import "slick-carousel/slick/slick-theme.css";
 import Br from "../../shared/components/Br";
 import ArrowDown from "@icon/arrow-down.svg?react";
 import { useTranslation } from "react-i18next";
+import { useBreakTime } from "../../shared/hooks/useBreakTime";
 
 type BoothInfoResponse = {
   id: number;
@@ -84,10 +85,24 @@ export default function BoothDetail() {
 
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [selectedTime, setSelectedTime] = useState<(typeof DROPDOWN_TIMES)[number]>();
+
+  const dayTime = useBreakTime("16:30", "16:59");
+  const nightTime = useBreakTime("17:00", "22:59");
+
   useEffect(() => {
+    let menu: string;
+
+    if (dayTime) {
+      menu = "day_menu";
+    } else if (nightTime) {
+      menu = "night_menu";
+    } else {
+      menu = "all_menu";
+    }
+
     setSelectedTime({
-      value: "day_menu",
-      label: t("day_menu"),
+      value: menu,
+      label: t(menu),
     });
   }, [lang]);
 
@@ -181,7 +196,7 @@ export default function BoothDetail() {
           {filteredMenus && filteredMenus?.length > 0 ? (
             <S.Menus rows={Math.ceil(filteredMenus.length / 2)}>
               {filteredMenus.map((menu) => (
-                <S.Menu key={menu.menu}>
+                <S.Menu key={`${menu.menu}${menu.menuPrice}`}>
                   <span>
                     <Br content={menu.menu} />
                     {menu?.menuKR && (

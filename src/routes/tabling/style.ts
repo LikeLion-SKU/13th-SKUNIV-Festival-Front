@@ -34,3 +34,11 @@ export const Grid = styled.div`
   grid-template-columns: 1fr 1fr;
   gap: 12px;
 `;
+
+export const NoResultMessage = styled.div`
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 20px 0;
+  color: #888;
+  font-size: 16px;
+`;
