@@ -5,6 +5,7 @@ import StarIcon from "@icon/star_blue.svg?react";
 import ArrowLeft from "@icon/arrow_left_thin.svg?react";
 import ArrowRight from "@icon/arrow_right_thin.svg?react";
 import { useArtistList } from "./useArtistList";
+import { motion } from "framer-motion";
 
 interface ModalProps {
   artist: {
@@ -35,7 +36,17 @@ export default function TimeTableModal({ artist, onClose }: ModalProps) {
   };
 
   return (
-    <ModalOverlay onClick={onClose}>
+    <ModalOverlay
+      onClick={onClose}
+      key={artist.name}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{
+        ease: "easeInOut",
+        duration: 0.3,
+      }}
+    >
       <ModalWrapper onClick={(e) => e.stopPropagation()}>
         <ModalContent>
           <div style={{ marginTop: 5, marginBottom: 5 }}>
@@ -72,7 +83,7 @@ export default function TimeTableModal({ artist, onClose }: ModalProps) {
   );
 }
 
-const ModalOverlay = styled.div`
+const ModalOverlay = styled(motion.div)`
   position: fixed;
   top: 0;
   left: 0;
@@ -90,16 +101,6 @@ const ModalWrapper = styled.div`
   justify-content: center;
   text-align: center;
   color: #4aa3ff;
-  animation: fadeInUp 0.3s ease-out forwards;
-
-  @keyframes fadeInUp {
-    0% {
-      opacity: 0;
-    }
-    100% {
-      opacity: 1;
-    }
-  }
 `;
 
 const ModalContent = styled.div`
