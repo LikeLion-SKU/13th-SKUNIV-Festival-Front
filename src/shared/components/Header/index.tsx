@@ -13,6 +13,7 @@ import { AnimatePresence } from "framer-motion";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { IoChevronBack } from "react-icons/io5";
 import useLanguage from "../../hooks/useLanguage";
+import { useTranslation } from "react-i18next";
 
 const Header = () => {
   const {
@@ -43,6 +44,7 @@ const Header = () => {
   });
 
   const [lang] = useLanguage();
+  const { t } = useTranslation("ui");
 
   if (!lang) return null;
 
@@ -56,7 +58,7 @@ const Header = () => {
         )}
 
         {!transparent && (
-          <S.Title onClick={handleClick}>{title?.replace("<br>", "") ?? "불러오는 중..."}</S.Title>
+          <S.Title onClick={handleClick}>{title?.replace("<br>", "") ?? t("loading")}</S.Title>
         )}
 
         {showHamburger && (
