@@ -5,6 +5,7 @@ import Modal from "../../Modal";
 import styled from "@emotion/styled";
 import Trash from "@icon/trash.svg?react";
 import { useTranslation } from "react-i18next";
+import { useState } from "react";
 
 const ReservationCancel = () => {
   const { onClose, idsToDelete, setReservation, name, phoneNum, setModalStep } =
@@ -12,7 +13,11 @@ const ReservationCancel = () => {
 
   const { t } = useTranslation("ui");
 
+  const [isLoading, setIsLoading] = useState(false);
+
   async function cancel() {
+    setIsLoading(true);
+
     const isFulfilled = await axios
       .all(
         idsToDelete.map((r) =>
@@ -25,6 +30,9 @@ const ReservationCancel = () => {
         )
       )
       .catch(() => alert(t("reservation_error")));
+      .finally(() => {
+        setIsLoading(false);
+      });
 
     if (isFulfilled) {
       setModalStep(7);
@@ -46,6 +54,7 @@ const ReservationCancel = () => {
           title: t("cancel_reservation"),
           variant: "destructive",
           action: cancel,
+          loading: isLoading,
         },
       ]}
       onClose={onClose}

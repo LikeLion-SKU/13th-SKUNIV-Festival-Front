@@ -3,10 +3,13 @@ import Modal from "../../../shared/components/Modal";
 import useAdminStore from "../../../shared/stores/useAdminStore";
 import useHeaderStore from "../../../shared/stores/useHeaderStore";
 import { adminAPI } from "../../../shared/lib/api";
+import { useState } from "react";
 
 const CallPerson = () => {
   const { setModalStep, onClose, phoneNum, name } = useAdminStore();
   const { title } = useHeaderStore();
+
+  const [isLoading, setIsLoading] = useState(false);
 
   return (
     <Modal
@@ -22,8 +25,10 @@ const CallPerson = () => {
           action: async () => {
             // 호출
             try {
+              setIsLoading(true);
+
               const response = await adminAPI.post("/reservations/admin/call", {
-                name: title,
+                name: title?.replace("<br>", ""),
                 phoneNum,
                 message: "부스에서 호출되었습니다.",
               });
@@ -32,9 +37,14 @@ const CallPerson = () => {
                 setModalStep(3);
               }
             } catch (err) {
-              alert("호출에 실패하였습니다.");
+              alert(
+                "호출에 실패하였습니다.\n전화번호가 올바르지 않은 경우 호출이 불가능할 수 있습니다.\n문제가 지속적으로 발생 시 멋사 카톡 채널로 문의해주시기 바랍니다."
+              );
+            } finally {
+              setIsLoading(false);
             }
           },
+          loading: isLoading,
         },
       ]}
       onClose={onClose}
