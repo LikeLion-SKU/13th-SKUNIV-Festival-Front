@@ -34,5 +34,6 @@
   "reservation_enter_phone_number": "Please enter your phone number.",
   "reservation_enter_valid_phone_number": "Please enter a valid phone number. (e.g. 010-1234-5678)",
   "reservation_headCount_only_number": "Please enter only numbers for the headcount.",
-  "reservation_headCount_minimum": "Minimum of 2 people required."
+  "reservation_headCount_minimum": "Minimum of 2 people required.",
+  "reservation_error": "An error has occurred."
 }

@@ -34,5 +34,6 @@
   "reservation_enter_phone_number": "電話番号を入力してください。",
   "reservation_enter_valid_phone_number": "正しい電話番号を入力してください。（例：010-1234-5678）",
   "reservation_headCount_only_number": "人数は数字のみで入力してください。",
-  "reservation_headCount_minimum": "人数は最低2名以上で入力してください。"
+  "reservation_headCount_minimum": "人数は最低2名以上で入力してください。",
+  "reservation_error": "エラーが発生しました。"
 }
