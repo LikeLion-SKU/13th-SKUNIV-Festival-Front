@@ -4,6 +4,7 @@ import TimeTableCard from "./TimeTableCard";
 import TimeTableModal from "./TimeTableModal";
 import { Artist, useArtistList } from "./useArtistList";
 import { useTranslation } from "react-i18next";
+import { AnimatePresence } from "framer-motion";
 
 export default function TimeTable() {
   const artistList = useArtistList();
@@ -37,9 +38,11 @@ export default function TimeTable() {
           onClick={() => setSelectedArtist(artist)}
         />
       ))}
-      {selectedArtist && (
-        <TimeTableModal artist={selectedArtist} onClose={() => setSelectedArtist(null)} />
-      )}
+      <AnimatePresence>
+        {selectedArtist && (
+          <TimeTableModal artist={selectedArtist} onClose={() => setSelectedArtist(null)} />
+        )}
+      </AnimatePresence>
     </TimeTableWrapper>
   );
 }
