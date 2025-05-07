@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useSearchParams } from "react-router-dom";
 import styled from "@emotion/styled";
 import { publicAPI } from "../../shared/lib/api";
@@ -35,8 +35,18 @@ export default function BoothInfo() {
   const debouncedSearchQuery = useDebounce(searchQuery.trim());
 
   const [lang] = useLanguage();
+  const mounted = useRef<boolean>(false);
+
+  useEffect(() => {
+    if (mounted.current === true) {
+      setSelectedLocation(t("booth:hyein_hall"));
+    }
+
+    mounted.current = true;
+  }, [lang]);
 
   const [selectedLocation, setSelectedLocation] = useState("");
+
   useEffect(() => {
     setSelectedLocation(initialLocation ?? t("booth:hyein_hall"));
   }, []);
@@ -44,8 +54,6 @@ export default function BoothInfo() {
   const [boothList, setBoothList] = useState<Booth[]>([]);
 
   useEffect(() => {
-    let isMounted = true;
-
     const fetchAllBooths = async () => {
       let cursor: number | null = null;
       let allBooths: Booth[] = [];
@@ -62,18 +70,12 @@ export default function BoothInfo() {
         cursor = fetched.at(-1)?.id ?? null;
       }
 
-      if (isMounted) {
-        setBoothList(allBooths);
-      }
+      setBoothList(allBooths);
     };
 
     if (lang) {
       fetchAllBooths();
     }
-
-    return () => {
-      isMounted = false;
-    };
   }, [lang]);
 
   useEffect(() => {
