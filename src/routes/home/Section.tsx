@@ -1,8 +1,8 @@
 import styled from "@emotion/styled";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import starWhite from "@icon/star_white.svg";
-import starYellow from "@icon/star_yellow.svg";
+import StarWhite from "@icon/star_white.svg?react";
+import StarYellow from "@icon/star_yellow.svg?react";
 
 interface SectionProps {
   title: string;
@@ -11,7 +11,7 @@ interface SectionProps {
 
 export default function Section({ title, content }: SectionProps) {
   const { ref, inView } = useInView({
-    rootMargin: "-40% 0px -60% 0px",
+    rootMargin: "-20% 0px -60% 0px",
     triggerOnce: false,
   });
   return (
@@ -22,7 +22,34 @@ export default function Section({ title, content }: SectionProps) {
       exit={{ opacity: 0 }}
       transition={{ ease: "easeIn", duration: 0.25, delay: 0.25 }}
     >
-      <StarIcon src={inView ? starYellow : starWhite} alt="star" />
+      <AnimatePresence mode="wait">
+        {inView ? (
+          <StarIcon
+            key="yellow"
+            initial={{ scale: 0.9 }}
+            animate={{ scale: 1 }}
+            transition={{
+              ease: "easeInOut",
+              duration: 0.5,
+            }}
+          >
+            <StarYellow />
+          </StarIcon>
+        ) : (
+          <StarIcon
+            key="white"
+            animate={{ scale: 0.9 }}
+            exit={{ scale: 0.9 }}
+            transition={{
+              ease: "easeInOut",
+              duration: 0.5,
+            }}
+          >
+            <StarWhite />
+          </StarIcon>
+        )}
+      </AnimatePresence>
+
       <SectionTitle>{title}</SectionTitle>
       <SectionContent>{content}</SectionContent>
     </SectionWrapper>
@@ -35,10 +62,9 @@ export const SectionWrapper = styled(motion.div)`
   align-items: center;
 `;
 
-export const StarIcon = styled(motion.img)`
+export const StarIcon = styled(motion.div)`
   width: 26px;
   height: 26px;
-  transition: all 0.4s ease;
 `;
 
 export const SectionTitle = styled.p`
