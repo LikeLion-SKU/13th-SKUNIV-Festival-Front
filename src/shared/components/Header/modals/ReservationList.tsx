@@ -50,11 +50,10 @@ const ReservationList = () => {
     enabled: !!name && !!phoneNum,
   });
 
-  //   TODO
   if (isLoading)
     return (
       <Modal onClose={onClose} backdropClose={false}>
-        로딩중
+        {t("loading")}
       </Modal>
     );
 

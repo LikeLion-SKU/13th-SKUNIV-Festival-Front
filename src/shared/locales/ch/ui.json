@@ -4,6 +4,7 @@
   "booth_tabling": "展位预订",
   "lostandfound": "失物招领",
   "check_reservation": "查看预约",
+  "loading": "加载中",
   "credit": "查看制作人员",
   "confirm": "确认",
   "close": "关闭",
@@ -33,5 +34,6 @@
   "reservation_enter_phone_number": "请输入电话号码。",
   "reservation_enter_valid_phone_number": "请输入正确的电话号码。（例：010-1234-5678）",
   "reservation_headCount_only_number": "人数只能输入数字。",
-  "reservation_headCount_minimum": "人数至少为2人。"
+  "reservation_headCount_minimum": "人数至少为2人。",
+  "reservation_error": "发生错误。"
 }

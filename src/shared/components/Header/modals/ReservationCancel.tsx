@@ -29,7 +29,7 @@ const ReservationCancel = () => {
           responses.every((response) => response.data?.success === true)
         )
       )
-      .catch(() => alert("오류가 발생하였습니다."))
+      .catch(() => alert(t("reservation_error")));
       .finally(() => {
         setIsLoading(false);
       });

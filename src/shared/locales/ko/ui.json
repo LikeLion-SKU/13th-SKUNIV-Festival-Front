@@ -4,6 +4,7 @@
   "booth_tabling": "부스 테이블링",
   "lostandfound": "분실물",
   "check_reservation": "예약 확인",
+  "loading": "불러오는 중...",
   "credit": "제작자 보러가기",
   "confirm": "확인",
   "close": "닫기",
@@ -33,5 +34,6 @@
   "reservation_enter_phone_number": "전화번호를 입력해주세요.",
   "reservation_enter_valid_phone_number": "전화번호를 올바르게 입력해주세요. (예: 010-1234-5678)",
   "reservation_headCount_only_number": "인원 수는 숫자로만 입력해주세요.",
-  "reservation_headCount_minimum": "인원 수는 최소 2명 이상 입력해주세요."
+  "reservation_headCount_minimum": "인원 수는 최소 2명 이상 입력해주세요.",
+  "reservation_error": "오류가 발생하였습니다."
 }

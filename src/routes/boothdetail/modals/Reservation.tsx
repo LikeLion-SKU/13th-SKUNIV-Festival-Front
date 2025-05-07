@@ -92,7 +92,7 @@ const Reservation = () => {
           });
           setModalStep(2);
         } else {
-          alert("예약에 실패하였습니다.");
+          alert(t("reservation_error"));
         }
       } catch (err) {
         if ((err as AxiosError).status === 400) {
