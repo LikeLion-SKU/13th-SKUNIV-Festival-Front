@@ -196,7 +196,7 @@ export default function BoothDetail() {
           {filteredMenus && filteredMenus?.length > 0 ? (
             <S.Menus rows={Math.ceil(filteredMenus.length / 2)}>
               {filteredMenus.map((menu) => (
-                <S.Menu key={`${menu.menuKR}${menu.menuPrice}`}>
+                <S.Menu key={`${menu.menu}${menu.menuPrice}`}>
                   <span>
                     <Br content={menu.menu} />
                     {menu?.menuKR && (
