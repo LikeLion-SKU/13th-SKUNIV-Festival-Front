@@ -29,18 +29,17 @@ export default function BoothInfo() {
   });
 
   const [searchParams, setSearchParams] = useSearchParams();
+  const initialLocation = searchParams.get("location");
 
   const [searchQuery, setSearchQuery] = useState("");
   const debouncedSearchQuery = useDebounce(searchQuery.trim());
 
   const [lang] = useLanguage();
 
-  const initialLocation = searchParams.get("location");
-  const [selectedLocation, setSelectedLocation] = useState(initialLocation);
+  const [selectedLocation, setSelectedLocation] = useState("");
   useEffect(() => {
-    setSelectedLocation(t("booth:hyein_hall"));
+    setSelectedLocation(initialLocation ?? t("booth:hyein_hall"));
   }, []);
-
 
   const [boothList, setBoothList] = useState<Booth[]>([]);
 
@@ -63,7 +62,9 @@ export default function BoothInfo() {
         cursor = fetched.at(-1)?.id ?? null;
       }
 
-      if (isMounted) setBoothList(allBooths);
+      if (isMounted) {
+        setBoothList(allBooths);
+      }
     };
 
     if (lang) {
@@ -76,12 +77,16 @@ export default function BoothInfo() {
   }, [lang]);
 
   useEffect(() => {
-    setSearchParams((prev) => {
-      const params = new URLSearchParams(prev);
-      params.set("location", selectedLocation!);
-      return params;
-    });
-  }, [selectedLocation, setSearchParams]);
+    setSearchParams(
+      (prev) => {
+        const params = new URLSearchParams(prev);
+        params.set("location", selectedLocation!);
+
+        return params;
+      },
+      { replace: true }
+    );
+  }, [selectedLocation]);
 
   const isSearching = debouncedSearchQuery.length > 0;
 
@@ -105,7 +110,7 @@ export default function BoothInfo() {
         <LocNav selectedLocation={selectedLocation!} setSelectedLocation={setSelectedLocation} />
       )}
       <BoothMap
-        selectedLocation={selectedLocation}
+        selectedLocation={selectedLocation!}
         setSelectedLocation={setSelectedLocation}
         filteredBooths={filteredList}
         isSearching={!!isSearching}

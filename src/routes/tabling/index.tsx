@@ -34,7 +34,7 @@ export default function Tabling() {
 
   const [lang] = useLanguage();
   const { data: response, fetchNextPage } = useInfiniteQuery<BaseResponse<BoothResponse[]>>({
-    queryKey: ["boothInfo", debouncedSearchQuery],
+    queryKey: ["boothInfo", debouncedSearchQuery, lang],
     queryFn: ({ pageParam: cursor }) =>
       publicAPI
         .get(searchQuery.length > 0 ? "boothInfo/search" : "boothInfo", {

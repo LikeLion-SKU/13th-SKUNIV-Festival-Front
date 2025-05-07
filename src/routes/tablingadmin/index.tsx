@@ -16,13 +16,30 @@ interface ReservationsResponse {
   reservationTime: string;
 }
 
+const REFETCH_INTERVAL = 60 * 1000;
+
 export default function TablingAdmin() {
   const { boothId } = useParams();
 
   const { data: response } = useQuery<BaseResponse<ReservationsResponse[]>>({
     queryKey: ["adminReservations", boothId],
-    queryFn: () => adminAPI.get(`/reservations/admin/${boothId}`).then((response) => response.data),
+    queryFn: async () => {
+      try {
+        const response = await adminAPI
+          .get(`/reservations/admin/${boothId}`)
+          .then((response) => response.data);
+        return response;
+      } catch (err) {
+        return {
+          success: false,
+          data: [],
+        };
+      }
+    },
     enabled: !!boothId,
+    refetchInterval: REFETCH_INTERVAL,
+    staleTime: 0,
+    gcTime: 0,
   });
 
   const { data: userWaitings } = useQuery<
@@ -44,6 +61,9 @@ export default function TablingAdmin() {
     queryKey: ["adminBoothWaitings", boothId],
     queryFn: () => adminAPI.get(`/booths/admin/${boothId}`).then((response) => response.data),
     enabled: !!boothId,
+    refetchInterval: REFETCH_INTERVAL,
+    staleTime: 0,
+    gcTime: 0,
   });
 
   return (
@@ -52,7 +72,7 @@ export default function TablingAdmin() {
         <S.Waiting>현재 대기 팀</S.Waiting>
         <S.WaitingNumber>{waitings ?? "?"}팀</S.WaitingNumber>
         <S.WaitingRowContainer>
-          {response?.data.map((waiting) => (
+          {response?.data?.map((waiting) => (
             <WaitingRow
               key={waiting.id}
               name={waiting.name}

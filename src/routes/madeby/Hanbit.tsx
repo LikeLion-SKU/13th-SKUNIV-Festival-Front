@@ -5,7 +5,7 @@ const HanbitList = [
   { name: "최창조", department: "총학생회장 글비 20" },
   { name: "윤의찬", department: "정책기획국장 전자 20" },
   { name: "김윤서", department: "사무국장 글비 21" },
-  { name: "최운조", department: "홍보국장 비디 20" },
+  { name: "최운조", department: "홍보국장 비디 22" },
   { name: "정바다", department: "대외협력국장 글비 21" },
   { name: "심은교", department: "복지국장 아텍 23" },
   { name: "최태현", department: "운영집행국장 나화생 22" },

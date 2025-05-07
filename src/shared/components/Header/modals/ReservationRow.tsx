@@ -7,19 +7,19 @@ import { useTranslation } from "react-i18next";
 
 interface WaitingRowProps {
   boothId: number;
-  boothName: string;
+  boothFaculty: string;
   headCount: number;
   waitingTeam: number;
 }
 
-const ReservationRow = ({ boothId, boothName, headCount, waitingTeam }: WaitingRowProps) => {
+const ReservationRow = ({ boothId, boothFaculty, headCount, waitingTeam }: WaitingRowProps) => {
   const { idsToDelete, addIdToDelete, cancelIdToDelete } = useReservationStore();
 
   const { t } = useTranslation("ui");
 
   return (
     <Wrapper>
-      <Name>{boothName.replace("<br>", "")}</Name>
+      <Name>{boothFaculty.replace("<br>", "")}</Name>
       <Divider />
       <HeadCount>{t("reservation_count", { headCount })}</HeadCount>
       <Divider />
@@ -28,7 +28,7 @@ const ReservationRow = ({ boothId, boothName, headCount, waitingTeam }: WaitingR
         {idsToDelete?.some((c) => boothId === c.boothId) ? (
           <Checked width={16} height={16} onClick={() => cancelIdToDelete(boothId)} />
         ) : (
-          <Unchecked width={16} height={16} onClick={() => addIdToDelete(boothId, boothName)} />
+          <Unchecked width={16} height={16} onClick={() => addIdToDelete(boothId, boothFaculty)} />
         )}
       </CheckButton>
     </Wrapper>

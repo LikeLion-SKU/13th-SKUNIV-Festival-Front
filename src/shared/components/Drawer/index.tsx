@@ -13,7 +13,8 @@ import { IoCloseOutline } from "react-icons/io5";
 import Flower1 from "@icon/flower_1.svg?react";
 import Flower2 from "@icon/flower_2.svg?react";
 import Flower3 from "@icon/flower_3.svg?react";
-import Kr from "@icon/ko.svg?react";
+import Flower4 from "@icon/flower_4.svg?react";
+import Ko from "@icon/ko.svg?react";
 import En from "@icon/en.svg?react";
 import Jp from "@icon/jp.svg?react";
 import Ch from "@icon/ch.svg?react";
@@ -36,7 +37,7 @@ const Drawer = () => {
 
   const [, setLang] = useLanguage();
   const { t } = useTranslation("ui");
-  const changeLanguage = (lang: "kr" | "en" | "jp" | "ch") => {
+  const changeLanguage = (lang: "ko" | "en" | "jp" | "ch") => {
     setLang(lang);
     onClose();
   };
@@ -60,7 +61,7 @@ const Drawer = () => {
     {
       name: t("lostandfound"),
       path: "/lostandfound",
-      icon: <Flower1 />,
+      icon: <Flower4 />,
     },
   ];
 
@@ -97,7 +98,7 @@ const Drawer = () => {
           <CloseButton onClick={onClose}>
             <IoCloseOutline size={24} color="#fff" />
           </CloseButton>
-          <Blooming height={150} />
+          <Blooming height={120} />
           <Menus>
             {MENUS.map((menu) => (
               <Menu
@@ -132,8 +133,8 @@ const Drawer = () => {
             {t("credit")}
           </Credit>
           <Languages>
-            <LanguageButton onClick={() => changeLanguage("kr")}>
-              <Kr />
+            <LanguageButton onClick={() => changeLanguage("ko")}>
+              <Ko />
             </LanguageButton>
             <LanguageButton onClick={() => changeLanguage("en")}>
               <En />
@@ -205,6 +206,7 @@ const Menu = styled.button<{ active: boolean }>`
   gap: 8px;
   background: ${(props) => (props.active ? "rgba(255,255,255,0.05)" : undefined)};
   border-radius: 10px;
+  text-align: right;
   color: #fff;
   font-size: 17px;
   font-style: normal;
@@ -219,7 +221,7 @@ const Menu = styled.button<{ active: boolean }>`
 const Footer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 12px;
 `;
 
 const CheckReservation = styled.button`
@@ -255,6 +257,7 @@ const Credit = styled.button`
 `;
 
 const Languages = styled.div`
+  margin-top: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -267,7 +270,6 @@ const LanguageButton = styled.button`
 `;
 
 const Copyright = styled.small`
-  margin-top: 16px;
   display: block;
   color: #ccc;
   text-align: center;
