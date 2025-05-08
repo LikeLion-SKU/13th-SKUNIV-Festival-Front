@@ -50,7 +50,7 @@ const CallPerson = () => {
       onClose={onClose}
     >
       <Layout>
-        <Faculty>{title} 부스</Faculty>
+        <Faculty>{title?.replace("<br>", "")} 부스</Faculty>
         <Message>{name}님을 호출하시겠습니까?</Message>
       </Layout>
     </Modal>

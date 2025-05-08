@@ -21,7 +21,7 @@ const REFETCH_INTERVAL = 60 * 1000;
 export default function TablingAdmin() {
   const { boothId } = useParams();
 
-  const { isLoading, data: response } = useQuery<BaseResponse<ReservationsResponse[]>>({
+  const { isFetching, data: response } = useQuery<BaseResponse<ReservationsResponse[]>>({
     queryKey: ["adminReservations", boothId],
     queryFn: async () => {
       try {
@@ -72,8 +72,8 @@ export default function TablingAdmin() {
         <S.Waiting>현재 대기 팀</S.Waiting>
         <S.WaitingNumber>{waitings ?? "?"}팀</S.WaitingNumber>
         <S.Loading>1분마다 자동으로 새로고침됩니다.</S.Loading>
-        {isLoading ? (
-          <S.Loading>새로고침 중...</S.Loading>
+        {isFetching ? (
+          <S.Fetching>새로고침 중...</S.Fetching>
         ) : (
           <S.WaitingRowContainer>
             {response?.data?.map((waiting) => (

@@ -26,6 +26,17 @@ export const Loading = styled.span`
   line-height: normal;
 `;
 
+export const Fetching = styled.span`
+  margin-top: 8px;
+  display: block;
+  text-align: center;
+  color: red;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+`;
+
 export const WaitingNumber = styled.span`
   display: block;
   text-align: center;
