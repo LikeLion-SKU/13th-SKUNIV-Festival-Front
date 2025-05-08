@@ -42,6 +42,7 @@ export default function Home() {
           </>
         )}
       </AnimatePresence>
+      <Copyright>© 2025 SKU LIKELION. All rights reserved.</Copyright>
     </HomeWrapper>
   );
 }
@@ -50,4 +51,16 @@ const HomeWrapper = styled.div<{ langSelected: boolean }>`
   height: ${({ langSelected }) => (langSelected ? "auto" : "100vh")};
   background: ${({ langSelected }) =>
     langSelected ? "linear-gradient(180deg, #1e3dc7 35.58%, #97f5ff 100%)" : "#1E3DC7"};
+`;
+
+const Copyright = styled.small`
+  display: block;
+  padding-block: 8px;
+  color: #fff;
+  text-align: center;
+  font-size: 8px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  white-space: nowrap;
 `;

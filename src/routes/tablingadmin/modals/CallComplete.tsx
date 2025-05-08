@@ -33,7 +33,7 @@ const CallComplete = () => {
       onClose={onClose}
     >
       <Layout>
-        <Faculty>{title.replace("<br>", "")} 부스</Faculty>
+        <Faculty>{title?.replace("<br>", "")} 부스</Faculty>
         <DotLottiePlayer
           src={Paper}
           autoplay
