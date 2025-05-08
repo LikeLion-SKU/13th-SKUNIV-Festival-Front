@@ -21,7 +21,7 @@ const REFETCH_INTERVAL = 60 * 1000;
 export default function TablingAdmin() {
   const { boothId } = useParams();
 
-  const { data: response } = useQuery<BaseResponse<ReservationsResponse[]>>({
+  const { isLoading, data: response } = useQuery<BaseResponse<ReservationsResponse[]>>({
     queryKey: ["adminReservations", boothId],
     queryFn: async () => {
       try {
@@ -71,17 +71,22 @@ export default function TablingAdmin() {
       <S.Layout>
         <S.Waiting>현재 대기 팀</S.Waiting>
         <S.WaitingNumber>{waitings ?? "?"}팀</S.WaitingNumber>
-        <S.WaitingRowContainer>
-          {response?.data?.map((waiting) => (
-            <WaitingRow
-              key={waiting.id}
-              name={waiting.name}
-              phoneNum={waiting.phoneNum}
-              headCount={waiting.headCount}
-              reservationTime={waiting.reservationTime}
-            />
-          ))}
-        </S.WaitingRowContainer>
+        <S.Loading>1분마다 자동으로 새로고침됩니다.</S.Loading>
+        {isLoading ? (
+          <S.Loading>새로고침 중...</S.Loading>
+        ) : (
+          <S.WaitingRowContainer>
+            {response?.data?.map((waiting) => (
+              <WaitingRow
+                key={waiting.id}
+                name={waiting.name}
+                phoneNum={waiting.phoneNum}
+                headCount={waiting.headCount}
+                reservationTime={waiting.reservationTime}
+              />
+            ))}
+          </S.WaitingRowContainer>
+        )}
       </S.Layout>
       <ModalTransition>
         <Modals />

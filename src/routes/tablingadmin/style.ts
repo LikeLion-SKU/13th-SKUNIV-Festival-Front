@@ -16,6 +16,16 @@ export const Waiting = styled.span`
   letter-spacing: -0.375px;
 `;
 
+export const Loading = styled.span`
+  display: block;
+  text-align: center;
+  color: #aaaaaa;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+`;
+
 export const WaitingNumber = styled.span`
   display: block;
   text-align: center;
