@@ -104,7 +104,7 @@ export default function BoothDetail() {
       value: menu,
       label: t(menu),
     });
-  }, [lang]);
+  }, [lang, times]);
 
   const filteredMenus = response?.data?.boothMenus
     ?.filter((menu) =>
