@@ -86,7 +86,7 @@ export default function BoothDetail() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [selectedTime, setSelectedTime] = useState<(typeof DROPDOWN_TIMES)[number]>();
 
-  const dayTime = useBreakTime("16:30", "16:59");
+  const dayTime = useBreakTime("10:00", "16:30");
   const nightTime = useBreakTime("17:00", "22:59");
 
   useEffect(() => {
