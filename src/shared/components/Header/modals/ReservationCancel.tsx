@@ -29,7 +29,7 @@ const ReservationCancel = () => {
           responses.every((response) => response.data?.success === true)
         )
       )
-      .catch(() => alert(t("reservation_error")));
+      .catch(() => alert(t("reservation_error")))
       .finally(() => {
         setIsLoading(false);
       });
