@@ -69,7 +69,7 @@ const LoginModal = () => {
     >
       <Layout>
         <Title>관리자 로그인</Title>
-        <Subtitle>{title} 부스</Subtitle>
+        <Subtitle>{title?.replace("<br>", "")} 부스</Subtitle>
         <MotionInputWrapper initial={{ x: 0 }} animate={controls}>
           <InputIcon />
           <Input
