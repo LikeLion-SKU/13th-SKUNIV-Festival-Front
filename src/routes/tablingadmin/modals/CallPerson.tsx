@@ -28,7 +28,7 @@ const CallPerson = () => {
               setIsLoading(true);
 
               const response = await adminAPI.post("/reservations/admin/call", {
-                name: title?.replace("<br>", ""),
+                name: title,
                 phoneNum,
                 message: "부스에서 호출되었습니다.",
               });
